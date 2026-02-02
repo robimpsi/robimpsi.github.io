@@ -1,0 +1,55 @@
+media:
+  - name: images
+    label: Images
+    input: client/public/images
+    output: /images
+    extensions: [png, jpg, jpeg, webp]
+
+content:
+  - name: posts
+    label: Blog Posts
+    path: content/posts
+    type: collection
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: description
+        label: Description
+        type: text
+      - name: tags
+        label: Tags
+        type: list
+      - name: body
+        label: Body
+        type: rich-text
+
+  - name: projects
+    label: Projects
+    path: content/projects
+    type: collection
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+      - name: description
+        label: Description
+        type: text
+      - name: link
+        label: Project Link
+        type: string
+      - name: tags
+        label: Tech Stack
+        type: list
+      - name: body
+        label: Details
+        type: rich-text
