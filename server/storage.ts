@@ -30,7 +30,7 @@ export class DatabaseStorage implements IStorage {
 
   // === Posts ===
   async getPosts(): Promise<Post[]> {
-    const postsDir = path.join(process.cwd(), "content", "posts");
+    const postsDir = path.join(process.cwd(), "client", "src", "content", "posts");
     try {
       const files = await fs.readdir(postsDir);
       const posts = await Promise.all(
@@ -52,16 +52,16 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getPost(slug: string): Promise<Post | undefined> {
-    const filePath = path.join(process.cwd(), "content", "posts", `${slug}.md`);
+    const filePath = path.join(process.cwd(), "client", "src", "content", "posts", `${slug}.md`);
     try {
       const fileContent = await fs.readFile(filePath, "utf-8");
       const { data, content } = matter(fileContent);
       return {
         slug,
         title: data.title,
-        date: data.date,
+        date: data.date instanceof Date ? data.date.toISOString() : data.date,
         description: data.description,
-        tags: data.tags,
+        tags: typeof data.tags === 'string' ? [data.tags] : data.tags,
         content: content,
       } as Post;
     } catch (error) {
@@ -71,7 +71,7 @@ export class DatabaseStorage implements IStorage {
 
   // === Projects ===
   async getProjects(): Promise<Project[]> {
-    const projectsDir = path.join(process.cwd(), "content", "projects");
+    const projectsDir = path.join(process.cwd(), "client", "src", "content", "projects");
     try {
       const files = await fs.readdir(projectsDir);
       const projects = await Promise.all(
@@ -95,17 +95,17 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getProject(slug: string): Promise<Project | undefined> {
-    const filePath = path.join(process.cwd(), "content", "projects", `${slug}.md`);
+    const filePath = path.join(process.cwd(), "client", "src", "content", "projects", `${slug}.md`);
     try {
       const fileContent = await fs.readFile(filePath, "utf-8");
       const { data, content } = matter(fileContent);
       return {
         slug,
         title: data.title,
-        date: data.date,
+        date: data.date instanceof Date ? data.date.toISOString() : data.date,
         description: data.description,
         link: data.link,
-        tags: data.tags,
+        tags: typeof data.tags === 'string' ? [data.tags] : data.tags,
         content: content,
       } as Project;
     } catch (error) {
