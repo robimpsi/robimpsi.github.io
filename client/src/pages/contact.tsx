@@ -30,6 +30,10 @@ export default function Contact() {
   });
 
   function onSubmit(data: InsertContactMessage) {
+    const subject = encodeURIComponent(`Contact from ${data.name}`);
+    const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`);
+    window.location.href = `mailto:robi@example.com?subject=${subject}&body=${body}`;
+    
     mutation.mutate(data, {
       onSuccess: () => form.reset(),
     });

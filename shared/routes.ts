@@ -24,14 +24,14 @@ export const api = {
   posts: {
     list: {
       method: 'GET' as const,
-      path: '/api/posts',
+      path: '/api/posts/index.json',
       responses: {
         200: z.array(postSchema),
       },
     },
     get: {
       method: 'GET' as const,
-      path: '/api/posts/:slug',
+      path: '/api/posts/:slug.json',
       responses: {
         200: postSchema,
         404: errorSchemas.notFound,
@@ -41,14 +41,14 @@ export const api = {
   projects: {
     list: {
       method: 'GET' as const,
-      path: '/api/projects',
+      path: '/api/projects/index.json',
       responses: {
         200: z.array(projectSchema),
       },
     },
     get: {
       method: 'GET' as const,
-      path: '/api/projects/:slug',
+      path: '/api/projects/:slug.json',
       responses: {
         200: projectSchema,
         404: errorSchemas.notFound,

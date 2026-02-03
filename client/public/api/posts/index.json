@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "retail-analysis",
+    "title": "Analyzing Customer Retention in Retail",
+    "date": "2024-03-15",
+    "description": "A deep dive into customer retention strategies using Python and Pandas.",
+    "tags": [
+      "Data Analysis",
+      "Python",
+      "Retail"
+    ],
+    "content": "\n# Analyzing Customer Retention\n\nIn this project, I analyzed a dataset of 50,000 retail transactions to identify churn patterns.\n\n## Methodology\n\nI used the **RFM (Recency, Frequency, Monetary)** analysis technique to segment customers.\n\n## Key Findings\n\n- Customers who purchased winter gear were 20% more likely to return the following year.\n- Email campaigns targeted at \"at-risk\" customers showed a 5% conversion rate.\n\n## Tools Used\n\n- Python (Pandas, Matplotlib)\n- SQL\n- Tableau for visualization\n"
+  }
+]
