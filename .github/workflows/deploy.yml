@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necessary to push changes back
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,9 +27,6 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Build
-        run: npm run build
-
       - name: Build and Generate Static Content
         run: npm run build
         
@@ -35,10 +34,13 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          # Check if there are changes in the api directory
           if [ -n "$(git status --porcelain client/public/api/)" ]; then
             git add client/public/api/
-            git commit -m "chore: update static content"
+            git commit -m "chore: update static content from markdown"
             git push
+          else
+            echo "No content changes to commit"
           fi
         
       - name: Setup Pages
