@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
-    }, 1500);
+    }, 3000); // Slower interval for better readability
     return () => clearInterval(interval);
   }, []);
 
@@ -39,16 +39,19 @@ export default function Home() {
               <Badge variant="outline" className="mb-6 font-mono bg-background/50 backdrop-blur">
                 Retail Data Analyst
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold font-display leading-tight mb-6 h-[1.2em]">
+              <h1 className="text-5xl md:text-7xl font-bold font-display leading-tight mb-6">
                 Robi Maulana is{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent inline-block min-w-[4ch]">
+                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent min-w-[5ch]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={words[index]}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ 
+                        duration: 0.5,
+                        ease: "easeInOut"
+                      }}
                       className="inline-block"
                     >
                       {words[index]}
