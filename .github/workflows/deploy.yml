@@ -27,6 +27,19 @@ jobs:
         
       - name: Build
         run: npm run build
+
+      - name: Build and Generate Static Content
+        run: npm run build
+        
+      - name: Commit and Push Static Content
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          if [ -n "$(git status --porcelain client/public/api/)" ]; then
+            git add client/public/api/
+            git commit -m "chore: update static content"
+            git push
+          fi
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
