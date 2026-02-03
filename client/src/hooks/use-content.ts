@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { api, buildUrl, type ContactInput } from "@shared/routes";
+import { api, type ContactInput } from "@shared/routes";
 import { useToast } from "@/hooks/use-toast";
+import { getCollection, getEntry } from "@/lib/content";
 
 // ============================================
 // POSTS (BLOG)
@@ -10,9 +11,8 @@ export function usePosts() {
   return useQuery({
     queryKey: [api.posts.list.path],
     queryFn: async () => {
-      const res = await fetch(api.posts.list.path);
-      if (!res.ok) throw new Error("Failed to fetch posts");
-      return api.posts.list.responses[200].parse(await res.json());
+      const posts = await getCollection("posts");
+      return posts.map(p => p.data);
     },
   });
 }
@@ -21,11 +21,9 @@ export function usePost(slug: string) {
   return useQuery({
     queryKey: [api.posts.get.path, slug],
     queryFn: async () => {
-      const url = buildUrl(api.posts.get.path, { slug });
-      const res = await fetch(url);
-      if (res.status === 404) throw new Error("Post not found");
-      if (!res.ok) throw new Error("Failed to fetch post");
-      return api.posts.get.responses[200].parse(await res.json());
+      const post = await getEntry("posts", slug);
+      if (!post) throw new Error("Post not found");
+      return post.data;
     },
     enabled: !!slug,
   });
@@ -39,9 +37,8 @@ export function useProjects() {
   return useQuery({
     queryKey: [api.projects.list.path],
     queryFn: async () => {
-      const res = await fetch(api.projects.list.path);
-      if (!res.ok) throw new Error("Failed to fetch projects");
-      return api.projects.list.responses[200].parse(await res.json());
+      const projects = await getCollection("projects");
+      return projects.map(p => p.data);
     },
   });
 }
@@ -50,11 +47,9 @@ export function useProject(slug: string) {
   return useQuery({
     queryKey: [api.projects.get.path, slug],
     queryFn: async () => {
-      const url = buildUrl(api.projects.get.path, { slug });
-      const res = await fetch(url);
-      if (res.status === 404) throw new Error("Project not found");
-      if (!res.ok) throw new Error("Failed to fetch project");
-      return api.projects.get.responses[200].parse(await res.json());
+      const project = await getEntry("projects", slug);
+      if (!project) throw new Error("Project not found");
+      return project.data;
     },
     enabled: !!slug,
   });

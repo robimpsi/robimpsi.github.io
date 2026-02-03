@@ -8,7 +8,7 @@ media:
 content:
   - name: posts
     label: Blog Posts
-    path: content/posts
+    path: client/src/content/posts
     type: collection
     fields:
       - name: title
@@ -31,7 +31,7 @@ content:
 
   - name: projects
     label: Projects
-    path: content/projects
+    path: client/src/content/projects
     type: collection
     fields:
       - name: title

@@ -6,9 +6,6 @@ async function buildAll() {
   console.log("Cleaning dist...");
   await rm("dist", { recursive: true, force: true });
 
-  console.log("Generating static content...");
-  execSync("npx tsx script/generate-content.ts", { stdio: "inherit" });
-
   console.log("Building client...");
   await viteBuild();
 

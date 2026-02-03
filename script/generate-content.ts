@@ -8,7 +8,7 @@ async function ensureDir(dir: string) {
 }
 
 async function getPost(slug: string) {
-  const filePath = path.join(process.cwd(), "content", "posts", `${slug}.md`);
+  const filePath = path.join(process.cwd(), "client", "src", "content", "posts", `${slug}.md`);
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
     const { data, content } = matter(fileContent);
@@ -36,7 +36,7 @@ async function getPost(slug: string) {
 }
 
 async function getProject(slug: string) {
-  const filePath = path.join(process.cwd(), "content", "projects", `${slug}.md`);
+  const filePath = path.join(process.cwd(), "client", "src", "content", "projects", `${slug}.md`);
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
     const { data, content } = matter(fileContent);
@@ -67,7 +67,7 @@ async function generate() {
   
   // Posts
   console.log("Processing posts...");
-  const postsDir = path.join(process.cwd(), "content", "posts");
+  const postsDir = path.join(process.cwd(), "client", "src", "content", "posts");
   const postsApiDir = path.join(publicApiDir, "posts");
   await ensureDir(postsApiDir);
   
@@ -90,7 +90,7 @@ async function generate() {
 
   // Projects
   console.log("Processing projects...");
-  const projectsDir = path.join(process.cwd(), "content", "projects");
+  const projectsDir = path.join(process.cwd(), "client", "src", "content", "projects");
   const projectsApiDir = path.join(publicApiDir, "projects");
   await ensureDir(projectsApiDir);
   
