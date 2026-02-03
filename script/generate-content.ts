@@ -24,9 +24,9 @@ async function getPost(slug: string) {
     return {
       slug,
       title: data.title || "Untitled",
-      date: data.date || new Date().toISOString(),
+      date: data.date instanceof Date ? data.date.toISOString() : (data.date || new Date().toISOString()),
       description: data.description || "",
-      tags: data.tags || [],
+      tags: typeof data.tags === 'string' ? [data.tags] : (data.tags || []),
       content: content,
     };
   } catch (error) {
@@ -49,9 +49,9 @@ async function getProject(slug: string) {
     return {
       slug,
       title: data.title || "Untitled Project",
-      date: data.date || new Date().toISOString(),
+      date: data.date instanceof Date ? data.date.toISOString() : (data.date || new Date().toISOString()),
       description: data.description || "",
-      tags: data.tags || [],
+      tags: typeof data.tags === 'string' ? [data.tags] : (data.tags || []),
       link: data.link || "",
       content: content,
     };
