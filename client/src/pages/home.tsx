@@ -1,13 +1,24 @@
 import { Layout } from "@/components/layout";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, BarChart2, Database, LineChart, Download } from "lucide-react";
 import { usePosts, useProjects } from "@/hooks/use-content";
 import { ProjectCard } from "@/components/project-card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const [index, setIndex] = useState(0);
+  const words = ["writing", "reading", "learning", "thinking"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
   const { data: projects, isLoading: projectsLoading } = useProjects();
   const { data: posts, isLoading: postsLoading } = usePosts();
 
@@ -28,8 +39,22 @@ export default function Home() {
               <Badge variant="outline" className="mb-6 font-mono bg-background/50 backdrop-blur">
                 Retail Data Analyst
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold font-display leading-tight mb-6">
-                Turning complex data into <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">business insights.</span>
+              <h1 className="text-5xl md:text-7xl font-bold font-display leading-tight mb-6 h-[1.2em]">
+                Robi Maulana is{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent inline-block min-w-[4ch]">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={words[index]}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="inline-block"
+                    >
+                      {words[index]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
                 I help retail businesses optimize inventory and understand customer behavior through advanced analytics, Python, and visualization.
