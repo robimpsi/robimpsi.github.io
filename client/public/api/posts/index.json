@@ -1,5 +1,13 @@
 [
   {
+    "slug": "2026-02-03-with-great-attitude",
+    "title": "With Great Attitude",
+    "date": "2026-02-03T00:00:00.000Z",
+    "description": "This is me writing",
+    "tags": "testing",
+    "content": "Hi Mom!"
+  },
+  {
     "slug": "retail-analysis",
     "title": "Analyzing Customer Retention in Retail",
     "date": "2024-03-15",
