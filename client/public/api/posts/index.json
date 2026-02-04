@@ -28,6 +28,18 @@
     "content": "Hi Mom!"
   },
   {
+    "slug": "inventory-turnover",
+    "title": "Trendline: Perputaran Persediaan untuk Peritel",
+    "date": "2024-05-22",
+    "description": "Pelajari cara menghitung dan menggunakan Perputaran Persediaan untuk membebaskan kas dan mengoptimalkan stok ritel Anda.",
+    "tags": [
+      "Persediaan",
+      "Metrik",
+      "Strategi Ritel"
+    ],
+    "content": "\n### Skenario\nBayangkan Anda berjalan melewati gudang belakang dan melihat barisan jaket musim dingin masih tergantung, padahal sekarang sudah pertengahan Mei. Anda memiliki jutaan rupiah yang tertahan di wol dan bulu tersebut, uang yang tidak bisa Anda gunakan untuk membeli gaun musim panas yang saat ini ditanyakan pelanggan Anda. Rak Anda terlihat penuh, yang mungkin tampak bagus pada pandangan pertama, tetapi rekening bank Anda kosong. Ini adalah jebakan ritel klasik: persediaan hantu yang memakan tempat tanpa menghasilkan arus kas.\n\n### Statistik: Perputaran Persediaan\nPerputaran Persediaan adalah rasio sederhana yang memberi tahu Anda berapa kali Anda telah menjual dan mengganti seluruh stok Anda selama periode tertentu. Anda menghitungnya dengan mengambil total Harga Pokok Penjualan (HPP) dan membaginya dengan nilai Rata-rata Persediaan Anda. Dalam istilah yang lebih sederhana, ini mengukur kecepatan produk Anda berpindah dari dok penerimaan ke tas belanja pelanggan. Tingkat perputaran yang tinggi berarti Anda memindahkan barang dengan cepat, sedangkan tingkat yang rendah menunjukkan produk Anda terlalu lama mengendap.\n\n### Wawasan\nBagi peritel, persediaan hanyalah uang tunai yang diubah sementara menjadi objek fisik. Jika tingkat perputaran Anda adalah dua, itu berarti Anda menyegarkan toko Anda dua kali setahun. Jika pesaing Anda memiliki perputaran enam, mereka mengubah uang tunai menjadi laba tiga kali lebih cepat daripada Anda. Perputaran yang rendah sering kali merupakan tanda peringatan adanya penumpukan stok atau pemilihan produk yang buruk. Setiap hari sebuah SKU duduk di rak Anda, ia kehilangan nilai dan membebani Anda dengan biaya peluang.\n\n### Kemenangan Cepat\nBuka sistem Point of Sale (POS) Anda dan jalankan laporan persediaan untuk sembilan puluh hari terakhir. Filter item dengan nol penjualan atau yang memiliki tingkat perputaran jauh di bawah rata-rata toko Anda. Pilih sepuluh persen terbawah dari barang-barang yang bergerak lambat ini dan pindahkan ke rak obral hari ini. Mendapatkan kembali lima puluh persen uang Anda sekarang lebih baik daripada menyimpan seratus persen produk yang tidak ingin dibeli oleh siapa pun.\n"
+  },
+  {
     "slug": "retail-analysis",
     "title": "Analyzing Customer Retention in Retail",
     "date": "2024-03-15",
