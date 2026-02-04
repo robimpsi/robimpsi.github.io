@@ -1,18 +1,18 @@
 ---
-title: "📉 Trendline: Inventory Turnover for Retailers"
+title: "Trendline: Perputaran Persediaan untuk Peritel"
 date: "2024-05-22"
-description: "Learn how to calculate and use Inventory Turnover to free up cash and optimize your retail stock."
-tags: ["Inventory", "Metrics", "Retail Strategy"]
+description: "Pelajari cara menghitung dan menggunakan Perputaran Persediaan untuk membebaskan kas dan mengoptimalkan stok ritel Anda."
+tags: ["Persediaan", "Metrik", "Strategi Ritel"]
 ---
 
-### 🛍️ The Scenario
-Imagine walking through your backroom and seeing rows of winter coats still on the hangers, even though it is already mid-May. You have thousands of dollars tied up in that wool and down, money that you cannot use to buy the summer dresses your customers are currently asking for. Your shelves look full, which might seem good at first glance, but your bank account is empty. This is the classic retail trap: ghost inventory that is taking up space without generating cash flow.
+### Skenario
+Bayangkan Anda berjalan melewati gudang belakang dan melihat barisan jaket musim dingin masih tergantung, padahal sekarang sudah pertengahan Mei. Anda memiliki jutaan rupiah yang tertahan di wol dan bulu tersebut, uang yang tidak bisa Anda gunakan untuk membeli gaun musim panas yang saat ini ditanyakan pelanggan Anda. Rak Anda terlihat penuh, yang mungkin tampak bagus pada pandangan pertama, tetapi rekening bank Anda kosong. Ini adalah jebakan ritel klasik: persediaan hantu yang memakan tempat tanpa menghasilkan arus kas.
 
-### 📊 The Stat: Inventory Turnover
-Inventory Turnover is a simple ratio that tells you how many times you have sold and replaced your entire stock over a specific period. You calculate it by taking the total Cost of Goods Sold (COGS) and dividing it by your Average Inventory value. In simpler terms, it measures the speed at which your products move from the receiving dock to the customer shopping bag. A high turnover rate means you are moving goods quickly, while a low rate suggests your products are overstaying their welcome.
+### Statistik: Perputaran Persediaan
+Perputaran Persediaan adalah rasio sederhana yang memberi tahu Anda berapa kali Anda telah menjual dan mengganti seluruh stok Anda selama periode tertentu. Anda menghitungnya dengan mengambil total Harga Pokok Penjualan (HPP) dan membaginya dengan nilai Rata-rata Persediaan Anda. Dalam istilah yang lebih sederhana, ini mengukur kecepatan produk Anda berpindah dari dok penerimaan ke tas belanja pelanggan. Tingkat perputaran yang tinggi berarti Anda memindahkan barang dengan cepat, sedangkan tingkat yang rendah menunjukkan produk Anda terlalu lama mengendap.
 
-### 💡 The Insight
-For a retailer, inventory is just cash that has been temporarily transformed into physical objects. If your turnover rate is two, it means you refresh your store twice a year. If your competitor has a turnover of six, they are turning their cash into profit three times faster than you are. Low turnover is often a warning sign of overstocking or poor product selection. Every day a SKU sits on your shelf, it loses value and costs you money in opportunity cost.
+### Wawasan
+Bagi peritel, persediaan hanyalah uang tunai yang diubah sementara menjadi objek fisik. Jika tingkat perputaran Anda adalah dua, itu berarti Anda menyegarkan toko Anda dua kali setahun. Jika pesaing Anda memiliki perputaran enam, mereka mengubah uang tunai menjadi laba tiga kali lebih cepat daripada Anda. Perputaran yang rendah sering kali merupakan tanda peringatan adanya penumpukan stok atau pemilihan produk yang buruk. Setiap hari sebuah SKU duduk di rak Anda, ia kehilangan nilai dan membebani Anda dengan biaya peluang.
 
-### 🚀 Quick Win
-Open your Point of Sale (POS) system and run an inventory report for the last ninety days. Filter for items with zero sales or those with a turnover rate significantly below your store average. Select the bottom ten percent of these slow-movers and move them to a clearance rack today. Getting fifty percent of your money back now is better than keeping one hundred percent of a product that nobody wants to buy.
+### Kemenangan Cepat
+Buka sistem Point of Sale (POS) Anda dan jalankan laporan persediaan untuk sembilan puluh hari terakhir. Filter item dengan nol penjualan atau yang memiliki tingkat perputaran jauh di bawah rata-rata toko Anda. Pilih sepuluh persen terbawah dari barang-barang yang bergerak lambat ini dan pindahkan ke rak obral hari ini. Mendapatkan kembali lima puluh persen uang Anda sekarang lebih baik daripada menyimpan seratus persen produk yang tidak ingin dibeli oleh siapa pun.
