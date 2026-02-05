@@ -30,3 +30,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Persediaan hanyalah uang tunai yang diubah sementara menjadi objek fisik (Inventory is just cash temporarily transformed into physical objects).
 **Effectiveness:** Sangat efektif untuk manajer ritel karena mengalihkan fokus dari "produk yang hilang" ke "modal yang hilang." Ini membuat biaya stok mati terasa lebih nyata.
 **Refinement:** Gunakan analogi ini untuk menjelaskan "biaya peluang" di postingan mendatang tentang optimasi SKU.
+
+## 2026-02-03 - Mean vs Median
+**Analogy:** Pelanggan "Paus" vs Pelanggan Tipikal (The Whale vs. The Typical Shopper).
+**Effectiveness:** Menjelaskan bagaimana satu transaksi besar bisa mengaburkan realitas harian di lantai toko. Ini membantu manajer memahami bahwa "rata-rata" tidak selalu mencerminkan pengalaman mayoritas pelanggan.
+**Refinement:** Gunakan contoh konkret tentang bagaimana stok barang mewah yang berlebihan (karena Mean yang tinggi) bisa mematikan arus kas jika mayoritas pelanggan sebenarnya mencari barang ekonomis (Median).
