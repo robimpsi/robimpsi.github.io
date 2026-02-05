@@ -28,6 +28,18 @@
     "content": "Hi Mom!"
   },
   {
+    "slug": "mean-vs-median",
+    "title": "Trendline: Mean vs Median untuk Pemilik Toko",
+    "date": "2026-02-03",
+    "description": "Mengapa angka rata-rata bisa menipu Anda dalam mengelola stok dan memahami pelanggan.",
+    "tags": [
+      "Statistik",
+      "Ritel",
+      "Strategi"
+    ],
+    "content": "\n### Skenario: Jebakan Angka Rata-Rata\n\nBayangkan Anda mengelola sebuah toko pakaian. Di akhir bulan, sistem POS Anda menunjukkan bahwa rata-rata nilai belanja pelanggan (Average Order Value) melonjak dari Rp200.000 menjadi Rp500.000. Anda mungkin tergoda untuk berpikir bahwa semua pelanggan Anda tiba-tiba menjadi lebih kaya atau lebih loyal. Namun, kenyataannya mungkin berbeda.\n\nMisalkan ada 10 pelanggan. Sembilan orang belanja Rp100.000, dan satu orang pelanggan paus belanja Rp4.100.000. Secara matematis, rata-rata belanja mereka adalah Rp500.000. Jika Anda menambah stok barang-barang mahal berdasarkan angka rata-rata ini, Anda berisiko kehilangan sembilan pelanggan lainnya yang sebenarnya mencari barang ekonomis.\n\n### Statistik: Mean vs Median\n\nMean atau Rata-rata adalah jumlah total uang yang masuk dibagi dengan jumlah transaksi. Ini adalah angka yang paling sering digunakan, tetapi juga yang paling mudah dipengaruhi oleh satu atau dua transaksi ekstrem. Rata-rata mencoba meratakan perbedaan, yang seringkali mengaburkan realitas harian di lantai toko Anda.\n\nMedian atau Nilai Tengah adalah angka yang berada tepat di tengah ketika Anda mengurutkan semua transaksi dari yang terkecil hingga terbesar. Dalam contoh 10 pelanggan tadi, Median-nya tetap berada di angka Rp100.000. Median memberikan gambaran tentang apa yang dilakukan oleh pelanggan tipikal Anda, tanpa terganggu oleh satu orang yang belanja sangat besar.\n\n### Wawasan: Stok untuk Pelanggan Tipikal\n\nSebagai pemilik toko, Anda harus tahu kapan harus mengikuti Mean dan kapan harus mengikuti Median. Mean berguna untuk menghitung total pendapatan dan perencanaan arus kas secara keseluruhan. Namun, untuk urusan menentukan stok barang di rak dan promosi harian, Median adalah panduan yang jauh lebih aman.\n\nMengandalkan Mean yang tinggi karena satu pelanggan paus bisa membuat strategi Anda salah sasaran. Anda mungkin memenuhi toko dengan stok premium yang sebenarnya tidak mampu dibeli oleh mayoritas pelanggan lainnya. Selalu pastikan stok inti Anda selaras dengan nilai Median untuk menjaga perputaran barang tetap sehat dan cepat.\n\n### Langkah Cepat: Cek Sistem POS Anda\n\nBuka laporan penjualan bulanan Anda di sistem POS hari ini. Jangan hanya melihat Average Basket Size, tetapi cari juga angka Median Basket Size. Jika angka Mean jauh lebih tinggi daripada Median, misalnya selisih lebih dari tiga puluh persen, itu tandanya bisnis Anda sangat bergantung pada sedikit pelanggan besar. Anda perlu lebih berhati-hati dalam menentukan harga untuk stok barang baru agar tetap terjangkau bagi pelanggan umum.\n"
+  },
+  {
     "slug": "inventory-turnover",
     "title": "Trendline: Perputaran Persediaan untuk Peritel",
     "date": "2024-05-22",
