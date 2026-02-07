@@ -35,3 +35,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Pelanggan "Paus" vs Pelanggan Tipikal (The Whale vs. The Typical Shopper).
 **Effectiveness:** Menjelaskan bagaimana satu transaksi besar bisa mengaburkan realitas harian di lantai toko. Ini membantu manajer memahami bahwa "rata-rata" tidak selalu mencerminkan pengalaman mayoritas pelanggan.
 **Refinement:** Gunakan contoh konkret tentang bagaimana stok barang mewah yang berlebihan (karena Mean yang tinggi) bisa mematikan arus kas jika mayoritas pelanggan sebenarnya mencari barang ekonomis (Median).
+
+## 2025-05-22 - Tingkat Konversi (Conversion Rate)
+**Analogy:** Ember Bocor (Leaky Bucket).
+**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
+**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
