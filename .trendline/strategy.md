@@ -35,3 +35,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Pelanggan "Paus" vs Pelanggan Tipikal (The Whale vs. The Typical Shopper).
 **Effectiveness:** Menjelaskan bagaimana satu transaksi besar bisa mengaburkan realitas harian di lantai toko. Ini membantu manajer memahami bahwa "rata-rata" tidak selalu mencerminkan pengalaman mayoritas pelanggan.
 **Refinement:** Gunakan contoh konkret tentang bagaimana stok barang mewah yang berlebihan (karena Mean yang tinggi) bisa mematikan arus kas jika mayoritas pelanggan sebenarnya mencari barang ekonomis (Median).
+
+## 2024-05-23 - Hukum Pareto (Aturan 80/20)
+**Analogy:** Pemain Inti vs Pemain Cadangan (Core Players vs Substitutes).
+**Effectiveness:** Membantu manajer memahami bahwa tidak semua SKU memiliki kontribusi yang sama terhadap kemenangan (profit) toko.
+**Refinement:** Gunakan istilah "Bintang Penjualan" untuk membuat konsep ini lebih emosional bagi pemilik toko kecil.
