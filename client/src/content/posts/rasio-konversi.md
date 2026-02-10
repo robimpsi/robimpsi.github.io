@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Rasio Konversi untuk Ritel"
+title: "Rasio Konversi untuk Ritel"
 date: "2026-02-08"
 description: "Mengapa jumlah pengunjung yang melimpah tidak menjamin keuntungan jika Anda tidak tahu cara mengubah mereka menjadi pembeli."
 tags: ["Metrik", "Perilaku Konsumen", "Ritel"]
