@@ -44,3 +44,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Ember Bocor (Leaky Bucket).
 **Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
 **Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
+
+## 2024-05-24 - Simpangan Baku (Standard Deviation)
+**Analogy:** Misteri Dua Produk - Kripik Singkong vs Kripik Kentang (Stabil vs Fluktuatif).
+**Effectiveness:** Sangat membantu untuk mengilustrasikan mengapa mengandalkan "Rata-rata" saja bisa berbahaya dalam perencanaan stok. Kontras antara stabilitas dan "kejutan" membuat konsep statistik yang abstrak menjadi risiko bisnis yang nyata.
+**Refinement:** Gunakan contoh ini untuk memperkenalkan konsep "Safety Stock" sebagai asuransi terhadap ketidakpastian di postingan selanjutnya.
