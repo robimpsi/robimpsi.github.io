@@ -44,3 +44,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Ember Bocor (Leaky Bucket).
 **Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
 **Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
+
+## 2026-02-10 - Analisis Keranjang Belanja (Market Basket Analysis)
+**Analogy:** Benang Merah antar Produk (The Red Thread between Products).
+**Effectiveness:** Sangat efektif untuk menjelaskan korelasi produk tanpa menggunakan istilah statistik yang rumit. Visualisasi "benang" membantu pemilik toko membayangkan hubungan tidak terlihat antara barang-barang di rak mereka.
+**Refinement:** Gunakan analogi ini untuk mendorong optimasi tata letak toko dan pembuatan paket bundel (bundling).
