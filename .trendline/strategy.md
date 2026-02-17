@@ -31,6 +31,11 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Effectiveness:** Sangat efektif untuk manajer ritel karena mengalihkan fokus dari "produk yang hilang" ke "modal yang hilang." Ini membuat biaya stok mati terasa lebih nyata.
 **Refinement:** Gunakan analogi ini untuk menjelaskan "biaya peluang" di postingan mendatang tentang optimasi SKU.
 
+## 2025-05-22 - Tingkat Konversi (Conversion Rate)
+**Analogy:** Ember Bocor (Leaky Bucket).
+**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
+**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
+
 ## 2026-02-03 - Mean vs Median
 **Analogy:** Pelanggan "Paus" vs Pelanggan Tipikal (The Whale vs. The Typical Shopper).
 **Effectiveness:** Menjelaskan bagaimana satu transaksi besar bisa mengaburkan realitas harian di lantai toko. Ini membantu manajer memahami bahwa "rata-rata" tidak selalu mencerminkan pengalaman mayoritas pelanggan.
@@ -40,7 +45,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Arus pengunjung adalah angin, konversi adalah layar (Foot traffic is the wind, conversion is the sail).
 **Effectiveness:** Sangat efektif untuk menghentikan obsesi peritel pada jumlah pengunjung semata dan mengarahkan fokus pada efisiensi operasional di dalam toko.
 **Refinement:** Pastikan untuk menekankan bahwa layar yang buruk (konversi rendah) akan menyia-nyiakan angin yang kuat (traffic tinggi).
-## 2025-05-22 - Tingkat Konversi (Conversion Rate)
-**Analogy:** Ember Bocor (Leaky Bucket).
-**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
-**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
+
+## 2026-02-10 - Analisis Keranjang Pasar (Market Basket Analysis)
+**Analogy:** Benang Merah antar Produk (The Red Thread between Products).
+**Effectiveness:** Membantu manajer toko membayangkan korelasi abstrak sebagai hubungan fisik yang kuat namun tidak terlihat. Ini memudahkan mereka memahami mengapa penempatan barang yang berdekatan sangat krusial.
+**Refinement:** Gunakan contoh produk yang tidak terduga (seperti arang dan sosis) untuk menunjukkan kekuatan data yang melampaui intuisi semata.
