@@ -1,0 +1,12 @@
+{
+  "slug": "margin-vs-markup",
+  "title": "Trendline: Margin Kotor vs Markup untuk Ritel",
+  "date": "2025-05-14",
+  "description": "Pahami perbedaan antara Margin dan Markup untuk memastikan strategi harga Anda benar-benar menghasilkan laba.",
+  "tags": [
+    "Strategi Harga",
+    "Keuangan Ritel",
+    "Metrik"
+  ],
+  "content": "\n### Skenario\nSeorang pemilik butik membeli gaun dengan harga Rp100.000 (HPP). Ia ingin mendapatkan keuntungan 50% dan memutuskan untuk menambahkan Rp50.000 pada harga beli tersebut, sehingga harga jualnya menjadi Rp150.000. Di akhir bulan, ia terkejut saat melihat laporan laba rugi yang menunjukkan margin kotor hanya sebesar 33,3%, bukan 50% seperti yang ia bayangkan. Kesalahan kecil dalam memahami perbedaan antara Markup dan Margin ini seringkali menjadi penyebab mengapa target laba sebuah toko tidak pernah tercapai meskipun penjualan terlihat ramai.\n\n### Statistik\nMarkup adalah persentase keuntungan yang ditambahkan pada Harga Pokok Penjualan (HPP). Dalam contoh di atas, Markup Anda adalah 50% (Rp50.000 dibagi Rp100.000). Sedangkan Gross Margin (Margin Kotor) adalah persentase keuntungan dari Harga Jual. Jadi, Margin Anda sebenarnya hanya 33,3% (Rp50.000 dibagi Rp150.000). Markup selalu melihat ke atas dari biaya, sementara Margin melihat ke bawah dari harga akhir yang dibayar pelanggan.\n\n### Wawasan\nMemahami Margin sangat krusial karena semua biaya operasional Anda—seperti sewa gedung, gaji karyawan, dan listrik—dibayar menggunakan uang dari Margin, bukan dari Markup. Jika Anda memberikan diskon 20% pada barang dengan Markup 25%, Anda mungkin berpikir masih untung 5%. Padahal, Markup 25% hanya setara dengan Margin 20%. Artinya, diskon tersebut menghapus seluruh keuntungan Anda dan Anda baru saja menjual barang tersebut pada harga modal.\n\n### Langkah Cepat\nBuka daftar produk di sistem POS Anda hari ini dan pilih lima item terlaris. Hitung Margin-nya (bukan Markup-nya) dengan rumus: (Harga Jual - Harga Beli) dibagi Harga Jual. Jika Margin Anda berada di bawah 30% sementara biaya operasional Anda tinggi, Anda perlu segera meninjau kembali strategi harga atau mencari pemasok dengan harga yang lebih bersaing untuk menjaga kesehatan arus kas toko Anda.\n"
+}
