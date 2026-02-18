@@ -54,3 +54,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
 **Effectiveness:** Membantu peritel memahami mengapa diskon kecil bisa menghabiskan seluruh keuntungan mereka karena perbedaan basis perhitungan.
 **Refinement:** Gunakan contoh diskon untuk menekankan bahaya kebingungan antara kedua istilah ini dalam perencanaan promosi.
+
+## 2026-02-11 - Rata-rata Bergerak (Moving Average)
+**Analogy:** Pembersih Kaca Depan (Windshield Wiper).
+**Effectiveness:** Sangat efektif untuk membantu peritel mengabaikan "noise" atau fluktuasi harian yang tidak berarti dan fokus pada tren jangka panjang. Ini mencegah pengambilan keputusan impulsif berdasarkan satu hari penjualan yang luar biasa baik atau buruk.
+**Refinement:** Gunakan analogi ini untuk menjelaskan perbedaan antara fluktuasi acak dan tren yang bermakna.
