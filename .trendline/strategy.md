@@ -54,3 +54,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
 **Effectiveness:** Membantu peritel memahami mengapa diskon kecil bisa menghabiskan seluruh keuntungan mereka karena perbedaan basis perhitungan.
 **Refinement:** Gunakan contoh diskon untuk menekankan bahaya kebingungan antara kedua istilah ini dalam perencanaan promosi.
+
+## 2026-02-15 - Indeks Musiman (Seasonality Index)
+**Analogy:** Ombak Laut (Sea Waves).
+**Effectiveness:** Membantu manajer toko untuk tetap tenang saat penjualan turun dengan memahami bahwa ada pasang surut yang bisa diprediksi. Ini mengalihkan fokus dari reaksi emosional ke perencanaan strategis.
+**Refinement:** Tekankan bahwa "air yang surut" bukan berarti lautnya habis, tapi hanya persiapan untuk ombak berikutnya.
