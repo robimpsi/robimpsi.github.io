@@ -54,3 +54,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
 **Effectiveness:** Membantu peritel memahami mengapa diskon kecil bisa menghabiskan seluruh keuntungan mereka karena perbedaan basis perhitungan.
 **Refinement:** Gunakan contoh diskon untuk menekankan bahaya kebingungan antara kedua istilah ini dalam perencanaan promosi.
+
+## 2026-02-20 - Modus (Mode)
+**Analogy:** Modus adalah pemenang suara terbanyak di rak toko Anda (Mode is the winner of the most votes on your store shelves).
+**Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
+**Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
