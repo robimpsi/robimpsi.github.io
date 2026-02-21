@@ -1,0 +1,12 @@
+{
+  "slug": "modus-manajemen-stok",
+  "title": "Trendline: Modus untuk Manajemen Stok",
+  "date": "2026-02-20",
+  "description": "Mengenal Modus untuk mengidentifikasi produk yang paling sering dicari pelanggan Anda.",
+  "tags": [
+    "Statistik",
+    "Inventori",
+    "Manajemen Ritel"
+  ],
+  "content": "\n### Skenario\n\nBayangkan Anda memiliki toko sepatu dan ingin menambah stok untuk musim depan. Anda melihat data penjualan bulan lalu dan menemukan bahwa rata-rata ukuran sepatu yang terjual adalah 39,5. Namun, ketika Anda memeriksa gudang, Anda menyadari bahwa Anda tidak pernah menjual satu pun sepatu ukuran 39,5 karena ukuran tersebut memang jarang diproduksi. Anda menyadari bahwa angka rata-rata tidak membantu Anda memutuskan ukuran mana yang harus dibeli lebih banyak.\n\n### Statistik\n\nModus adalah nilai yang paling sering muncul dalam sekumpulan data. Jika Mean adalah rata-rata dan Median adalah titik tengah, maka Modus adalah pemenang suara terbanyak. Dalam statistik ritel, Modus memberikan jawaban langsung atas pertanyaan: \"Varian produk mana yang paling populer?\" Ini bukan tentang nilai tengah atau rata-rata yang seringkali abstrak, melainkan tentang frekuensi kejadian yang paling tinggi di lapangan.\n\n### Wawasan\n\nModus adalah alat terbaik untuk mengelola inventori yang memiliki banyak varian, seperti ukuran pakaian, warna cat, atau rasa minuman. Mengandalkan Mean (rata-rata) dalam kasus ini bisa menyesatkan karena rata-rata seringkali menghasilkan angka yang tidak ada di dunia nyata, seperti ukuran sepatu 39,5 tadi. Dengan mengetahui Modus, Anda bisa memastikan bahwa modal Anda dialokasikan untuk produk yang memang paling sering dicari oleh mayoritas pelanggan. Ini meminimalkan risiko stok mati (dead stock) yang hanya memenuhi rak karena ukurannya terlalu kecil atau warnanya terlalu berani bagi pasar Anda.\n\n### Langkah Cepat\n\nPeriksa laporan penjualan Anda hari ini berdasarkan SKU (Stock Keeping Unit). Identifikasi lima SKU yang memiliki frekuensi transaksi tertinggi, bukan hanya nilai total penjualan tertinggi. Pastikan produk-produk dengan frekuensi tinggi ini (Modus Anda) memiliki tingkat ketersediaan stok yang paling aman di gudang. Produk inilah yang menjaga aliran pelanggan tetap masuk ke toko Anda setiap harinya.\n"
+}
