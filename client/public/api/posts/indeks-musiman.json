@@ -1,0 +1,12 @@
+{
+  "slug": "indeks-musiman",
+  "title": "Trendline: Indeks Musiman untuk Peritel",
+  "date": "2026-02-15",
+  "description": "Bagaimana cara membedakan antara bulan yang benar-benar sepi dan pola penjualan rutin.",
+  "tags": [
+    "Statistik",
+    "Operasional",
+    "Perencanaan"
+  ],
+  "content": "\n### Skenario\nBulan lalu toko Anda sangat ramai, tapi bulan ini terasa sepi seperti kota mati. Anda mulai merasa panik dan bertanya-tanya apakah Anda telah melakukan kesalahan fatal atau jika kompetitor baru saja mencuri semua pelanggan Anda. Sebelum Anda memutuskan untuk memotong harga secara drastis, Anda perlu memeriksa satu hal penting. Bisa jadi ini hanyalah pola rutin yang selalu berulang setiap tahun di industri Anda.\n\n### Statistik\nIndeks Musiman adalah metrik yang menunjukkan seberapa jauh penjualan di periode tertentu menyimpang dari rata-rata tahunan. Bayangkan rata-rata penjualan bulanan Anda selama setahun adalah 100 unit. Jika pada bulan Desember Anda secara konsisten menjual 150 unit, maka Indeks Musiman untuk Desember adalah 1,5. Sebaliknya, jika di bulan Februari Anda hanya menjual 70 unit, maka indeksnya adalah 0,7.\n\n### Wawasan\nMemahami indeks musiman membantu Anda membedakan antara kinerja buruk yang sebenarnya dan tren musiman yang wajar. Tanpa angka ini, banyak pemilik toko terjebak dalam siklus kepanikan di bulan-bulan sepi, yang seringkali berujung pada diskon yang tidak perlu dan merusak margin keuntungan. Dengan mengetahui indeks ini, Anda bisa mengalokasikan stok barang dan mengatur jadwal staf dengan jauh lebih presisi. Anda tidak akan lagi kekurangan barang saat permintaan memuncak dan tidak akan membuang biaya operasional saat pasar sedang mendingin.\n\n### Langkah Cepat\nCobalah buka data penjualan bulanan Anda selama dua atau tiga tahun terakhir. Hitung rata-rata penjualan bulanan untuk setiap tahunnya, kemudian bagi angka penjualan bulan tertentu dengan rata-rata tahun tersebut. Jika sebuah bulan memiliki angka di atas 1,0 secara konsisten, itu adalah periode puncak Anda. Gunakan informasi ini untuk mulai memesan stok tambahan setidaknya dua bulan sebelum Indeks Musiman Anda mulai naik.\n"
+}
