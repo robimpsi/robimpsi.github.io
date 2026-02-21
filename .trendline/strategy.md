@@ -59,3 +59,7 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Ombak Laut (Sea Waves).
 **Effectiveness:** Membantu manajer toko untuk tetap tenang saat penjualan turun dengan memahami bahwa ada pasang surut yang bisa diprediksi. Ini mengalihkan fokus dari reaksi emosional ke perencanaan strategis.
 **Refinement:** Tekankan bahwa "air yang surut" bukan berarti lautnya habis, tapi hanya persiapan untuk ombak berikutnya.
+## 2026-02-20 - Modus (Mode)
+**Analogy:** Modus adalah pemenang suara terbanyak di rak toko Anda (Mode is the winner of the most votes on your store shelves).
+**Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
+**Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
