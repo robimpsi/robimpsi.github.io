@@ -55,6 +55,11 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Effectiveness:** Membantu peritel memahami mengapa diskon kecil bisa menghabiskan seluruh keuntungan mereka karena perbedaan basis perhitungan.
 **Refinement:** Gunakan contoh diskon untuk menekankan bahaya kebingungan antara kedua istilah ini dalam perencanaan promosi.
 
+## 2026-02-11 - Rata-rata Bergerak (Moving Average)
+**Analogy:** Pembersih Kaca Depan (Windshield Wiper).
+**Effectiveness:** Sangat efektif untuk membantu peritel mengabaikan "noise" atau fluktuasi harian yang tidak berarti dan fokus pada tren jangka panjang. Ini mencegah pengambilan keputusan impulsif berdasarkan satu hari penjualan yang luar biasa baik atau buruk.
+**Refinement:** Gunakan analogi ini untuk menjelaskan perbedaan antara fluktuasi acak dan tren yang bermakna.
+
 ## 2026-02-20 - Modus (Mode)
 **Analogy:** Modus adalah pemenang suara terbanyak di rak toko Anda (Mode is the winner of the most votes on your store shelves).
 **Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
