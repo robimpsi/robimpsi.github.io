@@ -1,5 +1,17 @@
 [
   {
+    "slug": "tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Retailer",
+    "date": "2026-02-25",
+    "description": "Mengapa angka penjualan kotor bisa menipu dan bagaimana mengelola laba bayangan yang hilang karena pengembalian barang.",
+    "tags": [
+      "Profitabilitas",
+      "Operasional",
+      "Perilaku Konsumen"
+    ],
+    "content": "\n### Skenario\nToko online Anda baru saja menyelesaikan promo besar-besaran dan angka penjualan kotor melonjak tajam. Anda melihat dasbor POS dan tersenyum melihat total transaksi yang mencapai rekor baru. Namun, seminggu kemudian, kurir mulai berdatangan kembali ke gudang membawa kotak-kotak yang baru saja Anda kirim. Pelanggan meminta pengembalian dana karena ukuran yang tidak pas atau barang yang tidak sesuai ekspektasi. Kegembiraan Anda memudar saat menyadari bahwa uang yang Anda pikir sudah menjadi milik Anda, sebenarnya hanya mampir sementara.\n\n### Statistik\nTingkat Pengembalian (Return Rate) adalah persentase dari total barang yang dijual yang kemudian dikembalikan oleh pelanggan. Secara sederhana, jika Anda menjual 100 produk dan 10 di antaranya dikembalikan, maka Tingkat Pengembalian Anda adalah 10%. Angka ini seringkali menjadi Laba Bayangan—keuntungan yang terlihat nyata di laporan harian, namun menghilang saat rekonsiliasi akhir bulan. Banyak retailer terjebak hanya melihat angka penjualan kotor tanpa memperhitungkan potensi pengembalian ini.\n\n### Wawasan\nTingkat Pengembalian yang tinggi adalah pembunuh margin keuntungan yang diam-diam. Setiap barang yang dikembalikan membawa biaya tambahan seperti biaya pengiriman balik, biaya pemeriksaan ulang, dan risiko barang tidak bisa dijual kembali dengan harga penuh. Di industri fashion, misalnya, tingkat pengembalian 20-30% adalah hal biasa, namun jika tidak dikelola, ini bisa menghabiskan seluruh laba bersih Anda. Memahami angka ini membantu Anda mengidentifikasi masalah pada deskripsi produk, kualitas barang, atau ekspektasi pelanggan yang salah. Jika satu SKU tertentu memiliki tingkat pengembalian yang jauh lebih tinggi dari rata-rata, itu adalah sinyal merah bahwa ada masalah produksi atau informasi yang menyesatkan.\n\n### Langkah Cepat\nBuka laporan penjualan dan pengembalian Anda di sistem POS untuk tiga bulan terakhir. Hitung Tingkat Pengembalian per kategori produk dengan membagi jumlah unit yang dikembalikan dengan jumlah unit yang terjual. Jika ada kategori dengan angka di atas 15%, periksa kembali ulasan pelanggan atau foto produk di website Anda hari ini. Seringkali, perbaikan kecil pada panduan ukuran atau kejujuran warna foto dapat menurunkan angka pengembalian secara signifikan dan mengubah laba bayangan menjadi laba nyata.\n"
+  },
+  {
     "slug": "modus-manajemen-stok",
     "title": "Trendline: Modus untuk Manajemen Stok",
     "date": "2026-02-20",
