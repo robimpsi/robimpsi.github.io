@@ -1,5 +1,17 @@
 [
   {
+    "slug": "customer-lifetime-value",
+    "title": "Trendline: Nilai Seumur Hidup Pelanggan untuk Peritel",
+    "date": "2026-02-25",
+    "description": "Mengapa mempertahankan pelanggan lama jauh lebih menguntungkan daripada terus-menerus mencari pelanggan baru.",
+    "tags": [
+      "Statistik",
+      "Perilaku Konsumen",
+      "Loyalitas"
+    ],
+    "content": "\n### Skenario\n\nBayangkan Anda memiliki sebuah kebun kecil. Setiap hari, Anda menghabiskan banyak uang dan tenaga untuk membeli bibit baru, mencangkul tanah baru, dan menanamnya. Namun, setelah pohon-pohon itu mulai tumbuh, Anda justru mengabaikannya dan kembali sibuk mencari bibit baru di pasar. Inilah yang terjadi pada banyak peritel yang terlalu fokus pada \"akuisisi pelanggan\" tetapi melupakan pelanggan yang sudah pernah berbelanja di toko mereka.\n\n### Statistik\n\nCustomer Lifetime Value (CLV) atau Nilai Seumur Hidup Pelanggan adalah metrik yang memperkirakan total keuntungan yang akan diberikan oleh satu pelanggan selama mereka berhubungan dengan toko Anda. Alih-alih hanya melihat keuntungan dari satu transaksi hari ini, CLV mengajak Anda melihat gambaran besarnya. Jika seorang pelanggan belanja Rp500.000 hari ini dan diprediksi akan kembali 4 kali setahun selama 3 tahun, maka nilai mereka bagi Anda bukan hanya Rp500.000, melainkan jutaan rupiah.\n\n### Wawasan\n\nMengelola pelanggan adalah seperti merawat pohon buah. Biaya terbesar dan usaha terberat ada pada saat menanam bibit (akuisisi). Namun, keuntungan yang paling stabil dan besar datang dari pohon yang sudah dewasa dan berbuah berulang kali (retensi). Peritel yang cerdas memahami bahwa satu pelanggan setia jauh lebih berharga daripada sepuluh pelanggan yang hanya datang sekali karena diskon besar lalu menghilang.\n\nMeningkatkan CLV berarti Anda membangun fondasi bisnis yang lebih stabil. Ketika Anda tahu nilai jangka panjang seorang pelanggan, Anda bisa lebih berani dalam memberikan pelayanan ekstra atau program loyalitas yang personal. Fokusnya bukan lagi sekadar menjual barang hari ini, tapi memastikan pelanggan tersebut merasa dihargai sehingga mereka tidak memiliki alasan untuk pindah ke pesaing.\n\n### Langkah Cepat\n\nHitunglah rata-rata nilai belanja (Average Order Value) dan rata-rata frekuensi belanja pelanggan Anda dalam satu tahun terakhir. Kalikan kedua angka tersebut untuk mendapatkan estimasi pendapatan per pelanggan per tahun. Jika angka frekuensi belanja Anda rendah (misalnya hanya 1,2 kali setahun), mulailah kumpulkan data kontak pelanggan (seperti WhatsApp atau Email) untuk mengirimkan penawaran khusus bagi mereka yang sudah lama tidak berkunjung.\n"
+  },
+  {
     "slug": "modus-manajemen-stok",
     "title": "Trendline: Modus untuk Manajemen Stok",
     "date": "2026-02-20",
