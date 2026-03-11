@@ -1,5 +1,17 @@
 [
   {
+    "slug": "customer-lifetime-value",
+    "title": "Trendline: Customer Lifetime Value untuk Peritel",
+    "date": "2026-02-21",
+    "description": "Memahami mengapa pelanggan setia adalah aset jangka panjang yang lebih berharga daripada transaksi tunggal.",
+    "tags": [
+      "Statistik",
+      "Ritel",
+      "Pelanggan"
+    ],
+    "content": "\n### Skenario\nBayangkan Anda memiliki sebuah pohon buah di halaman belakang. Setiap tahun, Anda memberinya pupuk, menyiramnya, dan merawatnya agar tetap sehat. Biaya awal menanam pohon tersebut mungkin terasa mahal, namun seiring berjalannya waktu, pohon itu terus menghasilkan buah tanpa Anda harus membeli bibit baru setiap musim. Dalam dunia ritel, pelanggan setia Anda adalah pohon tersebut. Banyak pemilik toko terlalu fokus mencari pelanggan baru, namun lupa merawat pohon yang sudah ada.\n\n### Statistik\nCustomer Lifetime Value (CLV) adalah total perkiraan pendapatan yang akan dihasilkan oleh seorang pelanggan selama mereka berbelanja di toko Anda. Berbeda dengan nilai belanja rata-rata dalam satu kunjungan, CLV melihat gambaran besar dalam jangka panjang. Statistik ini membantu Anda memahami berapa banyak biaya yang masuk akal untuk dikeluarkan demi mendapatkan satu pelanggan baru. Jika Anda tahu seorang pelanggan akan berbelanja jutaan rupiah selama tiga tahun ke depan, Anda tidak akan keberatan memberikan sedikit diskon atau layanan ekstra di awal.\n\n### Wawasan\nMengapa CLV begitu krusial bagi keberlanjutan bisnis ritel? Mengakuisisi pelanggan baru seringkali lima kali lebih mahal daripada mempertahankan pelanggan yang sudah ada. Jika Anda hanya fokus pada transaksi tunggal, Anda mungkin menganggap biaya pemasaran Anda terlalu tinggi. Namun, dengan memahami CLV, Anda beralih dari sekadar berdagang menjadi membangun hubungan. Pelanggan dengan CLV tinggi bukan hanya pemberi laba, tetapi juga duta merek yang akan merekomendasikan toko Anda kepada orang lain.\n\n### Langkah Cepat\nBuka data transaksi di sistem POS Anda dan identifikasi sepuluh persen pelanggan teratas berdasarkan frekuensi kunjungan dan total belanja selama setahun terakhir. Kirimkan pesan apresiasi pribadi atau berikan penawaran eksklusif yang tidak tersedia untuk umum kepada kelompok ini. Langkah sederhana ini memperkuat loyalitas dan memastikan pohon Anda tetap berbuah lebat di masa depan. Fokuslah pada retensi, karena di situlah laba jangka panjang Anda berada.\n"
+  },
+  {
     "slug": "modus-manajemen-stok",
     "title": "Trendline: Modus untuk Manajemen Stok",
     "date": "2026-02-20",
