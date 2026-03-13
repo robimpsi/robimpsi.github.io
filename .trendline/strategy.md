@@ -64,3 +64,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Modus adalah pemenang suara terbanyak di rak toko Anda (Mode is the winner of the most votes on your store shelves).
 **Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
 **Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
+
+## 2026-02-25 - Customer Lifetime Value (CLV)
+**Analogy:** Pohon Buah (Fruit Tree).
+**Effectiveness:** Membantu peritel memahami perbedaan antara biaya akuisisi (menanam bibit baru) dan nilai jangka panjang (memanen dari pohon dewasa). Ini sangat efektif untuk menggeser fokus dari sekadar transaksi harian ke retensi pelanggan.
+**Refinement:** Pastikan untuk menekankan bahwa tidak semua bibit akan tumbuh menjadi pohon yang produktif, yang menjelaskan mengapa biaya akuisisi harus dihitung dengan hati-hati terhadap potensi CLV.
