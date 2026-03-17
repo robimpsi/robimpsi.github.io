@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Customer Lifetime Value untuk Peritel"
+title: "Customer Lifetime Value untuk Peritel"
 date: "2026-03-01"
 description: "Memahami nilai jangka panjang pelanggan untuk strategi pemasaran yang lebih efisien."
 tags: ["Statistik", "CRM", "Strategi Ritel"]
