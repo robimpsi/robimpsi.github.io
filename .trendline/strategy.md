@@ -69,3 +69,7 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Pohon Buah (Fruit Tree).
 **Effectiveness:** Sangat efektif untuk menggeser fokus peritel dari akuisisi pelanggan yang mahal ke retensi pelanggan yang menguntungkan. Analogi pohon yang sudah dewasa memudahkan pemahaman tentang nilai jangka panjang tanpa biaya perawatan yang berulang-ulang seperti menanam benih baru.
 **Refinement:** Gunakan ini untuk menjelaskan pembagian anggaran pemasaran antara akuisisi dan retensi.
+## 2026-03-10 - Customer Lifetime Value (CLV)
+**Analogy:** Pohon Buah (Fruit Tree).
+**Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
+**Refinement:** Pastikan untuk menekankan bahwa biaya "penyiraman" (perawatan) pelanggan lama jauh lebih rendah daripada biaya "pembukaan lahan" (akuisisi) pelanggan baru.
