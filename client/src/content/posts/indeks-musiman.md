@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Indeks Musiman untuk Peritel"
+title: "Indeks Musiman untuk Peritel"
 date: "2026-02-15"
 description: "Bagaimana cara membedakan antara bulan yang benar-benar sepi dan pola penjualan rutin."
 tags: ["Statistik", "Operasional", "Perencanaan"]
