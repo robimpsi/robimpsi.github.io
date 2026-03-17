@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Rata-rata Bergerak untuk Perencanaan Stok"
+title: "Rata-rata Bergerak untuk Perencanaan Stok"
 date: "2026-02-11"
 description: "Bagaimana cara menyapu kebisingan data harian untuk melihat tren penjualan yang sebenarnya."
 tags: ["Statistik", "Ritel", "Inventaris"]
@@ -7,7 +7,7 @@ tags: ["Statistik", "Ritel", "Inventaris"]
 
 ### Skenario: Jebakan Fluktuasi Harian
 
-Bayangkan Anda melihat laporan penjualan harian Anda. Hari Senin sangat sepi, Selasa tiba-tiba melonjak karena ada rombongan turis yang mampir, dan Rabu kembali turun drastis. Jika Anda hanya melihat data hari demi hari, Anda mungkin akan merasa seperti sedang naik roller coaster emosional. Anda tergoda untuk memesan stok barang dua kali lipat pada hari Rabu karena melihat lonjakan di hari Selasa, padahal itu hanyalah anomali sesaat.
+Bayangkan Anda melihat laporan penjualan harian Anda. Hari Senin sangat sepi, Selasa tiba-tiba melonjak karena ada rombongan orang luar kota yang mampir, dan Rabu kembali turun drastis. Jika Anda hanya melihat data hari demi hari, Anda mungkin akan merasa seperti sedang naik roller coaster emosional. Anda tergoda untuk memesan stok barang dua kali lipat pada hari Rabu karena melihat lonjakan di hari Selasa, padahal itu hanyalah anomali sesaat.
 
 Mengambil keputusan berdasarkan satu titik data harian sangatlah berbahaya dalam bisnis ritel. Fluktuasi kecil yang tidak berarti bisa mengaburkan gambaran besar tentang kesehatan bisnis Anda. Anda membutuhkan cara untuk "menghaluskan" data tersebut agar bisa melihat arah tren yang sebenarnya tanpa terganggu oleh kebisingan jangka pendek.
 
