@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Benang Merah antar Produk untuk Toko Ritel"
+title: "Benang Merah antar Produk untuk Toko Ritel"
 date: "2026-02-10"
 description: "Memahami hubungan tersembunyi antara produk di keranjang belanja pelanggan untuk strategi penempatan barang yang lebih cerdas."
 tags: ["Analisis Keranjang", "Korelasi", "Strategi Penjualan"]
