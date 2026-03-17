@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Modus untuk Manajemen Stok"
+title: "Modus untuk Manajemen Stok"
 date: "2026-02-20"
 description: "Mengenal Modus untuk mengidentifikasi produk yang paling sering dicari pelanggan Anda."
 tags: ["Statistik", "Inventori", "Manajemen Ritel"]
