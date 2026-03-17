@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Margin Kotor vs Markup untuk Ritel"
+title: "Margin Kotor vs Markup untuk Ritel"
 date: "2025-05-14"
 description: "Pahami perbedaan antara Margin dan Markup untuk memastikan strategi harga Anda benar-benar menghasilkan laba."
 tags: ["Strategi Harga", "Keuangan Ritel", "Metrik"]
