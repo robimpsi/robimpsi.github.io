@@ -1,5 +1,5 @@
 ---
-title: "Trendline: Analisis Keranjang Belanja untuk Peritel"
+title: "Analisis Keranjang Belanja untuk Peritel"
 date: "2025-05-14"
 description: "Memahami pola pembelian pelanggan untuk meningkatkan ukuran keranjang belanja melalui analisis korelasi produk."
 tags: ["Analisis Keranjang", "Perilaku Konsumen", "Data Ritel"]
