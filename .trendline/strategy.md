@@ -73,3 +73,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Pohon Buah (Fruit Tree).
 **Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
 **Refinement:** Pastikan untuk menekankan bahwa biaya "penyiraman" (perawatan) pelanggan lama jauh lebih rendah daripada biaya "pembukaan lahan" (akuisisi) pelanggan baru.
+
+## 2026-03-15 - Elastisitas Harga (Price Elasticity)
+**Analogy:** Karet Gelang (Rubber Band).
+**Effectiveness:** Analogi ini sangat visual untuk menjelaskan konsep sensitivitas harga. Pelanggan dapat membayangkan produk elastis yang "meregang" permintaannya secara signifikan saat harga ditarik naik.
+**Refinement:** Pastikan untuk membedakan antara karet lentur (elastis) dan tali kaku (inelastis) agar peritel memahami strategi yang berbeda untuk keduanya.
