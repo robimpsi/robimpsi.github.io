@@ -1,5 +1,17 @@
 [
   {
+    "slug": "tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-03-15",
+    "description": "Mengapa angka penjualan yang tinggi bisa menipu jika Anda mengabaikan biaya tersembunyi dari barang yang kembali.",
+    "tags": [
+      "Metrik",
+      "Operasional",
+      "Keuntungan"
+    ],
+    "content": "\n### Skenario\nBayangkan mesin kasir Anda terus berbunyi sepanjang hari dan laporan harian menunjukkan angka penjualan yang luar biasa. Namun, saat Anda memeriksa rekening bank di akhir bulan, saldo yang tersedia jauh lebih kecil dari yang diharapkan. Sebagian besar dari \"penjualan\" tersebut ternyata adalah barang yang dikembalikan oleh pelanggan beberapa hari kemudian. Inilah yang kami sebut sebagai Laba Bayangan—angka yang terlihat nyata di laporan penjualan, tetapi menghilang sebelum sempat menjadi keuntungan bersih.\n\n### Statistik\nTingkat Pengembalian (Return Rate) adalah persentase barang yang dikembalikan oleh pelanggan dibandingkan dengan total barang yang terjual dalam periode tertentu. Jika Anda menjual 100 sepatu dan 10 di antaranya dikembalikan, maka Return Rate Anda adalah 10%. Angka ini seringkali dianggap remeh, padahal dampaknya terhadap kesehatan finansial toko sangatlah besar. Return Rate yang tinggi bukan sekadar pembatalan transaksi, melainkan kebocoran biaya yang sering tidak terlihat.\n\n### Wawasan\nSetiap barang yang kembali membawa beban biaya tambahan yang memakan margin keuntungan Anda. Anda harus membayar biaya logistik untuk pengiriman balik, biaya tenaga kerja untuk memeriksa ulang kondisi barang, dan potensi penurunan nilai barang jika kemasannya rusak. Barang yang sedang dalam proses retur juga merupakan \"stok mati\" yang tidak bisa dijual kepada orang lain sementara waktu. Membiarkan Return Rate merayap naik tanpa kendali sama saja dengan membiarkan biaya operasional Anda membengkak secara diam-diam.\n\n### Langkah Cepat\nPeriksa laporan penjualan Anda dari bulan lalu dan identifikasi tiga produk (SKU) dengan jumlah pengembalian tertinggi. Cari tahu alasan utamanya: apakah karena deskripsi produk yang tidak akurat, masalah ukuran, atau kualitas yang buruk? Dengan memperbaiki informasi produk atau mengganti pemasok untuk barang-barang bermasalah ini, Anda bisa langsung mengurangi Laba Bayangan dan meningkatkan arus kas nyata toko Anda hari ini.\n"
+  },
+  {
     "slug": "clv-pelanggan-setia",
     "title": "Customer Lifetime Value untuk Peritel",
     "date": "2026-03-10",
