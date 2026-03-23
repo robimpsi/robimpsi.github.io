@@ -1,0 +1,20 @@
+---
+title: "Trendline: Elastisitas Harga untuk Peritel"
+date: "2026-03-23"
+description: "Memahami seberapa jauh harga Anda bisa 'meregang' sebelum permintaan pelanggan terputus."
+tags: ["Statistik", "Harga", "Strategi"]
+---
+
+### Skenario
+Bayangkan harga produk Anda adalah sebuah karet gelang. Ketika Anda menaikkan harga, Anda sedang menarik karet tersebut. Beberapa produk memiliki karet yang sangat elastis; Anda bisa menariknya sedikit, dan permintaan pelanggan akan merenggang jauh (menurun drastis). Namun, ada produk lain yang karetnya sangat kaku. Meskipun Anda menaikkan harga cukup tinggi, permintaan pelanggan hampir tidak bergerak karena mereka sangat membutuhkan barang tersebut.
+
+### Statistik
+Elastisitas Harga adalah ukuran seberapa sensitif jumlah permintaan barang terhadap perubahan harga. Jika kenaikan harga sebesar 10 persen menyebabkan penurunan penjualan sebesar 20 persen, maka produk Anda bersifat elastis. Sebaliknya, jika kenaikan harga yang sama hanya menurunkan penjualan sebesar 2 persen, maka produk tersebut bersifat tidak elastis. Angka ini membantu Anda memprediksi apakah kenaikan harga akan meningkatkan total pendapatan atau justru menghancurkannya.
+
+### Wawasan
+Peritel sering terjebak dalam menaikkan harga untuk menutup biaya tanpa menghitung elastisitasnya. Untuk produk elastis seperti camilan atau barang hobi, kenaikan harga kecil bisa membuat pelanggan berpindah ke kompetitor. Namun, untuk produk tidak elastis atau unik, Anda memiliki ruang lebih besar untuk menyesuaikan margin. Memahami elastisitas berarti Anda berhenti menebak-nebak dan mulai menetapkan harga berdasarkan toleransi nyata psikologi pelanggan Anda.
+
+### Langkah Cepat
+Pilihlah satu SKU yang pernah mengalami perubahan harga dalam enam bulan terakhir. Hitung persentase perubahan harga dan bandingkan dengan persentase perubahan volume penjualan di bulan setelahnya. Jika volume penjualan turun lebih besar daripada persentase kenaikan harga, Anda harus sangat berhati-hati sebelum menaikkan harga produk tersebut kembali.
+
+Peringatan: Metode ini memerlukan data historis yang signifikan agar efektif bagi peritel.
