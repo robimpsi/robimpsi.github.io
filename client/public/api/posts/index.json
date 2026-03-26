@@ -1,5 +1,17 @@
 [
   {
+    "slug": "elastisitas-harga",
+    "title": "Trendline: Elastisitas Harga untuk Peritel",
+    "date": "2026-03-15",
+    "description": "Mengapa kenaikan harga kecil bisa menyebabkan penurunan penjualan yang besar? Memahami fleksibilitas permintaan melalui analogi karet gelang.",
+    "tags": [
+      "Elastisitas Harga",
+      "Strategi Harga",
+      "Perilaku Konsumen"
+    ],
+    "content": "\nPeringatan: Metode ini memerlukan data historis yang signifikan agar efektif bagi peritel.\n\n### Skenario: Jebakan Kenaikan Harga\n\nAnda memutuskan untuk menaikkan harga secangkir kopi di kafe Anda sebesar Rp2.000 untuk menutup kenaikan biaya biji kopi. Di atas kertas, kenaikan ini tampak kecil dan seharusnya meningkatkan margin keuntungan Anda. Namun, seminggu kemudian, Anda terkejut melihat jumlah pelanggan harian turun drastis, sehingga total pendapatan justru menurun. Mengapa kenaikan harga yang tampaknya sepele bisa berdampak begitu besar pada volume penjualan? Masalahnya bukan pada nominal kenaikannya, melainkan pada seberapa sensitif pelanggan Anda terhadap perubahan harga tersebut.\n\n### Statistik: Elastisitas Harga\n\nElastisitas Harga adalah angka yang menunjukkan seberapa besar jumlah permintaan suatu produk berubah ketika harganya berubah. Bayangkan permintaan pelanggan seperti sebuah karet gelang. Beberapa produk memiliki permintaan yang \"elastis\" atau sangat lentur seperti karet gelang yang tipis; sedikit tarikan pada harga akan membuat permintaan meregang jauh (turun drastis). Sebaliknya, produk lain bersifat \"inelastis\" atau kaku; meskipun harga ditarik ke atas, jumlah permintaan hanya bergeser sedikit. Memahami apakah produk Anda \"lentur\" atau \"kaku\" adalah kunci untuk menentukan strategi harga yang aman.\n\n### Wawasan: Karet Gelang di Rak Anda\n\nProduk yang memiliki banyak alternatif biasanya sangat elastis karena pelanggan bisa dengan mudah pindah ke merek lain saat harga naik. Misalnya, jika harga satu merek deterjen naik, pelanggan akan dengan cepat melirik merek di sebelahnya yang lebih murah. Namun, produk unik atau kebutuhan pokok cenderung lebih inelastis karena pelanggan tidak punya banyak pilihan lain. Peritel yang cerdas tidak akan menaikkan harga pada barang-barang yang sangat elastis (Price KVI) karena akan merusak persepsi harga toko secara keseluruhan. Sebaliknya, penyesuaian harga lebih aman dilakukan pada produk yang memiliki loyalitas tinggi atau nilai unik yang sulit digantikan.\n\n### Langkah Cepat\n\nPilih satu produk unggulan di toko Anda dan periksa data penjualan saat terakhir kali ada perubahan harga atau periode promosi. Hitung persentase perubahan jumlah unit yang terjual dibagi dengan persentase perubahan harganya. Jika hasilnya lebih dari satu, berarti produk tersebut sangat sensitif terhadap harga dan Anda harus sangat berhati-hati sebelum menaikkan harganya lagi. Gunakan wawasan ini untuk mengelompokkan produk Anda menjadi kategori \"sensitif\" dan \"stabil\" dalam sistem manajemen inventaris Anda.\n"
+  },
+  {
     "slug": "clv-pelanggan-setia",
     "title": "Customer Lifetime Value untuk Peritel",
     "date": "2026-03-10",
