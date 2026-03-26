@@ -46,6 +46,20 @@ Untuk itu, saya memindahkan spreadsheet ini ke dalam Google Sheet.
 
 ### Kenapa Google Sheet?
 
-Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi dalam satu backend. 
+Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi dalam satu backend.
+
+Google Sheet juga memiliki Apps Script, yang memungkinkan backend bisa difungsikan dengan Javascript. Frontend dibuat dengan desain berbasis HTML, sehingga memudahkan kasir beradaptasi dengan tampilannya.
 
 &nbsp;
+
+### Hasilnya
+
+PoS ini berjalan baik dalam proses simulasi. Karena tidak ada sinkronisasi dengan backend ERP live, proses scan produk dan operasional berjalan jauh lebih cepat dengan PoS yang biasa kami gunakan.
+
+Saya belum menggunakan PoS ini dalam transaksi langsung. Meski demikian, kami cukup tenang mengetahui bahwa kami punya PoS cadangan yang bisa kami gunakan dalam situasi mendesak.
+
+&nbsp;
+
+## 2. I built a customized price checker.
+
+Saya ju
