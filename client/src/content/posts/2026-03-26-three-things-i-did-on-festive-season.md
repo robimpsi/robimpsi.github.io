@@ -48,9 +48,15 @@ Untuk itu, saya memindahkan spreadsheet ini ke dalam Google Sheet.
 
 Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi dalam satu backend.
 
-Google Sheet juga memiliki Apps Script, yang memungkinkan backend bisa difungsikan dengan Javascript. Frontend dibuat dengan desain berbasis HTML, sehingga memudahkan kasir beradaptasi dengan tampilannya.
+Google Sheet juga memiliki Apps Script, yang memungkinkan spreadsheet berfungsi lebih optimal dengan Javascript. Frontend dibuat dengan desain berbasis HTML, sehingga memudahkan kasir beradaptasi dengan tampilannya.
 
-&nbsp;
+![login page](/images/image-1.png)
+
+![tampilan pos](/images/image-2.png)
+
+![support multiple payments](/images/image-3.png)
+
+![image.png](/images/image-4.png)
 
 ### Hasilnya
 
@@ -62,4 +68,42 @@ Saya belum menggunakan PoS ini dalam transaksi langsung. Meski demikian, kami cu
 
 ## 2. I built a customized price checker.
 
-Saya ju
+Peak season seperti lebaran adalah momen yang tepat untuk meningkatkan penjualan barang slow moving. Untuk itu, kami memberikan diskon tambahan pada barang-barang slow moving, dengan harapan item-item ini bisa kami keluarkan untuk diputar dengan barang baru.
+
+Peletakan barang diskon spesial ini kami posisikan di tengah area penjualan, sehingga menarik perhatian customer. Kami juga menyediakan pramuniaga tambahan sebagai sarana informasi produk.
+
+Kesulitan yang dirasakan oleh pramuniaga adalah mengingat harga diskon spesial untuk barang-barang yang ada. Kami menyediakan tabel harga, tapi dengan jumlah SKU yang banyak, pramuniaga kesulitan untuk memberikan informasi dengan cepat.
+
+Sebenarnya, ERP yang kami gunakan sudah menyediakan fitur price checker. Akan tetapi, price checker yang disediakan tidak support dengan sistem diskon manual yang kami terapkan untuk produk-produk ini.
+
+Maka saya membuat customized price checker, yang support dengan diskon manual yang ada.
+
+It's built using Google Sheet based UI as well. It's simpler than the PoS one, since it's just displaying product and price fashionably.
+
+![image.png](/images/image-5.png)
+
+One thing that I most proud of is the fuzzy search; if user can't scan the barcode, they can type in the product name and it will show a list of product that might be the one they look for.
+
+![image.png](/images/image-6.png)
+
+![image.png](/images/image-7.png)
+
+&nbsp;
+
+### The Result
+
+It's always feel great to be helpful. This price checker has been used a lot of times. Both sales clerk and cashier using it for the sale items, and they felt it's more fast and convenient than looking at a printed price list.
+
+## 3. I anticipated stocks running out in store
+
+Higher demand means higher frequency of inventory movement. It also means the items in our sales area keeps running out.
+
+But how do we know one item runs out?
+
+Our management system divides SKU by its location; sales area and warehouse. I monitored item in sales area and compared it to its sales frequency. If it goes below the sales frequency, I simply notified the responsible employee to refill stocks.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
