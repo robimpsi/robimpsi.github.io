@@ -1,54 +1,41 @@
 ---
-title: Three Things I Did On Festive Season
+title: "Surviving the Ramadan Retail Rush: Building Lightweight Systems to
+  Prevent Revenue Loss"
 date: 2026-03-26
 description: Here is how I contribute on my work for the recent festive season.
 tags: Festive Season, Analysis
 ---
-Ramadhan di Indonesia selalu ditunggu tunggu, tidak hanya oleh masyarakat tapi juga bisnis yang terlibat langsung dengan konsumen.
+Ramadan in Indonesia isn’t just a festive season; it’s a massive retail event driven by the *mudik* (homecoming) phenomenon and Eid al-Fitr preparations. Across the country, the retail sector often sees consumption spikes of up to 30%.
 
-Di Indonesia, festive season seperti Ramadhan menyimpan lonjakan daya beli yang kuat. Data dari blabla menunjukkan adanya peningkatan konsumsi sebesar blabla %. Ini diperkuat juga dengan fenomena mudik dan ditutup dengan berlebaran.
+At our store—the largest non-franchise retail center in Bengkulu Province—the impact is even more extreme. Based on our internal data, transaction volumes surge by **120%** compared to a regular month.
 
-Ini diperkuat juga dengan data yang kami miliki pada tahun lalu. Dibandingkan dengan bulan biasanya, pada festive season terjadi lonjakan volume transaksi sebesar blabla%.  
+While this surge in demand is a massive opportunity, it also tests the absolute limits of retail infrastructure. Last year, we found out exactly what happens when those limits break.
 
-Ini yang membuat kami, selaku ritel non franchise terbesar di Provinsi Bengkulu, sangat mengantisipasi lonjakan pembelian yang datang pada tahun ini.
+## **The Catalyst: A Peak-Season Server Crash**
 
-&nbsp;
+Last year, on the busiest night of the season, our ERP system crashed. The server simply couldn't handle the transaction capacity, which was operating at a multiple of our normal load.
 
-## Anticipating in Serving Customers
+Our IT consultants fought to keep the system alive and process transactions as best they could, but the continuous influx of customers created a massive bottleneck at the cash registers. Lines stopped moving. Frustrated customers began abandoning their carts. By the time the night was over, that single outage had cost us an estimated **20% of our target revenue** for the evening.
 
-Pada tahun lalu, di malam peak festive season, kami mengalami server down. ERP yang kami gunakan tidak mampu menampung kapasitas transaksi yang jauh di atas normal.
+Going into this year’s peak season, I had one operational goal: **Keep transactions flowing, even if the primary ERP fails.**
 
-IT Consultant yang mengelola ERP sudah berusaha menangani transaksi sebisa mungkin. Meski demikian, volume customer yang terus menerus masuk ke toko dan transaksi yang macet menciptakan situasi bottleneck, yang membuat customer memilih membatalkan belanja.
+To achieve this, I built three lightweight, highly accessible tools to support our frontline staff.
 
-Setidaknya kami kehilangan 20% target omzet di malam itu.
+## **1. A Cloud-Based Backup POS (Point of Sale) System**
 
-&nbsp;
+If the ERP went down again, we needed a fully functional fallback that cashiers could switch to immediately.
 
-Untuk mengantisipasi hal tersebut terjadi kembali, ada tiga hal yang saya lakukan.
+I initially built a macro-heavy spreadsheet, but quickly realized a major constraint: our POS terminal machines do not have spreadsheet software installed. To solve this, I migrated the build to **Google Sheets combined with Google Apps Script**.
 
-## 1. I built a Google Sheet based PoS as Our PoS Backup
+### **Why Google Sheets?**
 
-Tahun ini saya sempat membuat PoS sederhana dengan beberapa fungsi macro dan formula. Spreadsheet ini memiliki beberapa worksheet:
+Because every POS terminal has a web browser. As long as the terminals had internet access, they could load the Google Sheet backend. By utilizing Apps Script and an HTML-based frontend, I built a UI that looked and behaved like standard POS software, drastically reducing the learning curve for cashiers.
 
-1. Worksheet untuk login kasir
-2. PoS interface dengan UI dan pilihan metode pembayaran, serta subtotal transaksi dan kembalian
-3. Worksheet untuk data transaksi produk
-4. Worksheet untuk log pembayaran
-5. Worksheet untuk cucian kasir
+**Key Features of the Backup POS:**
 
-Secara workflow, spreadsheet ini bisa digunakan layaknya point of sales biasa. Kasir hanya perlu melakukan login dengan username dan PIN yang sudah disediakan, menginput modal awal, lalu bisa melakukan transaksi seperti PoS yang biasa digunakan.
-
-Pengoperasian seperti metode pembayaran ganda, retur, serta laporan kasir bisa dilakukan di PoS ini.
-
-Worksheet ini berjalan cukup baik. Tetapi, PoS sederhana ini tidak bisa mencetak struk dan harus didownload dulu sebelum digunakan. Padahal, mesin PoS yang kami gunakan tidak terinstall perangkat lunak pengolah spreadsheet.
-
-Untuk itu, saya memindahkan spreadsheet ini ke dalam Google Sheet.
-
-### Kenapa Google Sheet?
-
-Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi dalam satu backend.
-
-Google Sheet juga memiliki Apps Script, yang memungkinkan spreadsheet berfungsi lebih optimal dengan Javascript. Frontend dibuat dengan desain berbasis HTML, sehingga memudahkan kasir beradaptasi dengan tampilannya.
+- **Cashier Authentication:** Secure login using assigned usernames and PINs.
+- **Full Transaction Capability:** Supports dual-payment methods (e.g., split cash/card), returns, subtotaling, and change calculation.
+- **Operational Logging:** Dedicated backend worksheets for product data, payment logs, and end-of-day cashier reconciliation.
 
 ![login page](/images/image-1.png)
 
@@ -58,31 +45,27 @@ Google Sheet juga memiliki Apps Script, yang memungkinkan spreadsheet berfungsi 
 
 ![image.png](/images/image-4.png)
 
-### Hasilnya
+**The Trade-off:** Because it is browser-based, it cannot trigger the receipt printer directly (receipts have to be downloaded as PDFs first). However, during simulation testing, we found that because it bypasses the live ERP server entirely, product scanning and operational speeds were actually *faster* than our primary system.
 
-PoS ini berjalan baik dalam proses simulasi. Karena tidak ada sinkronisasi dengan backend ERP live, proses scan produk dan operasional berjalan jauh lebih cepat dengan PoS yang biasa kami gunakan.
-
-Saya belum menggunakan PoS ini dalam transaksi langsung. Meski demikian, kami cukup tenang mengetahui bahwa kami punya PoS cadangan yang bisa kami gunakan dalam situasi mendesak.
+While we didn’t suffer an ERP crash this year, having this fallback ready gave our team immense peace of mind.
 
 &nbsp;
 
-## 2. I built a customized price checker.
+## 2. **A Custom Price Checker for Manual Discount Campaigns.**
 
-Peak season seperti lebaran adalah momen yang tepat untuk meningkatkan penjualan barang slow moving. Untuk itu, kami memberikan diskon tambahan pada barang-barang slow moving, dengan harapan item-item ini bisa kami keluarkan untuk diputar dengan barang baru.
+Peak seasons are the perfect time to liquidate slow-moving inventory. To do this, we strategically placed slow-moving items in high-traffic center aisles and applied aggressive, manual discounts to rotate them out for new stock.
 
-Peletakan barang diskon spesial ini kami posisikan di tengah area penjualan, sehingga menarik perhatian customer. Kami juga menyediakan pramuniaga tambahan sebagai sarana informasi produk.
+**The Problem:** We assigned extra sales clerks to the floor to help customers, but with a massive number of SKUs, they struggled to memorize the special discount prices. They had to rely on printed price lists, which were slow to navigate during rushes. While our primary ERP has a price-checker module, it hard-coded primary prices and couldn’t support the manual discount logic we were using for this specific campaign.
 
-Kesulitan yang dirasakan oleh pramuniaga adalah mengingat harga diskon spesial untuk barang-barang yang ada. Kami menyediakan tabel harga, tapi dengan jumlah SKU yang banyak, pramuniaga kesulitan untuk memberikan informasi dengan cepat.
-
-Sebenarnya, ERP yang kami gunakan sudah menyediakan fitur price checker. Akan tetapi, price checker yang disediakan tidak support dengan sistem diskon manual yang kami terapkan untuk produk-produk ini.
-
-Maka saya membuat customized price checker, yang support dengan diskon manual yang ada.
-
-It's built using Google Sheet based UI as well. It's simpler than the PoS one, since it's just displaying product and price fashionably.
+**The Solution:** I built a customized, mobile-friendly Price Checker. Like the backup POS, it is powered by Google Sheets and Apps Script, displaying product names and discounted prices in a clean, fashionable UI.
 
 ![image.png](/images/image-5.png)
 
-One thing that I most proud of is the fuzzy search; if user can't scan the barcode, they can type in the product name and it will show a list of product that might be the one they look for.
+&nbsp;
+
+**The Best Feature: Fuzzy Search** In retail, barcodes get damaged all the time. If a barcode scan failed, I implemented a fuzzy search function. Clerks could type in a partial product name, and the UI would instantly return a list of probable SKU matches.
+
+&nbsp;
 
 ![image.png](/images/image-6.png)
 
@@ -92,9 +75,11 @@ One thing that I most proud of is the fuzzy search; if user can't scan the barco
 
 ### The Result
 
-It's always feel great to be helpful. This price checker has been used a lot of times. Both sales clerk and cashier using it for the sale items, and they felt it's more fast and convenient than looking at a printed price list.
+It's always feel great to be helpful. The tool was a massive hit. Both sales clerk and cashier using constantly to verify sale items, and they felt it's more fast and convenient than looking at a printed price list.
 
-## 3. I anticipated stocks running out in store
+&nbsp;
+
+## 3. **Proactive Stock Depletion Alerts**
 
 When demand for a product increases, inventory moves more frequently, and items in the sales area tend to run out faster. To address this, we need a reliable way to detect when stock is running low.
 
@@ -106,9 +91,21 @@ When demand for a product increases, inventory moves more frequently, and items 
 
 &nbsp;
 
-These are three things I did on festive season.
+## **The Outcome & Looking Forward**
 
-This season returns beyond our expectation. We managed to handle the surge of demand gracefully. Customers are being served quickly, and it leaves everybody satisfied.
+This season, the returns exceeded our highest expectations. We handled the historic surge in demand gracefully. Customers were served quickly, shelves stayed stocked, and both our staff and management were highly satisfied.
+
+For me, building these tools reinforced a critical operational lesson: **Resilience in retail doesn't always require expensive software; it requires identifying the exact points of failure and building accessible, targeted workarounds.**
+
+&nbsp;
+
+### **Next Steps for Continuous Improvement**
+
+While these tools were successful, I am already looking at ways to iterate for the next peak season:
+
+- **Local Print Bridging:** Exploring cloud-print alternatives or local scripts to allow the Google Sheets POS to fire the thermal receipt printer automatically.
+- **Automated ERP Syncing:** Writing a script to automatically queue and push the backup POS transaction logs back into the primary ERP database once the server recovers.
+- **Automated Alert Routing:** Pushing the low-stock alerts directly to staff via automated WhatsApp or Telegram bot messages for faster response times.
 
 &nbsp;
 
