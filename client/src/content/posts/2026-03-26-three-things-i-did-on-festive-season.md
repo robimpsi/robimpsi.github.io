@@ -96,11 +96,19 @@ It's always feel great to be helpful. This price checker has been used a lot of 
 
 ## 3. I anticipated stocks running out in store
 
-Higher demand means higher frequency of inventory movement. It also means the items in our sales area keeps running out.
+When demand for a product increases, inventory moves more frequently, and items in the sales area tend to run out faster. To address this, we need a reliable way to detect when stock is running low.
 
-But how do we know one item runs out?
+**Our Approach:**
 
-Our management system divides SKU by its location; sales area and warehouse. I monitored item in sales area and compared it to its sales frequency. If it goes below the sales frequency, I simply notified the responsible employee to refill stocks.
+1. **Inventory Tracking by Location** – Our management system categorizes each SKU (Stock Keeping Unit) by its location: either the **sales area** (where customers shop) or the **warehouse** (where backup stock is stored).
+2. **Monitoring Sales Area Stock** – For each item in the sales area, I track its remaining quantity and compare it to its **sales frequency** (how quickly it sells).
+3. **Alerts for Restocking** – If the available stock falls below the expected sales rate, I notifies the responsible employee to **refill the item** from the warehouse.
+
+&nbsp;
+
+These are three things I did on festive season.
+
+This season returns beyond our expectation. We managed to handle the surge of demand gracefully. Customers are being served quickly, and it leaves everybody satisfied.
 
 &nbsp;
 
