@@ -36,7 +36,9 @@ Tahun ini saya sempat membuat PoS sederhana dengan beberapa fungsi macro dan for
 4. Worksheet untuk log pembayaran
 5. Worksheet untuk cucian kasir
 
-Secara workflow, spreadsheet ini bisa digunakan layaknya point of sales biasa. Kami 
+Secara workflow, spreadsheet ini bisa digunakan layaknya point of sales biasa. Kasir hanya perlu melakukan login dengan username dan PIN yang sudah disediakan, menginput modal awal, lalu bisa melakukan transaksi seperti PoS yang biasa digunakan.
+
+Pengoperasian seperti metode pembayaran ganda, retur, serta laporan kasir bisa dilakukan di PoS ini.
 
 Worksheet ini berjalan cukup baik. Tetapi, PoS sederhana ini tidak bisa mencetak struk dan harus didownload dulu sebelum digunakan. Padahal, mesin PoS yang kami gunakan tidak terinstall perangkat lunak pengolah spreadsheet.
 
@@ -44,6 +46,6 @@ Untuk itu, saya memindahkan spreadsheet ini ke dalam Google Sheet.
 
 ### Kenapa Google Sheet?
 
-Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi de
+Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi dalam satu backend. 
 
 &nbsp;
