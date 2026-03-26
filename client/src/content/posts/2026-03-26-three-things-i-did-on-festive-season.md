@@ -9,7 +9,7 @@ Ramadhan di Indonesia selalu ditunggu tunggu, tidak hanya oleh masyarakat tapi j
 Di Indonesia, festive season seperti Ramadhan menyimpan lonjakan daya beli yang kuat. Data dari blabla menunjukkan adanya peningkatan konsumsi sebesar blabla %. Ini diperkuat juga dengan fenomena mudik dan ditutup dengan berlebaran.
 
 Ini diperkuat juga dengan data yang kami miliki pada tahun lalu. Dibandingkan dengan bulan biasanya, pada festive season terjadi lonjakan volume transaksi sebesar blabla%.  
-  
+
 Ini yang membuat kami, selaku ritel non franchise terbesar di Provinsi Bengkulu, sangat mengantisipasi lonjakan pembelian yang datang pada tahun ini.
 
 &nbsp;
@@ -36,8 +36,14 @@ Tahun ini saya sempat membuat PoS sederhana dengan beberapa fungsi macro dan for
 4. Worksheet untuk log pembayaran
 5. Worksheet untuk cucian kasir
 
+Secara workflow, spreadsheet ini bisa digunakan layaknya point of sales biasa. Kami 
+
 Worksheet ini berjalan cukup baik. Tetapi, PoS sederhana ini tidak bisa mencetak struk dan harus didownload dulu sebelum digunakan. Padahal, mesin PoS yang kami gunakan tidak terinstall perangkat lunak pengolah spreadsheet.
 
-Untuk itu, saya memindahkan spreadsheet ini ke dalam Google Sheet. 
+Untuk itu, saya memindahkan spreadsheet ini ke dalam Google Sheet.
+
+### Kenapa Google Sheet?
+
+Google Sheet bisa digunakan di semua mesin PoS dengan browser support. Asalkan seluruh PoS punya akses ke Sheet, maka semua PoS bisa melakukan transaksi de
 
 &nbsp;
