@@ -73,3 +73,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Pohon Buah (Fruit Tree).
 **Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
 **Refinement:** Pastikan untuk menekankan bahwa biaya "penyiraman" (perawatan) pelanggan lama jauh lebih rendah daripada biaya "pembukaan lahan" (akuisisi) pelanggan baru.
+
+## 2026-04-15 - Tingkat Pengembalian (Return Rate)
+**Analogy:** Laba Bayangan (Shadow Profit).
+**Effectiveness:** Membantu peritel memahami bahwa angka penjualan tinggi bisa menipu jika tidak diimbangi dengan rendahnya pengembalian. Analogi "bayangan" membuat peritel sadar akan laba yang tampak ada di laporan namun sebenarnya hilang.
+**Refinement:** Tekankan pada biaya operasional tambahan yang muncul dari setiap pengembalian untuk memperkuat pentingnya metrik ini.
