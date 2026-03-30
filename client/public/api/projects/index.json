@@ -1,15 +1,13 @@
 [
   {
-    "slug": "inventory-dashboard",
-    "title": "Inventory Forecasting Dashboard",
-    "date": "2024-01-20",
-    "description": "Automated inventory forecasting dashboard built with Excel and PowerBI.",
+    "slug": "2026-03-30-building-free-ai-assistance-for-google-sheets-to-help-me-doing-redundant-tasks",
+    "title": "Building free AI assistance for Google Sheets to help me doing redundant tasks",
+    "date": "2026-03-30T00:00:00.000Z",
+    "description": "I built a simple Google Sheets extension to help doing redundant tasks, with help of Mistral AI.",
     "tags": [
-      "Excel",
-      "PowerBI",
-      "Forecasting"
+      "Google Sheets, Javascript"
     ],
-    "link": "https://github.com/robi/inventory-forecast",
-    "content": "\n# Inventory Forecasting Dashboard\n\nThis dashboard helps store managers predict stock levels for the upcoming quarter.\n\n## Features\n\n- **Automated Data Ingestion**: Pulls sales data from CSV exports.\n- **Seasonality Adjustment**: Accounts for holiday spikes.\n- **Low Stock Alerts**: Highlights items below safety stock levels.\n"
+    "link": "",
+    "content": "Sebagai sebuah perusahaan ritel, proses penginputan data produk tidak dikerjakan seorang diri. Sebuah tim dengan berbagai latar belakang terlibat dalam penginputan data, termasuk dalam pembuatan nama produk.\n\nMeski memiliki SKU unit yang seragam, nomenklatur produk dapat berbeda antara satu toko dengan toko lainnya. Ini karena setiap toko memiliki kebijakan yang berbeda terkait cara nomenklatur produk.\n\nHal berbeda "
   }
 ]
