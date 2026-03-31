@@ -72,7 +72,7 @@ Neither option worked for my situation. I needed something that was practically 
 
 So I turned to Claude and asked it to help me build a custom Apps Script solution. Google Sheets has a built-in scripting environment called Apps Script. It's JavaScript-based, it's free, and it lets you create custom functions that behave just like native spreadsheet formulas.  
 
-The idea was straightforward: write a script that takes cell content, sends it to an AI model with a prompt, and returns the cleaned result. Install it once, and then call it from any cell with `=AI(A1, "Standardize this product name")`.  
+The idea was straightforward: write a script that takes cell content, sends it to an AI model with a prompt, and returns the cleaned result. Install it once, and then call it from any cell with `=MAI(A1, "Standardize this product name")`.  
 
 For the AI provider, I chose Mistral and OpenRouter.  
 
@@ -144,7 +144,7 @@ function AI(input, prompt, provider, model, version) {
 }  
 ```
 
-The `@customfunction` annotation tells Google Sheets to expose this as a formula. Once saved, you type `=AI(` in any cell and it appears in autocomplete alongside `AVERAGE` and `VLOOKUP`. It feels native.  
+The `@customfunction` annotation tells Google Sheets to expose this as a formula. Once saved, you type `=MAI(` in any cell and it appears in autocomplete alongside `AVERAGE` and `VLOOKUP`. It feels native.  
 
 ### Talking to Mistral
 
@@ -323,13 +323,13 @@ Since each API call has a cost — however tiny — I want a simple dashboard th
 
 Right now, I'm only using the AI for text transformation — clean this name, fix this format. But the same infrastructure could support sentiment analysis on customer reviews, automated product description generation, or even anomaly detection in sales data. The function signature stays the same — `=MAI(A1, "your prompt")` — only the prompt changes. The ceiling is much higher than where I'm currently operating.  
 
----
-
 ## The Takeaway
 
 This project started because I had a real operational problem — inconsistent product names across a retail catalog — and the existing solutions either didn't fit my tech stack or didn't fit my budget. The combination of Google Apps Script, Mistral's free API tier, and a few hours of building produced a tool that genuinely changed how our team handles data cleanup.  
 
-It's not a polished commercial product. The UI is functional, not beautiful. Even the error handling is not graceful. It still needs some babysit. But it works. It lives inside the spreadsheet where our data already is. It costs practically nothing to run. And it turned a multi-day manual chore into something that takes an afternoon.  
+It's not a polished commercial product. The UI is functional, not beautiful. Even the error handling is not graceful. It still needs some babysit.
+
+But it works. It lives inside the spreadsheet where our data already is. It costs practically nothing to run. And it turned a multi-day manual chore into something that takes an afternoon.  
 
 If you're a data analyst, an inventory manager, or anyone who deals with messy product data in spreadsheets — and you're tired of regex formulas that break every time a new naming pattern shows up — consider building your own. The API keys are free or nearly free. The scripting environment is built into Google Sheets.
 
