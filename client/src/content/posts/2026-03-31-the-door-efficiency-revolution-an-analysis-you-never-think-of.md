@@ -2,11 +2,11 @@
 title: " The Door Efficiency Revolution: An Analysis You Never Think Of"
 date: 2026-03-25
 description: I just discovered the ultimate productivity hack. Backed by math,
-  the result might make you fall off your chair. Sit tight.
+  the result might make you hate doors. Sit tight.
 ---
 In a fast paced company, every second counts. It sips to our brain that things have to be done as quick and efficient as possible.
 
-In that spirit, I tried to reduce any redundant inefficient stuff in my daily shenanigans. From building python script to speed up data cleaning, building a streamlit based web apps so my coworkers don't have to query data manually, batching work and bulk upload them, everything. 
+In that spirit, I tried to reduce any redundant inefficient stuff in my daily shenanigans. From building Python script to speed up data cleaning, building a Streamlit based web apps so my coworkers don't have to query data manually, batching work and bulk upload them, everything.
 
 Perhaps you've done similar stuff too.
 
@@ -15,7 +15,7 @@ But have you look at your door?
 Yeah, that rectangular slab of wood you interact with multiple times a day *without even thinking*.  
 Do you realize how boring and redundant doors are?
 
-Let's fix that.  
+Let's fix that.
 
 ---
 
@@ -31,7 +31,11 @@ Let's fix that.
 | **Total per interaction** | **~5 seconds** |
 
 
+
+
 You're spending a **whole 3 seconds** easing the door shut like you're tucking a baby into a crib. Three. Entire. Seconds.  
+
+
 
 ### The Slam Way
 
@@ -43,13 +47,17 @@ You're spending a **whole 3 seconds** easing the door shut like you're tucking a
 | **Total per interaction** | **~2 seconds** |
 
 
-Slamming is **60% faster**. If that number doesn't get your heart racing, you don't belong in data analytics.  
+Slamming is **60% faster**. If that number doesn't get your heart racing, you don't belong in the retail world.
 
 ---
+
+
 
 ## The 15-Year Calculation: A Career's Worth of Wasted Time
 
 Let's put this into a **career-spanning perspective**.  
+
+
 
 ### Assumptions
 
@@ -58,11 +66,15 @@ Let's put this into a **career-spanning perspective**.
 - **Hours per day:** 8  
 - **Door interactions per day:** 8 (a *conservative* estimate for those of us who haven't yet welded ourselves into our cubicles)
 
+
+
 ### Total Door Interactions Over 15 Years
 
 > 8 interactions/day × 250 days/year × 15 years = **30,000 door interactions**  
 
 Thirty thousand times you have touched a door during your career, and not once did you stop to think, *"Could I be doing this faster?"*  
+
+
 
 ### Time Spent: Gentle vs. Slamming
 
@@ -72,6 +84,8 @@ Thirty thousand times you have touched a door during your career, and not once d
 | Gentle (like a *civilized* person) | 5 seconds | 150,000 seconds |
 | SLAMMING (like a *visionary*) | 2 seconds | 60,000 seconds |
 | **Time Saved** | **3 seconds** | **90,000 seconds** |
+
+
 
 
 ### Converting 90,000 Seconds Into Something Meaningful
@@ -88,11 +102,15 @@ Thirty thousand times you have touched a door during your career, and not once d
 
 Ladies and gentlemen, by slamming every single door for **fifteen straight years**, you will save yourself...  
 
-THREE WHOLE WORK DAYS.  
+# THREE WHOLE WORK DAYS.  
 
-Over the course of a **decade and a half**, you claw back roughly **25 glorious hours**. In terms of **years saved**: a staggering **0.003**. Print that on your résumé.  
+Over the course of a **decade and a half**, you claw back roughly **25 glorious hours**. In terms of **years saved**: a staggering **0.003**. Now THAT'S efficiency.
+
+
 
 ---
+
+
 
 ## How Door-Slamming Will Transform the Workplace
 
@@ -109,7 +127,7 @@ With an extra 25 hours across your career, you could complete approximately **ha
 ### 2. Physical Fitness
 
 Sitting is the new smoking. Balancing it with slamming doors will engage your shoulders, core, and upper back.  
-Plus, the noise will shock your coworkers, so that's a cardio exercise for them too.
+Plus, the noise will startled your coworkers, so that's a cardio exercise for them too.
 
 
 
@@ -137,6 +155,8 @@ Slam harder. If it shatters, you've just **eliminated the door entirely**, savin
 
 ---
 
+
+
 ## Final Recommendation
 
 After rigorous analysis involving actual math (unfortunately), the data is irrefutable:  
@@ -147,7 +167,9 @@ Will it save a meaningful amount of time? **Absolutely not.**
 
 Will it damage property, terrify your coworkers, and result in a meeting with HR? **Almost certainly.**  
 
-But on your deathbed, surrounded by your family, will you be able to say you **optimized every last inefficiency** in your workday, down to the sub-second level, to maximize company's value?  
+But on your deathbed, surrounded by your family, you will be able to say you **optimized every last inefficiency** in your workday, down to the sub-second level, to maximize company's value.
+
+And that is something we should look forward to every day.  
 
 ---
 
