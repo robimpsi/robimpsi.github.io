@@ -1,5 +1,17 @@
 [
   {
+    "slug": "tingkat-churn",
+    "title": "Trendline: Tingkat Churn untuk Peritel",
+    "date": "2026-04-15",
+    "description": "Mengapa menghentikan pelanggan yang pergi lebih penting daripada mencari pelanggan baru.",
+    "tags": [
+      "Statistik",
+      "Ritel",
+      "Retensi"
+    ],
+    "content": "\n### Skenario\nBayangkan Anda sedang mendayung sebuah perahu di tengah danau untuk menangkap ikan. Anda sangat sibuk melemparkan jaring untuk mendapatkan ikan baru sebanyak mungkin. Namun, Anda tidak menyadari bahwa ada lubang kecil di dasar perahu yang membuat air terus masuk. Jika Anda hanya fokus menangkap ikan tanpa menambal lubang tersebut, perahu Anda akan tenggelam tidak peduli seberapa banyak ikan yang Anda dapatkan. Dalam bisnis ritel, lubang ini adalah pelanggan yang berhenti berbelanja di toko Anda.\n\n### Statistik\nTingkat Churn atau Churn Rate adalah persentase pelanggan yang berhenti berbelanja di toko Anda dalam periode waktu tertentu. Cara menghitungnya cukup sederhana: bagi jumlah pelanggan yang hilang dengan total pelanggan Anda di awal periode. Jika Anda memulai bulan dengan 100 pelanggan tetap dan 5 di antaranya tidak pernah kembali, maka tingkat churn Anda adalah 5 persen. Angka ini adalah alarm kesehatan bisnis yang seringkali lebih jujur daripada laporan penjualan harian.\n\n### Wawasan\nBanyak pemilik toko terjebak dalam obsesi untuk terus mendatangkan pengunjung baru melalui iklan yang mahal. Padahal, biaya untuk mendapatkan satu pelanggan baru jauh lebih tinggi daripada biaya untuk mempertahankan pelanggan yang sudah ada. Tingkat churn yang tinggi menunjukkan adanya masalah mendasar pada layanan, kualitas produk, atau harga Anda. Menurunkan churn sebesar 5 persen saja dapat meningkatkan keuntungan bisnis secara signifikan karena pelanggan setia cenderung berbelanja dengan keranjang yang lebih besar.\n\n### Langkah Cepat\nBuka data transaksi Anda dan identifikasi pelanggan yang biasanya berbelanja setiap bulan tetapi tidak muncul dalam 60 hari terakhir. Hubungi mereka melalui pesan singkat atau email dengan penawaran khusus untuk menanyakan kabar mereka. Seringkali, perhatian kecil atau diskon \"selamat datang kembali\" sudah cukup untuk menambal kebocoran di perahu bisnis Anda sebelum terlambat.\n"
+  },
+  {
     "slug": "2026-03-26-three-things-i-did-on-festive-season",
     "title": "Surviving the Ramadan Retail Rush: Building Lightweight Systems to Prevent Revenue Loss",
     "date": "2026-03-26T00:00:00.000Z",
