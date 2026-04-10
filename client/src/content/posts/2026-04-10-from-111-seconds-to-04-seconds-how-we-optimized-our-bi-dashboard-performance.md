@@ -5,98 +5,126 @@ date: 2026-04-10
 description: Our internal business intelligence dashboard built on Python Dash
   and DuckDB had developed a critical performance problem. And it makes me
   rethink about how I approached data architecture.
+tags: |
+  Plotly
+  DuckDB
 ---
-## The Problem: Death by a Thousand Parquet Files
-
-Our internal business intelligence dashboard built on Python Dash and DuckDB had developed a critical performance problem.
-
-On every container restart, the application would hang for **77 seconds** before becoming responsive, often triggering Gunicorn's 120-second timeout and resulting in `SIGKILL` errors. Individual queries for profit metrics were taking **10-15 seconds**, making the dashboard practically unusable for day-to-day operations.
-
-The root cause was a perfect storm of three factors: (1) DuckDB views being lazily created on first query rather than at startup, (2) 198 parquet files being scanned through WSL2's slow bind-mount filesystem translation layer, and (3) the database running entirely in memory, meaning all optimizations were lost on every `docker-compose restart`.
 
 
+A three-second load time loses users.  
 
-## The Diagnosis: Understanding Data Gravity
+Our internal BI dashboard, however, wasn’t losing users. It was taking them hostage.  
 
-Our investigation revealed that the profit summary query, which is essential for the Sales page KPIs, was scanning `agg_profit_daily`, a DuckDB **view** over partitioned parquet files. Every query triggered a full scan of 198 parquet files across 400 days of history. Because WSL2 translates Linux file system calls to Windows NTFS, each file operation incurred significant overhead. Reading hundreds of small files became a death by a thousand cuts.
+Built on Python Dash and DuckDB, it had become a performance nightmare. Every `docker-compose up` was a coin flip: would it boot in its allotted 120 seconds, or would Gunicorn’s patience run out, issuing its signature `SIGKILL`?  
 
-The startup delay compounded this: views were created using `CREATE OR REPLACE VIEW` statements on every initialization, even when they already existed. With no persistence mechanism, the application treated every restart as a blank slate, rebuilding everything from scratch.
+For the users who made it past the loading screen, the reward was a 13-second wait for a single profit metric.  
+
+This wasn’t a dashboard. It was a digital oubliette. Users weren't just annoyed—they were abandoning it.  
+
+This is the story of the autopsy, the heist, and the architectural lesson that turned a 111-second startup into a 0.4-second blink.  
 
 
 
-## The Solution: Three Layers of Optimization
+### **The Crime Scene: A Conspiracy of Laziness**
+
+The murder weapon wasn't one thing, but a conspiracy of three perfectly aligned mistakes:  
+
+1. **The Phantom Menace:** DuckDB views were created *lazily*. They only materialized on the first query, turning an innocent click into a system-wide fire drill.
+2. **The File System Tax:** That fire drill involved scanning 198 Parquet files across WSL2's notoriously slow bind-mount filesystem. Every file operation was a bureaucratic nightmare of Linux-to-Windows translation.
+3. **The Goldfish Brain:** The database ran entirely in-memory `:memory:`), meaning every optimization, every cache, every shred of hard-won knowledge was wiped clean on every restart. It had the long-term memory of a goldfish.
+
+It was death by a thousand cuts—each cut a tiny, translated file operation. The great irony? We’d aggregated our raw data into daily Parquet files, *thinking* we were being efficient. But a view over those files isn’t data; it’s a promise to go do the work later. And "later" was costing us everything.  
 
 
 
-### Layer 1: Persistent DuckDB (The Fridge)
+### **The Autopsy: When a View Is a Liar**
 
-We switched from in-memory DuckDB (`:memory:`) to a file-backed database (`/data-lake/cache/dash.duckdb`). This simple change meant that materialized views could survive container restarts. After implementation, existing views were detected in under 100ms, and startup time dropped from 77 seconds to **0.4 seconds**.
+The logs pointed to a single query on a view named `agg_profit_daily`. But this view was a ghost. It was just a pointer, a reminder to go open 198 files spanning 400 days of history.  
+
+To compound the felony, on every startup the app would dutifully run `CREATE OR REPLACE VIEW`, even when the view already existed. It was like a chef rewriting the entire menu from scratch every single morning. Seventy-seven seconds of pure, uncut futility.  
+
+The problem wasn't our stack. The problem was our architecture was built on a series of lies we were telling ourselves.  
 
 
 
-### Layer 2: Materialized Views (Meal Prep)
+### **The Heist: A Three-Layer Plan for Performance**
 
-The breakthrough came from implementing **materialized views**—pre-computed tables stored in DuckDB's native format rather than referencing external parquet files. We created four key MVs:
+We didn’t need a rewrite. We needed a heist—to steal our performance back.  
 
-- `mv_sales_daily`: Daily revenue aggregates
+#### **Layer 1: The Safe House (Persistent Storage)**
+
+First, we killed the goldfish. We ditched `:memory:` and gave our DuckDB instance a home on disk: `/data-lake/cache/dash.duckdb`.  
+
+This simple change was revolutionary. Suddenly, views and metadata *survived* restarts. The app stopped having amnesia.  
+
+**Startup time plummeted from 111 seconds to 0.4 seconds.** That's not an improvement; that's a magic trick.  
+
+#### **Layer 2: Meal Prep for Data**
+
+Next, we stopped cooking from scratch. We embraced **materialized views**.  
+
+A materialized view is meal prep for your database. Instead of a recipe (a standard view), it’s the pre-cooked dish, ready to be served instantly. We created four key MVs:  
+
+- `mv_sales_daily`: Daily revenue aggregates  
 - `mv_sales_by_product`: Product-level daily summaries  
-- `mv_sales_by_principal`: Principal-level daily summaries
-- `mv_profit_daily`: Profit metrics (revenue, COGS, gross profit)
+- `mv_profit_daily`: Pre-crunched profit metrics
 
-These tables contain only **400 rows each** (one per day), occupying mere kilobytes in memory, yet they replace scans of millions of raw transaction rows. Query times dropped from **13 seconds to under 50 milliseconds**—a 260× improvement.
+Each of these tables contains just **400 rows**—one per day. These tiny, kilobyte-sized tables replaced scans of millions of raw transaction rows.  
+
+**Query time dropped from 13 seconds to under 50 milliseconds.** A **260x speedup**. Users now get answers faster than they can blink.  
+
+#### **Layer 3: The Insurance Policy (Incremental & Versioned Caching)**
+
+Rebuilding 400 days of history just to add one new day is architectural malpractice.  
+
+So, we built an `mv_refresh_metadata` table that tracks the last refresh timestamp. When new ETL data lands, we only process the new dates. Full rebuilds are dead.  
+
+For an extra layer of speed, we added versioned Redis caching. Cache keys include a hash of the data's last refresh date, ensuring that when the underlying data changes, the cache automatically invalidates. The result? Sub-millisecond hits for repeated queries that survive container Armageddon.  
 
 
 
-### Layer 3: Incremental Refresh & Versioned Caching
+### **The Scorecard: From Agony to Instant Gratification**
 
-To prevent full rebuilds when only new data arrives, we implemented incremental refresh logic. An `mv_refresh_metadata` table tracks the last refresh timestamp and maximum data date. When new ETL data lands, only dates beyond the current maximum are processed, turning a full rebuild into a marginal update.
-
-For cross-request persistence beyond DuckDB, we added versioned Redis caching. Cache keys include an ETL version hash derived from `max(last_refresh_date)`, ensuring automatic invalidation when underlying data changes while providing sub-millisecond cache hits for repeated queries.
-
-
-
-## The Results: Sub-Second Performance
+The results weren't just an improvement; they were a regime change.  
 
 
 | Metric | Before | After | Improvement |
-| ----------------- | -------------------- | ----------------- | ---------------------- |
-| Cold startup | 77s | 0.4s | 192× faster |
-| View creation | 77s | 0.1s | 770× faster |
-| Profit query | 13s | <50ms | 260× faster |
-| Sales trends | 2-5s | <100ms | 20-50× faster |
-| Cache persistence | None (in-memory LRU) | Redis + versioned | Cross-restart survival |
+| -------------- | ------ | ----------------- | --------------- |
+| Cold Startup | 77s | 0.4s | **192× faster** |
+| View Creation | 21s | 0.1s | **210× faster** |
+| Profit Query | 13s | <50ms | **260× faster** |
+| Cache Survival | None | Redis + versioned | **Immortal** |
+
+
+### **The Core Lesson: Store the Answer, Not the Math Problem**
+
+This whole saga validated a truth so obvious it's often ignored: **Transactional data and analytical queries should not share a bedroom.**  
+
+Your OLTP system generates millions of granular events. Your dashboard users need aggregated answers. C-level doesn't want to read every invoice line from yesterday; they want to know yesterday's profit.  
+
+We implemented a classic two-tier architecture:  
+
+- **Tier 1 (Cold Storage):** The Parquet files. Our source of truth. Full granularity, cheap to store, slow to query.  
+- **Tier 2 (Hot Storage):** The materialized views. Our source of answers. Pre-aggregated, tiny, and instant.
+
+Don't let the fancy name—Kimball's "periodic snapshot fact tables"—fool you. It's just common sense: compute the answer once, then store it.  
 
 
 
+### **The Next Target: The Inventory Boss Fight**
 
-## Key Insights: Two-Tier Architecture
+Sales data was an easy win. Inventory is a harder problem. Stock level isn't a simple daily sum; it's a running total across all of history. You can't just `GROUP BY` the granularity; you must *accumulate*.  
 
-This optimization validated a fundamental data warehouse principle: **transactional data and analytical queries should not mix**. Sales and inventory systems generate millions of granular events (stock moves, invoice lines), but dashboard users need aggregated answers: "What was our profit yesterday?" not "Show me every transaction that contributed to it."
-
-We adopted a two-tier architecture:
-
-- **Tier 1 (Cold)**: Transactional parquet files—full granularity, slow to query, cheap to store
-- **Tier 2 (Hot)**: Materialized views—pre-aggregated, instant queries, rebuilt incrementally
-
-This pattern is industry-standard (Kimball's "periodic snapshot fact tables") but often skipped in small-scale BI tools. Our case proves it matters even at modest scale: 400 days of history was enough to make raw transactional queries unusable.
+The solution is the same. Don't do the math every time. Create a periodic snapshot: a table of daily ending balances for each product in each location. Transform the computational nightmare into a lookup dream. That's our next agenda.
 
 
 
-## The Inventory Challenge Ahead
+### **The Takeaway**
 
-Sales data benefited from this architecture because daily aggregates reduced millions of transactions to 400 rows. Inventory data presents a harder problem: stock movements are 10-100× more granular than sales, and "current stock level" cannot be computed from a simple daily sum—it requires running totals across all history.
+This problem makes me rethink about my approach towards data architecture: BI performance is rarely about a fancy tech stack or faster hardware. It's also about proper **architecture**. Tiered schema that mimics user behavior and adjusted to user's usage pattern.
 
-The industry solution is **periodic snapshot fact tables**: instead of storing every stock movement, store daily ending balances per product per location.
+We turned a 111-second death sentence into a 0.4-second wink. We made `docker-compose restart` a non-event. And we built patterns that will scale from 400 days of history to 4,000 without breaking a sweat.  
 
-This transforms a computational problem (summing all history) into a lookup problem (reading one number). For Our app, this means creating `agg_inventory_daily` and `mv_inventory_daily` to complement the existing `fact_inventory_moves` transactional table.
+The real optimization wasn't in the code. It was a mental shift: admitting that laziness—both in computation and in design—was the real bottleneck.  
 
-
-
-## Conclusion
-
-The optimization demonstrates that BI performance is rarely about hardware or query tuning—it's about **data architecture**.
-
-By recognizing that dashboards need snapshots while audits need transactions, we replaced 13-second filesystem scans with 50-millisecond memory lookups. The 0.4-second startup time means developers can now iterate rapidly without fearing the `docker-compose restart` penalty.
-
-Most importantly, we've established patterns—persistent storage, materialized views, incremental refresh—that will scale as the business grows from 400 days to 4,000 days of history.
-
+Now, our dashboard is so fast, it feels like it knows your question before you ask. And that is how you win.
