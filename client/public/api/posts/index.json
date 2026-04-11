@@ -1,5 +1,17 @@
 [
   {
+    "slug": "tingkat-churn",
+    "title": "Tingkat Churn untuk Peritel",
+    "date": "2026-04-15",
+    "description": "Mengapa mengisi toko dengan pelanggan baru tidak akan berguna jika Anda terus kehilangan pelanggan lama melalui lubang yang tidak terlihat.",
+    "tags": [
+      "Metrik",
+      "Retensi",
+      "Ritel"
+    ],
+    "content": "\n### Skenario\n\nBayangkan Anda sedang mendayung sebuah perahu di tengah danau. Anda bekerja sangat keras menimba air masuk ke dalam perahu untuk menjaga agar perahu tetap terapung dan bergerak maju. Namun, tanpa Anda sadari, ada beberapa lubang kecil di dasar perahu yang terus membuang air tersebut keluar. Tidak peduli seberapa cepat Anda menimba, perahu Anda tidak akan pernah penuh dan lama-kelamaan akan tenggelam. Dalam bisnis ritel, menimba air adalah upaya mendatangkan pelanggan baru, sementara lubang di dasar perahu adalah Tingkat Churn Anda.\n\n### Statistik\n\nTingkat Churn (Churn Rate) adalah persentase pelanggan yang berhenti berbelanja di toko Anda dalam jangka waktu tertentu. Jika Anda memiliki 1.000 pelanggan tetap di awal bulan dan 50 di antaranya tidak pernah kembali lagi di akhir bulan, maka tingkat churn Anda adalah 5 persen. Angka ini seringkali lebih jujur daripada angka penjualan kotor karena ia menunjukkan tingkat kepercayaan dan kepuasan pelanggan terhadap layanan Anda. Mengabaikan angka ini sama saja dengan membiarkan perahu Anda bocor sambil terus membuang uang untuk iklan.\n\n### Wawasan\n\nBanyak peritel terlalu terobsesi dengan biaya akuisisi pelanggan baru dan melupakan biaya retensi. Faktanya, mempertahankan pelanggan yang sudah ada jauh lebih murah daripada mencari yang baru. Pelanggan yang loyal cenderung memiliki basket size yang lebih besar dan lebih jarang mengeluh tentang harga. Jika tingkat churn Anda tinggi, itu adalah sinyal bahwa ada masalah mendasar dalam pengalaman berbelanja, kualitas produk, atau layanan purna jual Anda yang harus segera diperbaiki sebelum Anda menambah anggaran pemasaran.\n\n### Langkah Cepat\n\nBuka sistem POS Anda dan identifikasi pelanggan yang biasanya berbelanja setidaknya sekali sebulan tetapi belum terlihat dalam 90 hari terakhir. Kelompokkan mereka dan cobalah kirimkan pesan pribadi atau penawaran khusus untuk menanyakan kabar mereka. Seringkali, tindakan sederhana untuk menunjukkan bahwa mereka diingat sudah cukup untuk menutup lubang kebocoran pada perahu bisnis Anda.\n"
+  },
+  {
     "slug": "2026-04-10-from-111-seconds-to-04-seconds-how-we-optimized-our-bi-dashboard-performance",
     "title": "From 111 Seconds to 0.4 Seconds: How We Optimized Our BI Dashboard Performance",
     "date": "2026-04-10T00:00:00.000Z",
