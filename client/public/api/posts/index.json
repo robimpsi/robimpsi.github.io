@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-02-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-05-02",
+    "description": "Mengungkap realitas di balik angka penjualan besar yang seringkali hanya menjadi laba bayangan.",
+    "tags": [
+      "Statistik",
+      "Operasional",
+      "Ritel"
+    ],
+    "content": "\n### Skenario\nBayangkan di akhir minggu Anda melihat laporan penjualan di sistem POS dan tersenyum melihat angka yang sangat tinggi. Namun, saat memeriksa rekening bank, uang yang masuk tidak sebanyak yang diharapkan. Ternyata, rak yang sempat kosong kini kembali terisi oleh barang-barang yang dikembalikan oleh pelanggan karena berbagai alasan. Anda telah terjebak dalam apa yang kami sebut sebagai Laba Bayangan, di mana angka penjualan yang terlihat gemilang sebenarnya hanyalah transaksi sementara yang belum benar-benar menjadi hak Anda.\n\n### Statistik\nTingkat Pengembalian (Return Rate) adalah rasio antara nilai atau jumlah barang yang dikembalikan pelanggan dibandingkan dengan total penjualan kotor dalam periode tertentu. Jika Anda menjual 100 unit SKU dan 10 unit kembali ke toko, maka Tingkat Pengembalian Anda adalah 10 persen. Angka ini seringkali diabaikan karena pemilik toko lebih fokus pada pendapatan kotor. Padahal, setiap barang yang kembali membawa serta biaya logistik, pemeriksaan kualitas, dan potensi kehilangan nilai karena barang tersebut tidak lagi baru.\n\n### Wawasan\nDalam ritel, pengembalian barang bukan sekadar pembatalan transaksi, melainkan penguras laba yang tersembunyi. Barang yang kembali ke gudang berarti modal Anda tertahan lebih lama tanpa menghasilkan keuntungan apapun. Tingkat pengembalian yang tinggi biasanya merupakan indikasi adanya masalah pada deskripsi produk, kualitas barang, atau ekspektasi pelanggan yang tidak selaras. Dengan menekan angka ini, Anda sebenarnya sedang mempertebal margin keuntungan bersih tanpa perlu menaikkan harga jual satu rupiah pun.\n\n### Langkah Cepat\nBuka laporan ringkasan penjualan Anda hari ini dan bandingkan angka Penjualan Kotor (Gross Sales) dengan Penjualan Bersih (Net Sales) setelah dikurangi retur. Jika selisihnya lebih dari 5 persen, identifikasi tiga SKU dengan frekuensi pengembalian tertinggi di toko Anda. Periksa apakah ada pola kerusakan yang sama atau jika tim penjualan Anda memberikan informasi yang kurang akurat saat transaksi berlangsung. Mengurangi satu persen saja dari tingkat pengembalian bisa memberikan dampak besar bagi arus kas bisnis Anda.\n"
+  },
+  {
     "slug": "2026-04-29-building-a-self-healing-etl-pipeline-a-retail-data-teams-journey",
     "title": "Building a Self-Healing ETL Pipeline, A Retail Data Team's Journey",
     "date": "2026-04-29T00:00:00.000Z",
