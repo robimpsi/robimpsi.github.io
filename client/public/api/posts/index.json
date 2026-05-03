@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-03-tingkat-churn",
+    "title": "Trendline: Tingkat Churn untuk Peritel",
+    "date": "2026-05-03",
+    "description": "Memahami mengapa pelanggan berhenti datang dan bagaimana menghentikan kebocoran pendapatan Anda.",
+    "tags": [
+      "Statistik",
+      "Retensi",
+      "Perilaku Konsumen"
+    ],
+    "content": "\n### Skenario: Ember yang Selalu Kosong\n\nBayangkan Anda sedang mengisi ember dengan air dari keran yang mengalir deras. Anda merasa puas melihat kencangnya aliran air tersebut, namun satu jam kemudian, Anda terkejut mendapati ember tersebut masih setengah kosong. Setelah diperiksa, ternyata ada lubang kecil di dasar ember yang terus-menerus membuang air yang Anda kumpulkan. Dalam bisnis ritel, air adalah pelanggan baru Anda, dan lubang di dasar ember adalah Churn atau pelanggan yang berhenti berbelanja di toko Anda.\n\n### Statistik: Tingkat Churn\n\nTingkat Churn (Churn Rate) adalah persentase pelanggan yang berhenti berinteraksi atau membeli dari toko Anda dalam periode waktu tertentu. Jika Anda memulai bulan ini dengan 100 pelanggan aktif dan 10 di antaranya tidak pernah kembali lagi di bulan berikutnya, maka Tingkat Churn Anda adalah 10 persen. Angka ini adalah indikator kesehatan jangka panjang yang lebih jujur daripada sekadar melihat angka penjualan kotor. Penjualan bisa terlihat tinggi karena promosi besar-besaran, namun Churn yang tinggi membocorkan keuntungan Anda secara diam-diam.\n\n### Wawasan: Mengapa Retensi Lebih Murah\n\nBanyak pemilik toko terlalu terobsesi untuk mencari pelanggan baru melalui iklan yang mahal, namun mengabaikan pelanggan yang sudah pernah membeli. Secara statistik, biaya untuk mendapatkan pelanggan baru bisa lima kali lebih mahal daripada mempertahankan pelanggan yang sudah ada. Pelanggan yang setia cenderung memiliki nilai transaksi yang lebih besar dan lebih mudah untuk ditawari produk baru. Mengurangi Churn sebesar 5 persen saja dapat meningkatkan laba perusahaan secara signifikan karena efisiensi biaya pemasaran yang luar biasa.\n\n### Langkah Cepat\n\nBuka sistem POS Anda dan cari daftar pelanggan yang biasanya berbelanja setidaknya sebulan sekali, namun tidak terlihat dalam 60 hari terakhir. Kelompokkan mereka sebagai Pelanggan Berisiko dan cobalah kirimkan pesan singkat atau voucer khusus untuk mengundang mereka kembali. Seringkali, sapaan sederhana adalah tambalan yang cukup kuat untuk menutup lubang di ember bisnis Anda sebelum mereka pergi selamanya ke kompetitor.\n"
+  },
+  {
     "slug": "2026-04-29-building-a-self-healing-etl-pipeline-a-retail-data-teams-journey",
     "title": "Building a Self-Healing ETL Pipeline, A Retail Data Team's Journey",
     "date": "2026-04-29T00:00:00.000Z",
