@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-05-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-05-05",
+    "description": "Mengapa angka penjualan yang tinggi bisa menjadi jebakan jika Anda mengabaikan statistik pengembalian barang.",
+    "tags": [
+      "Statistik",
+      "Operasional",
+      "Profitabilitas"
+    ],
+    "content": "\n### Skenario: Penjualan Semu di Akhir Bulan\n\nBayangkan Anda merayakan rekor penjualan tertinggi di akhir pekan. Laporan POS menunjukkan angka yang luar biasa dan rak-rak Anda terlihat kosong. Namun, seminggu kemudian, antrean pelanggan muncul kembali di depan meja kasir, bukan untuk membeli, melainkan untuk mengembalikan barang. Uang yang sudah masuk ke kas perlahan keluar kembali, menyisakan stok yang mungkin sudah tidak sempurna atau ketinggalan tren. Anda menyadari bahwa angka penjualan yang Anda banggakan di awal hanyalah sebuah \"laba bayangan\".\n\n### Statistik: Tingkat Pengembalian (Return Rate)\n\nTingkat Pengembalian adalah persentase barang yang dikembalikan oleh pelanggan dibandingkan dengan total barang yang terjual dalam periode tertentu. Rumusnya adalah jumlah unit yang dikembalikan dibagi total unit terjual, dikalikan seratus. Jika Anda menjual 100 kemeja dan 15 di antaranya dikembalikan, maka tingkat pengembalian Anda adalah 15 persen. Angka ini seringkali lebih jujur daripada angka penjualan kotor karena ia menunjukkan penerimaan pasar yang sesungguhnya terhadap produk Anda.\n\n### Wawasan: Mengungkap Laba Bayangan\n\nTingkat pengembalian yang tinggi adalah biaya tersembunyi yang bisa mematikan bisnis ritel. Setiap barang yang kembali bukan hanya berarti hilangnya pendapatan, tetapi juga menambah biaya operasional untuk pemrosesan, penyimpanan ulang, hingga potensi kerusakan barang. \"Laba bayangan\" terjadi ketika peritel terlalu fokus pada angka penjualan di depan tanpa memperhitungkan potensi arus balik barang. Memahami statistik ini membantu Anda mengidentifikasi masalah pada kualitas produk, ketidaksesuaian ukuran, atau bahkan ekspektasi pelanggan yang salah akibat promosi yang berlebihan.\n\n### Langkah Cepat: Audit Produk Bermasalah\n\nBuka laporan pengembalian barang di sistem POS Anda untuk satu bulan terakhir. Identifikasi tiga produk dengan frekuensi pengembalian tertinggi meskipun penjualannya besar. Periksa alasan umum pengembaliannya, apakah karena cacat produksi atau ketidaksesuaian deskripsi. Segera tarik produk tersebut dari rak atau perbaiki deskripsi penjualannya hari ini untuk menghentikan kebocoran laba yang tidak perlu.\n"
+  },
+  {
     "slug": "2026-04-29-building-a-self-healing-etl-pipeline-a-retail-data-teams-journey",
     "title": "Building a Self-Healing ETL Pipeline, A Retail Data Team's Journey",
     "date": "2026-04-29T00:00:00.000Z",
