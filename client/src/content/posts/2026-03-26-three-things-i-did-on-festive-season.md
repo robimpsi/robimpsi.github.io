@@ -5,110 +5,67 @@ date: 2026-03-26
 description: Here is how I contribute on my work for the recent festive season.
 tags: Festive Season, Analysis
 ---
-Ramadan in Indonesia isn’t just a festive season; it’s a massive retail event driven by the *mudik* (homecoming) phenomenon and Eid al-Fitr preparations. Across the country, the retail sector often sees consumption spikes of up to 30%.
+Seasonal peaks are the ultimate stress test for retail infrastructure. In many markets, particularly in Southeast Asia, holidays drive massive consumption spikes—often doubling normal transaction volumes. At our largest regional retail hubs, this translates to a dramatic surge in foot traffic and checkout density.  
+  
+While this surge presents a significant revenue opportunity, it also pushes legacy systems to their breaking point. Last season, we learned exactly what happens when critical infrastructure fails under that load.  
+  
+## The Catalyst: Infrastructure Limits During High Volume  
+During the absolute peak night of the season, our primary ERP system encountered a critical capacity breach. The transaction processing rate exceeded the server's configured limits, causing the system to become unresponsive.  
+  
+Our IT team worked tirelessly to stabilize the environment, but the continuous influx of customers created a massive bottleneck at the checkout points. Lines stalled, and customer satisfaction dropped rapidly. By the time the shift ended, the outage had resulted in a substantial revenue gap compared to our targets.  
+  
+Going into the next peak season, my operational goal was clear: **Keep transactions flowing, even if the primary system encounters latency or downtime.**  
+  
+To achieve this, we designed three lightweight, highly accessible tools to support frontline staff during outages or maintenance windows.  
+  
+## 1. A Cloud-Based Backup POS (Point of Sale)  
+If the primary ERP went down again, we needed a fully functional fallback that cashiers could switch to immediately without extensive training.  
+  
+Initially, we considered spreadsheet-based macros, but a constraint became apparent: POS terminals typically do not have office software suites installed. To solve this, we migrated the solution to a **cloud-based web application**.  
+  
+### Why a Browser-Based Approach?  
+Every POS terminal has a web browser. As long as terminals have internet access, they can load a hosted frontend. By leveraging a low-code platform with client-side scripting capabilities, we built a UI that mimics standard POS behavior, drastically reducing the learning curve for floor staff.  
+  
+**Key Features of the Backup POS:**  
+*   **Secure Access:** Staff authentication using assigned credentials.  
+*   **Full Transaction Support:** Handles payments, returns, subtotaling, and change calculation.  
+*   **Operational Logging:** Dedicated backend storage for product data, payment logs, and end-of-day reconciliation.  
 
-At our store—the largest non-franchise retail center in Bengkulu Province—the impact is even more extreme. Based on our internal data, transaction volumes surge by **120%** compared to a regular month.
 
-While this surge in demand is a massive opportunity, it also tests the absolute limits of retail infrastructure. Last year, we found out exactly what happens when those limits break.
-
-## **The Catalyst: A Peak-Season Server Crash**
-
-Last year, on the busiest night of the season, our ERP system crashed. The server simply couldn't handle the transaction capacity, which was operating at a multiple of our normal load.
-
-Our IT consultants fought to keep the system alive and process transactions as best they could, but the continuous influx of customers created a massive bottleneck at the cash registers. Lines stopped moving. Frustrated customers began abandoning their carts. By the time the night was over, that single outage had cost us an estimated **20% of our target revenue** for the evening.
-
-Going into this year’s peak season, I had one operational goal: **Keep transactions flowing, even if the primary ERP fails.**
-
-To achieve this, I built three lightweight, highly accessible tools to support our frontline staff.
-
-## **1. A Cloud-Based Backup POS (Point of Sale) System**
-
-If the ERP went down again, we needed a fully functional fallback that cashiers could switch to immediately.
-
-I initially built a macro-heavy spreadsheet, but quickly realized a major constraint: our POS terminal machines do not have spreadsheet software installed. To solve this, I migrated the build to **Google Sheets combined with Google Apps Script**.
-
-### **Why Google Sheets?**
-
-Because every POS terminal has a web browser. As long as the terminals had internet access, they could load the Google Sheet backend. By utilizing Apps Script and an HTML-based frontend, I built a UI that looked and behaved like standard POS software, drastically reducing the learning curve for cashiers.
-
-**Key Features of the Backup POS:**
-
-- **Cashier Authentication:** Secure login using assigned usernames and PINs.
-- **Full Transaction Capability:** Supports dual-payment methods (e.g., split cash/card), returns, subtotaling, and change calculation.
-- **Operational Logging:** Dedicated backend worksheets for product data, payment logs, and end-of-day cashier reconciliation.
-
-![login page](/images/image-1.png)
-
-![tampilan pos](/images/image-2.png)
-
-![support multiple payments](/images/image-3.png)
-
-![image.png](/images/image-4.png)
-
-**The Trade-off:** Because it is browser-based, it cannot trigger the receipt printer directly (receipts have to be downloaded as PDFs first). However, during simulation testing, we found that because it bypasses the live ERP server entirely, product scanning and operational speeds were actually *faster* than our primary system.
-
-While we didn’t suffer an ERP crash this year, having this fallback ready gave our team immense peace of mind.
-
-&nbsp;
-
-## 2. **A Custom Price Checker for Manual Discount Campaigns.**
-
-Peak seasons are the perfect time to liquidate slow-moving inventory. To do this, we strategically placed slow-moving items in high-traffic center aisles and applied aggressive, manual discounts to rotate them out for new stock.
-
-**The Problem:** We assigned extra sales clerks to the floor to help customers, but with a massive number of SKUs, they struggled to memorize the special discount prices. They had to rely on printed price lists, which were slow to navigate during rushes. While our primary ERP has a price-checker module, it hard-coded primary prices and couldn’t support the manual discount logic we were using for this specific campaign.
-
-**The Solution:** I built a customized, mobile-friendly Price Checker. Like the backup POS, it is powered by Google Sheets and Apps Script, displaying product names and discounted prices in a clean, fashionable UI.
-
-![image.png](/images/image-5.png)
-
-&nbsp;
-
-**The Best Feature: Fuzzy Search** In retail, barcodes get damaged all the time. If a barcode scan failed, I implemented a fuzzy search function. Clerks could type in a partial product name, and the UI would instantly return a list of probable SKU matches.
-
-&nbsp;
-
-![image.png](/images/image-6.png)
-
-![image.png](/images/image-7.png)
-
-&nbsp;
-
-### The Result
-
-It's always feel great to be helpful. The tool was a massive hit. Both sales clerk and cashier using constantly to verify sale items, and they felt it's more fast and convenient than looking at a printed price list.
-
-&nbsp;
-
-## 3. **Proactive Stock Depletion Alerts**
-
-When demand for a product increases, inventory moves more frequently, and items in the sales area tend to run out faster. To address this, we need a reliable way to detect when stock is running low.
-
-**Our Approach:**
-
-1. **Inventory Tracking by Location** – Our management system categorizes each SKU (Stock Keeping Unit) by its location: either the **sales area** (where customers shop) or the **warehouse** (where backup stock is stored).
-2. **Monitoring Sales Area Stock** – For each item in the sales area, I track its remaining quantity and compare it to its **sales frequency** (how quickly it sells).
-3. **Alerts for Restocking** – If the available stock falls below the expected sales rate, I notifies the responsible employee to **refill the item** from the warehouse.
-
-&nbsp;
-
-## **The Outcome & Looking Forward**
-
-This season, the returns exceeded our highest expectations. We handled the historic surge in demand gracefully. Customers were served quickly, shelves stayed stocked, and both our staff and management were highly satisfied.
-
-For me, building these tools reinforced a critical operational lesson: **Resilience in retail doesn't always require expensive software; it requires identifying the exact points of failure and building accessible, targeted workarounds.**
-
-&nbsp;
-
-### **Next Steps for Continuous Improvement**
-
-While these tools were successful, I am already looking at ways to iterate for the next peak season:
-
-- **Local Print Bridging:** Exploring cloud-print alternatives or local scripts to allow the Google Sheets POS to fire the thermal receipt printer automatically.
-- **Automated ERP Syncing:** Writing a script to automatically queue and push the backup POS transaction logs back into the primary ERP database once the server recovers.
-- **Automated Alert Routing:** Pushing the low-stock alerts directly to staff via automated WhatsApp or Telegram bot messages for faster response times.
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
+**The Trade-off:** Because it is browser-based, it cannot trigger local hardware peripherals (like thermal printers) directly in all configurations. Receipts may need to be printed digitally first. However, during simulation testing, because it bypasses the heavy legacy database queries entirely, transaction speeds were often faster than the primary system during peak loads.  
+  
+While we did not experience a full outage this season, having this fallback ready gave the operations team immense peace of mind.  
+  
+## 2. A Custom Price Checker for Dynamic Campaigns  
+Peak seasons are ideal for liquidating slow-moving inventory. To rotate stock efficiently, we applied aggressive, manual discounts to specific items placed in high-traffic zones.  
+  
+**The Problem:**  
+Assigning extra clerks to the floor is necessary during rushes, but asking them to memorize hundreds of special discount prices is unrealistic. They relied on printed price lists, which were slow to navigate. Furthermore, the primary ERP’s price-checker module was locked to standard pricing rules and didn’t support the temporary, campaign-specific discount logic we required.  
+  
+**The Solution:**  
+We built a customized, mobile-friendly Price Checker. Like the backup POS, it utilizes cloud services but focuses purely on data retrieval for staff devices.  
+  
+**The Best Feature: Intelligent Search**  
+In retail, barcodes on products often get damaged or are unreadable. If a barcode scan failed, standard scanners break down. We implemented a **fuzzy search function**. Clerks could type in a partial product name or SKU prefix, and the UI would instantly return a list of probable matches.  
+  
+### The Result  
+Staff adoption was immediate. Both sales clerks and cashers used the tool constantly to verify item prices. It proved significantly faster and more convenient than navigating printed documents.  
+  
+## 3. Proactive Stock Depletion Alerts  
+When demand increases, inventory turnover accelerates. Items in the sales floor tend to run out faster than the warehouse restocking schedule predicts.  
+  
+**Our Approach:**  
+1.  **Inventory Zoning:** The management system categorizes each SKU (Stock Keeping Unit) by its physical location: either the **sales area** (where customers shop) or the **warehouse** (backup storage).  
+2.  **Dynamic Monitoring:** For items in the sales area, we track remaining quantity against **sales frequency** (velocity).  
+3.  **Threshold Alerts:** When available stock falls below the expected sales rate for a given period, the system notifies the responsible employee to initiate a restock from the warehouse.  
+  
+## The Outcome & Looking Forward  
+This season, demand exceeded expectations. We handled the historic surge gracefully. Customers were served quickly, shelves remained stocked, and both the staff and management reported higher satisfaction scores.  
+  
+For me, building these tools reinforced a critical operational lesson: **Resilience in retail doesn't always require expensive, monolithic software upgrades; it requires identifying exact points of failure and building accessible, targeted workarounds.**  
+  
+### Next Steps for Continuous Improvement  
+While the current iteration was successful, we are already iterating for the next cycle:  
+*   **Hardware Integration:** Exploring print bridge solutions to allow the cloud POS to communicate with local thermal printers automatically.  
+*   **Data Syncing:** Developing scripts to queue backup POS transaction logs and push them back into the primary ERP database once the system recovers, ensuring data integrity without downtime.  
+*   **Automated Routing:** Moving stock alerts to automated messaging APIs (like Slack, Teams, or SMS) for faster response times from inventory managers.  
