@@ -5,227 +5,273 @@ description: After MV is built, the graph still showing stale data. The bug
   hunting for this error directs me into something more than stale cache.
 tags: python, dash, docker
 ---
-Our production Dash analytics frontend for the retail operation, had developed three distinct personalities: on startup, it took a leisurely four to five seconds before it would even acknowledge a request; every so often, a wide date range would send it into an unresponsive trance; and after the nightly ETL refresh, some charts would stubbornly display stale dimensions until we kicked the container.  
-
-The architecture was deceptively simple. Data flowed from Odoo ERP through a Celery ETL pipeline into a Parquet data lake, then into DuckDB for in-process analytics. Everything ran on a single Docker host: one `dash-app` container running Gunicorn with a single worker and a single thread, one Celery worker, and Redis. On startup, a singleton `DuckDBManager` materialized views from Parquet into native DuckDB tables`mv_sales_daily`, `mv_profit_daily`, `mv_sales_by_product`, and others—backing every chart query. The lake held two to three years of daily retail data across roughly ten fact and aggregate tables.  
-
-Because Gunicorn was pinned to `--workers 1 --threads 1`, there was exactly one process and one thread serving requests. The singleton was safe. The Celery worker used an in-memory `:memory:` DuckDB instance and never touched the file on disk at `/data-lake/cache/dash.duckdb`. That file lock was owned exclusively by the Dash app. When ETL finished, a signal went through Redis, and the app reloaded its connection in a background thread.  
-
-That single-threaded reality would become crucial later. But first, the hunt.  
-
----
-
-## Clue #1: The Startup Tax
-
-I started with the four-second silence. Profiling the cold start pointed straight at `_parquet_columns()`. On every boot, the manager called `DESCRIBE SELECT  FROM read_parquet(...)` *for each dimension table—products, categories, brands—to discover column names. Each call cost about fifty milliseconds. With three dimensions, and multiple invocations during view setup, we were burning ~150–300ms before the first byte.*  
-
-*Here was the maddening part: a module-level cache already existed.*  
-
-*`python*   *_column_cache: Dict[str, set] = {}*   *`*  
-
-*But the lookup was missing. The function ran the* `DESCRIBE` *every single time, nine calls in total, while the dictionary sat there empty. It was like buying a safe and leaving the key in the lock.*  
-
-*The fix was a single guard clause:*  
-
-*```python*  
-*def parquetcolumns(parquet_path: str) -> set:*  
-    *if parquet_path in columncache:*  
-        *return columncache[parquet_path]*  
-    *rows = conn.execute(f"DESCRIBE SELECT*  FROM read_parquet('{parquet_path}')").fetchall()  
-    cols = {r[0] for r in rows if r and r[0]}  
-    *column*cache[parquet_path] = cols  
-    return cols  
-
-```
+# Hunting Down Performance Ghosts in a Production Analytics Dashboard  
   
-Nine `DESCRIBE` calls dropped to one. Startup shed roughly two hundred milliseconds. It wasn’t the whole delay, but it was the first domino.  
+Our production analytics frontend had developed three distinct personalities:  
+  
+- on startup, it would pause for several seconds before responding to the first request,  
+- occasionally, a wide date-range query would send it into an unresponsive trance,  
+- and after nightly data refreshes, some charts would continue showing stale metadata until the app was restarted.  
+  
+The architecture was conceptually simple: operational data flowed from our ERP system through an ETL pipeline into partitioned columnar storage, then into an in-process analytical database powering the dashboard. Everything ran on a single host with a web app container, a background worker, and a message broker.  
+  
+On paper, this was manageable. In practice, several small assumptions had accumulated into production instability.  
+  
+This is the story of how we traced those issues down, fixed them, and turned a temperamental dashboard into a predictable one.  
   
 ---  
   
-## Clue #2: Parsing What Was Already Free  
+## The Symptoms  
   
-Next, I pulled the SQL for `mv_profit_daily` and `mv_inventory_daily`. What I saw made me wince:  
+We were seeing three classes of problems:  
+  
+1. **Startup tax**    
+   The app took too long to become responsive after boot.  
+  
+2. **Unbounded query hangs**    
+   Certain requests—usually large date-range queries—could monopolize the only request-serving process.  
+  
+3. **Stale metadata after refresh**    
+   After the nightly ETL run, newly available schema changes or dimensions sometimes didn’t appear until the container was manually restarted.  
+  
+None of these issues looked catastrophic in isolation. Together, they created a system that felt unreliable.  
+  
+---  
+  
+## Clue 1: Recomputing Metadata We Already Knew  
+  
+The first thing I profiled was startup behavior. One function stood out: a helper that inspected parquet-backed datasets to discover available columns.  
+  
+The pattern was roughly:  
+  
+```python  
+def get_columns(dataset_path: str) -> set:  
+    rows = conn.execute("DESCRIBE SELECT  *FROM ...").fetchall()*  
+    *return {r[0] for r in rows if r and r[0]}*  
+*```*  
+  
+*That kind of schema inspection is fine once. It is not fine repeatedly during application startup.*  
+  
+*What made this especially frustrating was that a module-level cache already existed. The code had a place to store the result, but the lookup path wasn’t using it consistently. So the same metadata discovery ran multiple times per boot.*  
+  
+*The fix was simple: add an early return if the path had already been seen.*  
+  
+*```python*  
+*def get_columns(dataset_path: str) -> set:*  
+    *if dataset_path in column_cache:*  
+        *return column_cache[dataset_path]*  
+  
+    *rows = conn.execute("DESCRIBE SELECT*  FROM ...").fetchall()  
+    cols = {r[0] for r in rows if r and r[0]}  
+    column_cache[dataset_path] = cols  
+    return cols  
+```  
+  
+This didn’t eliminate startup latency by itself, but it removed a chunk of unnecessary work and confirmed a broader pattern: we had caching structures in place, but not all of them were actually participating in the lifecycle correctly.  
+  
+---  
+  
+## Clue 2: Parsing Information the Engine Already Provided  
+  
+Next, I inspected the generated SQL behind some of the slower materialization logic.  
+  
+What I found was an anti-pattern that looked clever at first glance but was fighting the database engine: the queries were extracting partition dates from file paths using string functions, even though partition-aware reads were already enabled.  
+  
+The original shape was conceptually like this:  
   
 ```sql  
-COALESCE(TRY_CAST(date AS DATE), MAKE_DATE(  
-    CAST(SPLIT_PART(SPLIT_PART(filename, 'year=', 2), '/', 1) AS INTEGER),  
-    CAST(SPLIT_PART(SPLIT_PART(filename, 'month=', 2), '/', 1) AS INTEGER),  
-    CAST(SPLIT_PART(SPLIT_PART(filename, 'day=', 2), '/', 1) AS INTEGER)  
-)) AS date  
-FROM read_parquet('.../**/*.parquet', hive_partitioning=1, filename=true)  
-```
-
-DuckDB was already parsing the Hive-partitioned directory structure`year=2024/month=01/day=15`—into virtual columns because `hive_partitioning=1` was enabled. But by adding `filename=true`, we forced DuckDB to allocate the full file path as a string on every single row, then run `SPLIT_PART` gymnastics to extract what the virtual columns already provided. It was correct, but it was fighting the engine.  
-
-The `EXPLAIN` plan confirmed it: string allocation per row, vectorized scan optimizations blocked.  
-
-We stripped out `filename=true` and the `SPLIT_PART` chain, letting the virtual `year`, `month`, `day` columns do their job:  
-
-```sql
+SELECT  
+    COALESCE(  
+        TRY_CAST(date AS DATE),  
+        MAKE_DATE(  
+            CAST(SPLIT_PART(... ) AS INTEGER),  
+            CAST(SPLIT_PART(... ) AS INTEGER),  
+            CAST(SPLIT_PART(... ) AS INTEGER)  
+        )  
+    ) AS date  
+FROM read_parquet(..., partitioning=true, filename=true)  
+```  
+  
+The problem was subtle but important:  
+  
+- partition-aware reading was already available,  
+- enabling filename extraction forced per-row path string handling,  
+- and the string parsing prevented the engine from using simpler, more optimized scan behavior.  
+  
+The dates were correct, but the path to correctness was expensive.  
+  
+We removed the file-name parsing logic and let the engine use partition metadata directly. The rewritten query became much simpler:  
+  
+```sql  
 SELECT  
     TRY_CAST(date AS DATE) AS date,  
     ...  
-FROM read_parquet('.../**/*.parquet', union_by_name=True, hive_partitioning=1)  
-```
-
-The MV load time for wide date ranges dropped measurably. The plan was clean.  
-
----
-
-## The Smoking Gun: An Unbounded Query
-
-Bug 1 and 2 were performance papercuts. Bug 3 was a loaded gun.  
-
-Every query function called `conn.execute(query).fetchdf()` directly. No timeout. No guardrails. Because Gunicorn was running one worker with one thread, a single analyst requesting five years of line-item data from `fact_sales_all`—millions of rows—would seize the process indefinitely. The dashboard didn’t just slow down; it died. No health checks, no error page, just a hung worker staring into the void until someone killed the container.  
-
-> In a single-threaded world, an unbounded query isn’t slow—it’s a denial-of-service attack you invited yourself.  
-
-DuckDB supports `statement_timeout` per connection. In our singleton architecture, setting it before each query was safe. I wrapped the execution path:  
-
-```python
-def *execute*with_timeout(conn, query: str, params: list = None, timeout_ms: int = 10000) -> pd.DataFrame:  
+FROM read_parquet(..., partitioning=true)  
+```  
+  
+This improved materialization times for broader date ranges and cleaned up the execution plan significantly.  
+  
+The lesson here was important: **correct SQL is not necessarily cooperative SQL**. Sometimes the database is already doing the work for you, and extra logic only gets in the way.  
+  
+---  
+  
+## The Biggest Risk: Unbounded Queries in a Single-Worker App  
+  
+The startup issue was annoying. The query issue was dangerous.  
+  
+Our production web app was configured conservatively: a single worker process and a single thread. That made some shared-state decisions simpler, but it also meant one runaway query could monopolize the entire app.  
+  
+At the time, query execution looked roughly like this:  
+  
+```python  
+conn.execute(query).fetchdf()  
+```  
+  
+No timeout. No upper bound. No escape hatch.  
+  
+If a user requested an overly broad dataset, the app didn’t degrade gracefully. It just stopped responding.  
+  
+In a single-worker environment, an unbounded analytical query is effectively self-inflicted denial of service.  
+  
+The fix was to enforce a per-query timeout before execution:  
+  
+```python  
+def execute_with_timeout(conn, query: str, params=None, timeout_ms: int = 10000):  
     conn.execute(f"SET statement_timeout={timeout_ms}")  
     if params:  
         return conn.execute(query, params).fetchdf()  
     return conn.execute(query).fetchdf()  
-```
-
-When DuckDB exceeds the limit, it throws. We catch that and return an empty DataFrame, which renders as a “no data” chart rather than an infinite loading spinner. Worst-case latency became exactly ten seconds. Dashboard hangs dropped to zero.  
-
-I noted the caveat: `statement_timeout` is per-connection. If we ever moved to a multi-threaded setup, this pattern would race. We’d need per-query connections or a pool. But for now, the gun was unloaded.  
-
----
-
-## Clue #4: The Ghost in the Cache
-
-With ETL refreshes running nightly, we had a signal path through Redis telling the Dash app to reload its views. After implementing that, we still saw stale dimension metadata—new columns from the ERP would appear in Parquet but the charts wouldn’t see them until a manual restart.  
-
-The culprit was `clear_sales_caches()`. It dutifully cleared the `@lru_cache` decorators on all the query functions:  
-
-```python
-def clear_sales_caches() -> None:  
-    query_sales_trends.cache_clear()  
-    query_revenue_comparison.cache_clear()  
-    ...  
-```
-
-But `_column_cache`—the dictionary we’d fixed in Bug 1—wasn’t in the room when the invalidation happened. It was a cache without a landlord. After a schema change, the old column set persisted, and downstream queries built views against a ghost schema.  
-
-The fix was to bring it into the contract:  
-
-```python
-def clear_sales_caches() -> None:  
-    query_sales_trends.cache_clear()  
-    query_revenue_comparison.cache_clear()  
-    query_top_products.cache_clear()  
-    query_overview_summary.cache_clear()  
-    query_hourly_sales_heatmap.cache_clear()  
-    query_hourly_sales_pattern.cache_clear()  
-    query_sales_by_principal.cache_clear()  
-    *column*cache.clear()  
-```
-
-I also removed the `try/except AttributeError` guard that had been papering over the fact that `query_hourly_sales_heatmap` lacked an `@lru_cache` decorator. That was a symptom; the root cause was fixed in QW-3.  
-
----
-
-## Clue #5: A Metadata Mystery
-
-The last bug was quieter. `mv_refresh_metadata` tracks last refresh dates for incremental loads. It was created with an inline primary key:  
-
-```sql
-CREATE TABLE IF NOT EXISTS mv_refresh_metadata (  
-    view_name VARCHAR PRIMARY KEY,  
-    last_refresh_date TIMESTAMP,  
-    ...  
-)  
-```
-
-Small table, fast queries—except `EXPLAIN` showed a sequential scan instead of an index lookup. In DuckDB, the inline `PRIMARY KEY` syntax doesn’t always behave the same as a trailing constraint clause. Since the incremental refresh path queries this table on every MV load, correctness of the lookup path mattered.  
-
-We restructured the DDL:  
-
-```sql
-CREATE TABLE IF NOT EXISTS mv_refresh_metadata (  
-    view_name VARCHAR,  
-    last_refresh_date TIMESTAMP,  
-    max_data_date DATE,  
-    row_count BIGINT,  
-    refresh_type VARCHAR,  
-    PRIMARY KEY (view_name)  
-)  
-```
-
-After the change, `EXPLAIN` showed the index. For a tiny metadata table, the speed difference was marginal, but the plan was now honest.  
-
----
-
-## Proving the Guilt
-
-I didn’t want to fix these blindly. We used a two-phase testing strategy inspired by property-based thinking, though the tests were deterministic invariant checks rather than randomized Hypothesis runs.  
-
-**Phase 1: Bug Condition Tests.** These were written to *fail* on the unfixed code. Failure was the success condition—it proved the bug existed and gave us a concrete counterexample. Once the fix landed, they became regression tests.  
-
-**Phase 2: Preservation Tests.** These were written to *pass* on the unfixed code. They encoded baseline behavior that had to survive the fix. Re-running them after changes caught regressions.  
-
-Separating the phases kept intent clean. A single test that both detects a bug and verifies the fix conflates two different questions: “does the bug exist?” and “is the fix correct?”  
-
-The test matrix covered:  
-
-
-| Property | Strategy |
-| ----------------- | ----------------------------------------------------------------------- |
-| Column cache hit | Call `_parquet_columns()` 3×, assert 2nd/3rd skip `DESCRIBE` |
-| Date parsing | Inspect generated SQL string, assert no `SPLIT_PART` or `filename=true` |
-| Query timeout | Assert `statement_timeout` set before `conn.execute()` |
-| Cache clear | Call `clear_sales_caches()`, assert `_column_cache` empty |
-| PK constraint | Query `information_schema.table_constraints`, assert PK exists |
-| Query structure | Mock DuckDB connection, assert DataFrame columns/types correct |
-| Thread safety | 5 threads call `get_connection()`, assert same instance returned |
-| Hive partitioning | Inspect source code, assert `hive_partitioning=1` present |
-| Connection reload | Call `close_connection()`, assert all state reset to defaults |
-
-
----
-
-## The Lab Conditions
-
-The test harness hit friction immediately.  
-
-**Python 3.9 syntax.** I’d used `str | None` in a type hint. The container ran Python 3.9. Collection exploded with:  
-
-```
-TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'  
-```
-
-Back to `Optional[str]`. A blunt reminder: always run test collection in the actual image, not on a local 3.11 install.  
-
-**Missing pytest.** `requirements.txt` had no `pytest` entry. The image was built without it. I installed it ad-hoc with `pip install pytest` to avoid a full rebuild, then added `pytest==8.3.5` to `requirements.txt` for the next cycle.  
-
-**Rate limiting.** I tried to spin up seven parallel sub-agent invocations for Wave 2 tasks. They all failed with `Too many requests`. I fell back to direct implementation—reading source, applying fixes inline. Parallel automation is fragile under rate limits; a sequential fallback has to be part of the playbook.  
-
----
-
-## While the Hood Was Open
-
-With the main bugs squashed, I cleaned up three smaller issues that had been lurking in the margins.  
-
-**QW-1: Health check tied to MV readiness.** We added a `/health` endpoint that counts `mv_%` tables in `information_schema.tables` and runs a smoke query against `mv_sales_daily`. It returns `200` when at least four MVs are loaded, `503` while initializing, and `503` with an error body on exception. We wired it into `docker-compose.yml` with a `start_period: 30s` so Docker wouldn’t declare the container unhealthy during normal boot.  
-
-**QW-2: Memory limits.** I capped `dash-app` at 2GB (1GB reservation) and the Celery worker at 1GB (512MB reservation). This prevents an analytical runaway from cascading into an OOM kill on the host.  
-
-**QW-3: Missing cache decorators.** Three query functions`query_sales_by_principal`, `query_hourly_sales_heatmap`, and `query_hourly_sales_pattern`—had no caching at all. I added `@versioned_cache(ttl=3600)` and `@lru_cache(maxsize=32)` to each, matching the existing pattern, and updated `clear_sales_caches()` accordingly. This let me finally delete the `try/except AttributeError` guard in the cache clear function.  
-
----
-
-## Closing the Case
-
-Looking back, the pattern was clear. We’d optimized for the average case while ignoring the worst case. We’d built caches without drawing their boundaries. We’d written SQL that worked without asking if it was letting the database work *with* us.  
-
-- **Write tests before fixing.** The two-phase approach forces you to understand the breakage before you touch the code. The bug-condition tests become your regression suite for free.  
-- **Inspect generated SQL, not just behavior.** Bug 2 was invisible at the result level—the dates were perfect. Only `print(sql)` in a mock revealed the filename parsing atrocity.  
-- **Cache invalidation is a system contract, not a function.** `clear_sales_caches()` made an implicit promise: “after this call, everything is fresh.” It broke that promise because `_column_cache` lived outside the contract boundary. Define what each cache holds and what invalidates it.  
-- **Python version matters in containers.** Syntax, `match` statements, `tomllib`—the 3.10 divergence is real. Test in the image.  
-- **Bound your worst case before optimizing your average case.** A 200ms startup penalty is annoying. An unbounded query hang takes down the service. Fix the infinite before the slow.
-
-Our internal dash is even more stable than ever. The startup is snappy, the queries are bounded, and the caches tell the truth after every ETL run. But I’ll keep the test harness around. The next ghost is always hiding in the logs, waiting for someone to read them carefully enough.
+```  
+  
+If a query exceeded the limit, we caught the exception and returned a safe fallback result for the UI. The chart rendered as empty or “no data” instead of spinning forever.  
+  
+That changed the system behavior dramatically:  
+  
+- worst-case latency became bounded,  
+- dashboard hangs dropped to zero,  
+- and the app remained available even when a query request was unreasonable.  
+  
+One important caveat: this pattern is safe only if connection ownership is predictable. In a multi-threaded or pooled setup, per-connection timeout mutation would need a different approach.  
+  
+---  
+  
+## Clue 4: The Cache That Never Got Invalidated  
+  
+After nightly ETL refreshes, we had already built a signaling mechanism to tell the app to reload analytical state. That part was working.  
+  
+And yet, some charts still displayed stale dimension metadata after refresh.  
+  
+The problem turned out to be cache invalidation boundaries.  
+  
+We had a cache-clearing function that reset memoized query functions:  
+  
+```python  
+def clear_query_caches():  
+    query_a.cache_clear()  
+    query_b.cache_clear()  
+    query_c.cache_clear()  
+```  
+  
+That looked complete. It wasn’t.  
+  
+The metadata cache introduced earlier—the one holding discovered column sets—wasn’t included in the invalidation routine. So after schema changes upstream, query-level caches were fresh, but metadata assumptions were not.  
+  
+The result was a ghost schema: views and queries built against yesterday’s understanding of the dataset.  
+  
+The fix was to make that cache part of the invalidation contract:  
+  
+```python  
+def clear_query_caches():  
+    query_a.cache_clear()  
+    query_b.cache_clear()  
+    query_c.cache_clear()  
+    column_cache.clear()  
+```  
+  
+This was less about one bug and more about system design. Cache invalidation is not a local concern. If you expose a “refresh everything” pathway, every cache that affects correctness must participate.  
+  
+---  
+  
+## Clue 5: Metadata Tables Should Behave Like Metadata Tables  
+  
+One final issue lived in a small refresh-tracking table used for incremental materialization. It stored last-refresh information for each analytical object.  
+  
+The table was tiny, so performance wasn’t visibly bad. But query plans suggested the optimizer wasn’t treating the key constraint the way we expected.  
+  
+We restructured the table definition to use a more explicit constraint form, then re-checked the plan. The resulting behavior was more aligned with what we wanted.  
+  
+Did this make a huge runtime difference? Not materially.  
+  
+But correctness isn’t just about returning the right answer. It also means the schema should honestly express intent, and the execution plan should reflect that intent.  
+  
+---  
+  
+## How We Verified the Fixes  
+  
+I didn’t want to patch these issues by instinct alone, so we used a two-phase testing approach.  
+  
+### Phase 1: Bug-condition tests  
+These tests were designed to fail against the broken behavior.  
+  
+Examples:  
+- repeated metadata inspection should not re-run schema discovery every time,  
+- generated SQL should not contain unnecessary file-path parsing,  
+- cache-clear routines should actually clear all relevant caches.  
+  
+These tests proved the bug existed and gave us a reproducible counterexample.  
+  
+### Phase 2: Preservation tests  
+These tests captured behavior that should remain true before and after the fix.  
+  
+Examples:  
+- query functions should still return the expected shape,  
+- connection lifecycle operations should still reset state correctly,  
+- partition-aware reads should still be enabled.  
+  
+This separation mattered. A test that tries to both expose a bug and validate a fix often ends up doing neither clearly.  
+  
+---  
+  
+## A Few Supporting Improvements  
+  
+While we had the system open, we cleaned up several adjacent issues.  
+  
+### Health checks tied to readiness  
+We added a health endpoint that verified not just process liveness, but analytical readiness. Instead of merely answering “is the server up?”, it also answered “is the data layer usable?”  
+  
+That gave orchestration a much better signal during startup.  
+  
+### Resource boundaries  
+We introduced memory limits and reservations for the web app and worker containers. This reduced the chance that one runaway analytical operation would destabilize the host.  
+  
+### Missing cache decorators  
+A few frequently used query functions weren’t cached at all, despite the rest of the codebase following a cache pattern. We aligned them with the existing strategy and simplified the invalidation code afterward.  
+  
+---  
+  
+## Key Lessons  
+  
+### 1. Write tests that prove the bug exists  
+A fix is more trustworthy when you can demonstrate the failure mode first.  
+  
+### 2. Inspect generated SQL, not just outputs  
+Some of the worst inefficiencies still returned correct data. The real problem only became visible by looking at the SQL being generated.  
+  
+### 3. Cache invalidation is a system contract  
+If one part of the app says “refresh everything,” every correctness-relevant cache must honor that promise.  
+  
+### 4. Bound the worst case first  
+A few hundred milliseconds of startup overhead is annoying. An unbounded query that monopolizes the only worker is existential.  
+  
+### 5. Test inside the real runtime  
+Container Python versions, dependency mismatches, and environment-specific behavior will punish assumptions quickly.  
+  
+---  
+  
+## The Takeaway  
+  
+In the end, none of these fixes required a rewrite. They required attention.  
+  
+The dashboard is now faster to start, resistant to runaway queries, and honest after refreshes. More importantly, it is predictable.  
+  
+That’s often the real difference between a clever internal analytics tool and a production-ready one: not how fast it is on a good day, but how well it behaves on a bad one.
