@@ -78,3 +78,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Karet Gelang (Rubber Band).
 **Effectiveness:** Sangat efektif untuk memvisualisasikan bagaimana permintaan "meregang" atau tetap "kaku" saat harga berubah. Ini membantu peritel memahami sensitivitas pelanggan terhadap perubahan harga tanpa perlu rumus matematika yang rumit.
 **Refinement:** Gunakan contoh barang kebutuhan pokok (karet kaku) vs barang mewah/opsional (karet lentur) untuk memperjelas perbedaan tingkat elastisitas.
+
+## 2026-05-21 - Tingkat Pengembalian (Return Rate)
+**Analogy:** Laba Bayangan (Shadow Profit).
+**Effectiveness:** Membantu peritel menyadari bahwa penjualan yang tinggi bisa menipu jika tingkat pengembalian barang juga tinggi. Analogi "bayangan" menekankan bahwa keuntungan tersebut tidak nyata karena akan segera hilang saat barang dikembalikan.
+**Refinement:** Gunakan ini untuk mendorong peritel agar tidak hanya merayakan angka penjualan kotor, tetapi juga memantau kesehatan operasional melalui retur pelanggan.
