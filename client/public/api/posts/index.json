@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-21-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-05-21",
+    "description": "Memahami mengapa angka penjualan tinggi bisa menipu jika tidak dibarengi dengan analisis tingkat pengembalian barang.",
+    "tags": [
+      "Statistik",
+      "Operasional",
+      "Laba"
+    ],
+    "content": "\n### Skenario: Perayaan yang Prematur\n\nBayangkan toko pakaian Anda baru saja menyelesaikan akhir pekan promosi yang luar biasa. Laporan penjualan menunjukkan angka yang melonjak drastis dan tim Anda merayakan kesuksesan tersebut. Namun, seminggu kemudian, antrean pelanggan muncul kembali di meja kasir. Kali ini mereka tidak membawa dompet, melainkan membawa tas belanja berisi pakaian yang ingin mereka kembalikan. Tiba-tiba, keuntungan besar yang Anda lihat di layar komputer mulai menyusut dengan cepat.\n\n### Statistik: Tingkat Pengembalian\n\nTingkat Pengembalian atau Return Rate adalah persentase barang yang dikembalikan oleh pelanggan dibandingkan dengan total barang yang terjual dalam periode tertentu. Secara sederhana, jika Anda menjual 100 sepatu dan 5 di antaranya dikembalikan, maka tingkat pengembalian Anda adalah 5 persen. Angka ini sering kali diabaikan karena peritel terlalu fokus pada \"Top Line\" atau angka penjualan kotor. Padahal, setiap barang yang kembali membawa biaya tambahan, mulai dari logistik hingga hilangnya kesempatan untuk menjual barang tersebut ke orang lain.\n\n### Wawasan: Waspadai Laba Bayangan\n\nDalam dunia ritel, penjualan tanpa mempertimbangkan retur adalah \"Laba Bayangan\". Keuntungan tersebut terlihat nyata di laporan harian, namun sebenarnya hanya titipan sementara yang bisa hilang kapan saja. Tingkat pengembalian yang tinggi biasanya merupakan sinyal adanya masalah yang lebih dalam. Mungkin deskripsi produk di situs web tidak akurat, kualitas barang menurun, atau ada masalah pada standar ukuran. Memantau angka ini membantu Anda melihat kesehatan bisnis yang sebenarnya di balik megahnya angka penjualan.\n\n### Langkah Cepat\n\nPeriksa laporan transaksi Anda dan hitung tingkat pengembalian untuk tiga kategori produk terbesar selama bulan lalu. Jika ada kategori dengan tingkat pengembalian di atas 10 persen, lakukan audit kecil terhadap alasan pengembalian pelanggan. Apakah karena cacat produk atau ketidaksesuaian ukuran? Memperbaiki satu penyebab utama retur akan langsung meningkatkan laba bersih Anda tanpa perlu menambah satu pun pelanggan baru.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
