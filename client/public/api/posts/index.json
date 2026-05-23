@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-20-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-05-20",
+    "description": "Mengapa angka penjualan yang tinggi bisa menipu jika Anda mengabaikan barang yang kembali ke toko.",
+    "tags": [
+      "Statistik",
+      "Operasional",
+      "Profitabilitas"
+    ],
+    "content": "\n### Skenario: Perayaan yang Menipu\n\nBayangkan Anda menutup hari dengan senyum lebar setelah melihat laporan penjualan harian yang melonjak tinggi. Rak-rak terlihat kosong dan mesin kasir terus berbunyi sepanjang hari. Namun, seminggu kemudian, satu per satu pelanggan datang kembali membawa kotak yang sudah terbuka untuk meminta pengembalian uang. Kegembiraan Anda perlahan sirna saat menyadari bahwa uang yang Anda anggap sudah aman di bank harus segera dikeluarkan kembali. Ini adalah realitas pahit yang sering dihadapi peritel yang hanya fokus pada angka penjualan kotor tanpa melihat sisi gelapnya.\n\n### Statistik: Tingkat Pengembalian\n\nTingkat Pengembalian atau Return Rate adalah persentase barang yang dikembalikan oleh pelanggan dibandingkan dengan total barang yang terjual dalam periode tertentu. Rumusnya adalah jumlah barang kembali dibagi dengan total penjualan, lalu dikalikan seratus. Jika Anda menjual 1.000 unit baju dan 50 unit dikembalikan, maka tingkat pengembalian Anda adalah 5 persen. Meskipun terlihat kecil, angka ini sebenarnya adalah \"Laba Bayangan\" yang hilang dari pembukuan Anda. Angka ini mencerminkan selisih antara apa yang Anda pikir Anda hasilkan dan apa yang sebenarnya Anda miliki.\n\n### Wawasan: Bahaya Laba Bayangan\n\nBanyak peritel terjebak dalam ilusi pertumbuhan karena mereka hanya memantau volume transaksi di titik penjualan. Tingkat pengembalian yang tinggi bukan hanya berarti kehilangan penjualan, tetapi juga menimbulkan biaya operasional tambahan yang sering tidak terlihat. Anda harus membayar biaya pengiriman balik, memeriksa ulang kondisi barang, dan mungkin harus menjualnya kembali dengan harga diskon karena kemasan yang rusak. Jika tidak dikelola, laba bayangan ini akan terus menggerogoti margin keuntungan Anda dari dalam tanpa Anda sadari. Mengurangi pengembalian sebesar satu persen seringkali lebih efektif daripada menaikkan penjualan sebesar lima persen.\n\n### Langkah Cepat:\n\nBuka laporan retur Anda bulan ini dan kelompokkan berdasarkan alasan pengembalian serta kategori produknya. Identifikasi satu kategori produk dengan tingkat pengembalian tertinggi dan cari tahu penyebab utamanya, apakah karena deskripsi yang salah atau kualitas yang buruk. Perbaiki informasi produk tersebut pada label rak atau deskripsi online Anda untuk mengurangi kebingungan pelanggan sebelum mereka membeli. Langkah kecil ini akan membantu memastikan bahwa setiap barang yang keluar dari toko Anda benar-benar menjadi keuntungan nyata, bukan sekadar angka sementara.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
