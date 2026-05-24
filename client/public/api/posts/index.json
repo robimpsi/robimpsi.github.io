@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-24-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-05-24",
+    "description": "Mengapa angka penjualan kotor bisa menipu Anda dan bagaimana mengelola pengembalian barang untuk menjaga keuntungan bersih.",
+    "tags": [
+      "Statistik",
+      "Profitabilitas",
+      "Operasional"
+    ],
+    "content": "\n### Skenario:\nAnda mengakhiri hari dengan senyum lebar setelah melihat laporan POS yang menunjukkan lonjakan penjualan pada koleksi sepatu terbaru. Namun, seminggu kemudian, suasana berubah saat satu per satu pelanggan kembali ke toko untuk menukarkan atau mengembalikan sepatu tersebut karena masalah ukuran atau ketidakcocokan warna. Rak Anda kembali penuh dengan barang yang sudah tidak terbungkus rapi, sementara uang tunai yang sempat Anda pegang harus keluar kembali. Anda menyadari bahwa angka penjualan yang tinggi di awal ternyata hanyalah angka sementara yang tidak mencerminkan kesehatan bisnis yang sebenarnya.\n\n### Statistik:\nTingkat Pengembalian (Return Rate) adalah persentase barang yang dikembalikan oleh pelanggan dibandingkan dengan total barang yang terjual dalam periode tertentu. Anda menghitungnya dengan membagi jumlah unit yang dikembalikan dengan total unit yang terjual, lalu dikalikan seratus. Jika Anda menjual 100 kemeja dan 10 di antaranya dikembalikan, maka tingkat pengembalian Anda adalah 10 persen. Angka ini adalah pengukur kejujuran antara apa yang diinginkan pelanggan dan apa yang sebenarnya Anda berikan kepada mereka.\n\n### Wawasan:\nDalam dunia ritel, pengembalian barang menciptakan apa yang disebut sebagai \"Laba Bayangan\". Ini adalah keuntungan yang terlihat ada di buku kas hari ini, tetapi berisiko lenyap di kemudian hari. Pengembalian bukan hanya membatalkan penjualan, tetapi juga menambah biaya operasional karena staf harus memeriksa kembali kondisi barang dan menatanya ulang di rak. Tingkat pengembalian yang tinggi seringkali merupakan indikator adanya masalah tersembunyi, seperti deskripsi produk yang membingungkan atau standar kualitas yang menurun. Memahami angka ini membantu Anda melihat melampaui omzet kotor dan fokus pada laba bersih yang benar-benar bisa Anda simpan.\n\n### Langkah Cepat:\nPeriksa data transaksi Anda selama tiga bulan terakhir dan identifikasi tiga SKU dengan tingkat pengembalian tertinggi. Selidiki alasan utama pelanggan mengembalikan barang-barang tersebut dengan bertanya langsung kepada staf lantai toko atau memeriksa catatan keluhan. Jika masalahnya adalah ukuran yang tidak pas, tambahkan panduan ukuran yang lebih jelas di rak atau berikan pelatihan tambahan kepada staf untuk membantu pelanggan memilih ukuran yang tepat. Menurunkan tingkat pengembalian sebesar dua persen saja bisa memberikan dampak yang lebih besar pada laba bersih dibandingkan meningkatkan penjualan kotor sebesar lima persen.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
