@@ -78,3 +78,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Karet Gelang (Rubber Band).
 **Effectiveness:** Sangat efektif untuk memvisualisasikan bagaimana permintaan "meregang" atau tetap "kaku" saat harga berubah. Ini membantu peritel memahami sensitivitas pelanggan terhadap perubahan harga tanpa perlu rumus matematika yang rumit.
 **Refinement:** Gunakan contoh barang kebutuhan pokok (karet kaku) vs barang mewah/opsional (karet lentur) untuk memperjelas perbedaan tingkat elastisitas.
+
+## 2026-06-17 - Tingkat Churn (Churn Rate)
+**Analogy:** Pintu Keluar Diam-diam (The Silent Exit).
+**Effectiveness:** Sangat efektif untuk menggambarkan bagaimana peritel sering kehilangan pelanggan setia tanpa menyadarinya karena tertutup oleh akuisisi pelanggan baru.
+**Refinement:** Pastikan untuk menekankan bahwa churn seringkali terjadi tanpa ada keluhan dari pelanggan, sehingga membutuhkan pemantauan data aktif.
