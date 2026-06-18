@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-06-18-tingkat-churn",
+    "title": "Trendline: Tingkat Churn untuk Peritel",
+    "date": "2026-06-18",
+    "description": "Mengenali dan mengatasi hilangnya pelanggan setia melalui pemahaman Tingkat Churn.",
+    "tags": [
+      "Statistik",
+      "Pelanggan",
+      "Retensi"
+    ],
+    "content": "\n### Skenario: Pintu Keluar Diam-diam\n\nBayangkan toko Anda sangat ramai di pagi hari, namun di penghujung hari, kotak kas Anda tidak sebanding dengan keramaian tersebut. Anda mungkin fokus pada wajah-wajah baru yang masuk melalui pintu depan, tetapi ada pintu lain di belakang yang terbuka lebar tanpa suara. Di sanalah pelanggan setia Anda menyelinap keluar, satu per satu, tanpa pernah mengucapkan selamat tinggal atau memberikan keluhan. Inilah realita pahit bagi banyak peritel: mereka terlalu sibuk memancing pelanggan baru sementara pelanggan lama yang menguntungkan menghilang begitu saja.\n\n### Statistik: Tingkat Churn\n\nTingkat Churn adalah persentase pelanggan yang berhenti berbelanja di toko Anda dalam jangka waktu tertentu. Jika Anda memulai bulan dengan 100 pelanggan aktif dan 10 di antaranya tidak pernah kembali lagi di bulan berikutnya, maka Tingkat Churn Anda adalah 10 persen. Angka ini seringkali lebih penting daripada jumlah pelanggan baru karena biaya untuk mempertahankan pelanggan lama jauh lebih murah daripada mencari yang baru. Churn memberikan gambaran nyata tentang tingkat kepuasan dan loyalitas yang tidak bisa ditangkap hanya melalui angka penjualan harian.\n\n### Wawasan: Menghentikan Kebocoran\n\nMemahami churn membantu Anda menyadari bahwa pertumbuhan bisnis bukan hanya soal seberapa cepat Anda mengisi \"ember\" pelanggan, tetapi seberapa sedikit kebocoran yang ada. Pelanggan yang pergi diam-diam biasanya melakukannya karena merasa tidak dihargai atau menemukan alternatif yang lebih konsisten. Jika Tingkat Churn Anda meningkat, itu adalah alarm bahwa pengalaman belanja di toko Anda mulai menurun atau pesaing sedang menarik perhatian mereka. Fokus pada retensi berarti Anda sedang membangun pondasi yang stabil untuk keuntungan jangka panjang, bukan sekadar mengejar omzet sesaat.\n\n### Langkah Cepat:\n\nIdentifikasi daftar pelanggan yang biasanya berbelanja setidaknya sebulan sekali namun belum terlihat selama 60 hari terakhir melalui sistem POS Anda. Gunakan data ini untuk mengirimkan pesan personal atau penawaran khusus untuk menarik mereka kembali sebelum mereka benar-benar lupa pada toko Anda. Seringkali, sapaan sederhana adalah kunci untuk menutup pintu keluar diam-diam tersebut dan mengaktifkan kembali hubungan yang hampir putus.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
