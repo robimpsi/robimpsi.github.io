@@ -45,10 +45,6 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Arus pengunjung adalah angin, konversi adalah layar (Foot traffic is the wind, conversion is the sail).
 **Effectiveness:** Sangat efektif untuk menghentikan obsesi peritel pada jumlah pengunjung semata dan mengarahkan fokus pada efisiensi operasional di dalam toko.
 **Refinement:** Pastikan untuk menekankan bahwa layar yang buruk (konversi rendah) akan menyia-nyiakan angin yang kuat (traffic tinggi).
-## 2025-05-22 - Tingkat Konversi (Conversion Rate)
-**Analogy:** Ember Bocor (Leaky Bucket).
-**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
-**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
 
 ## 2025-05-14 - Margin Kotor vs Markup (Gross Margin vs Markup)
 **Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
@@ -65,10 +61,6 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
 **Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
 
-## 2026-03-01 - Customer Lifetime Value (CLV)
-**Analogy:** Pohon Buah (Fruit Tree).
-**Effectiveness:** Sangat efektif untuk menggeser fokus peritel dari akuisisi pelanggan yang mahal ke retensi pelanggan yang menguntungkan. Analogi pohon yang sudah dewasa memudahkan pemahaman tentang nilai jangka panjang tanpa biaya perawatan yang berulang-ulang seperti menanam benih baru.
-**Refinement:** Gunakan ini untuk menjelaskan pembagian anggaran pemasaran antara akuisisi dan retensi.
 ## 2026-03-10 - Customer Lifetime Value (CLV)
 **Analogy:** Pohon Buah (Fruit Tree).
 **Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
@@ -78,3 +70,23 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Karet Gelang (Rubber Band).
 **Effectiveness:** Sangat efektif untuk memvisualisasikan bagaimana permintaan "meregang" atau tetap "kaku" saat harga berubah. Ini membantu peritel memahami sensitivitas pelanggan terhadap perubahan harga tanpa perlu rumus matematika yang rumit.
 **Refinement:** Gunakan contoh barang kebutuhan pokok (karet kaku) vs barang mewah/opsional (karet lentur) untuk memperjelas perbedaan tingkat elastisitas.
+
+## 2026-06-05 - Indeks Musiman (Seasonality Index)
+**Analogy:** Ombak Laut (Sea Waves).
+**Effectiveness:** Membantu peritel memahami bahwa naik turunnya penjualan adalah pola alami yang bisa diprediksi, bukan sekadar keberuntungan atau kegagalan acak.
+**Refinement:** Tekankan pada persiapan operasional sebelum "ombak" besar (musim ramai) datang agar tidak tenggelam dalam operasional.
+
+## 2026-06-10 - Tingkat Pengembalian (Return Rate)
+**Analogy:** Laba Bayangan (Shadow Profit).
+**Effectiveness:** Mengilustrasikan bagaimana angka penjualan yang tinggi bisa menipu jika barang tersebut akhirnya dikembalikan. Ini membuat biaya operasional pengembalian terasa lebih mendesak.
+**Refinement:** Fokus pada dampak pengembalian terhadap margin bersih, bukan hanya pendapatan kotor.
+
+## 2026-06-12 - Perubahan Persentase (Percentage Change)
+**Analogy:** Menaiki Tangga (Climbing Stairs).
+**Effectiveness:** Menjelaskan mengapa pertumbuhan yang sama secara nominal (misal: +10 unit) memiliki arti yang berbeda tergantung dari mana Anda memulai (toko kecil vs toko besar).
+**Refinement:** Gunakan untuk membandingkan performa antar cabang dengan skala yang berbeda.
+
+## 2026-06-15 - Tingkat Churn (Churn Rate)
+**Analogy:** Pintu Keluar Diam-diam (The Silent Exit).
+**Effectiveness:** Mengingatkan peritel bahwa kehilangan pelanggan seringkali terjadi tanpa suara atau keluhan, berbeda dengan komplain yang berisik. Ini mendorong pemantauan aktif terhadap pelanggan yang berhenti berkunjung.
+**Refinement:** Hubungkan dengan pentingnya program loyalitas dan penjangkauan kembali pelanggan yang tidak aktif.
