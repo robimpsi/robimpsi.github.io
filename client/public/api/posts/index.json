@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-05-20-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Peritel",
+    "date": "2026-05-20",
+    "description": "Mengapa angka penjualan yang tinggi bisa menjadi jebakan jika Anda mengabaikan barang yang kembali ke gudang.",
+    "tags": [
+      "Metrik",
+      "Profitabilitas",
+      "Ritel"
+    ],
+    "content": "\n### Skenario: Rekor Penjualan yang Menipu\n\nBayangkan Anda baru saja menyelesaikan kampanye promosi besar-besaran di akhir pekan. Dasbor penjualan Anda menunjukkan angka yang luar biasa, memecahkan rekor bulan-bulan sebelumnya. Anda merasa bangga dan mulai merencanakan ekspansi stok. Namun, seminggu kemudian, tumpukan paket mulai kembali ke gudang Anda.\n\nPelanggan yang tadinya membeli tiga ukuran baju sekaligus untuk dicoba di rumah kini mengembalikan dua di antaranya. Penjualan yang tadinya terlihat sangat besar mulai menyusut dengan cepat. Tanpa sadar, Anda sedang merayakan angka yang sebenarnya bukan milik Anda sepenuhnya.\n\n### Statistik: Tingkat Pengembalian (Return Rate)\n\nTingkat Pengembalian adalah persentase nilai atau jumlah barang yang dikembalikan oleh pelanggan dibandingkan dengan total penjualan kotor dalam periode tertentu. Rumusnya sederhana: jumlah barang kembali dibagi total barang terjual, lalu dikalikan seratus. Jika Anda menjual 100 unit dan 15 unit dikembalikan, maka tingkat pengembalian Anda adalah 15 persen.\n\nMetrik ini sering kali diabaikan oleh manajer yang terlalu fokus pada angka penjualan kotor di kasir. Padahal, setiap barang yang kembali membawa biaya tambahan yang tidak sedikit. Mulai dari biaya logistik, pemeriksaan ulang kualitas, hingga potensi kerusakan barang yang membuatnya tidak bisa dijual kembali dengan harga penuh.\n\n### Wawasan: Laba Bayangan\n\nDalam dunia ritel modern, terutama fashion dan e-commerce, kita sering berurusan dengan apa yang disebut Laba Bayangan. Ini adalah keuntungan yang muncul di layar komputer Anda hari ini, tetapi berpotensi lenyap esok hari karena retur. Laba ini hanyalah bayangan yang mengikuti penjualan kotor Anda, memberikan rasa aman palsu bagi arus kas perusahaan.\n\nTingkat pengembalian yang tinggi adalah sinyal adanya ketidaksesuaian antara ekspektasi pelanggan dan realitas produk. Mungkin deskripsi produk di website kurang akurat, panduan ukuran yang membingungkan, atau kualitas jahitan yang tidak konsisten. Jika Anda tidak mengelola laba bayangan ini, Anda mungkin akan menghabiskan uang untuk biaya operasional yang sebenarnya belum benar-benar Anda hasilkan.\n\n### Langkah Cepat:\n\nPeriksalah laporan pengembalian barang Anda berdasarkan kategori produk dan alasan pengembalian hari ini. Jika ada satu kategori SKU tertentu yang memiliki tingkat pengembalian di atas 20 persen, segera periksa kembali kontrol kualitas atau akurasi informasi produknya. Mengurangi tingkat pengembalian sebesar 5 persen sering kali jauh lebih efektif untuk meningkatkan laba bersih daripada mencoba menaikkan trafik pengunjung sebesar 20 persen.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
