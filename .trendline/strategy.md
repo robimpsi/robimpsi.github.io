@@ -45,10 +45,6 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Arus pengunjung adalah angin, konversi adalah layar (Foot traffic is the wind, conversion is the sail).
 **Effectiveness:** Sangat efektif untuk menghentikan obsesi peritel pada jumlah pengunjung semata dan mengarahkan fokus pada efisiensi operasional di dalam toko.
 **Refinement:** Pastikan untuk menekankan bahwa layar yang buruk (konversi rendah) akan menyia-nyiakan angin yang kuat (traffic tinggi).
-## 2025-05-22 - Tingkat Konversi (Conversion Rate)
-**Analogy:** Ember Bocor (Leaky Bucket).
-**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
-**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
 
 ## 2025-05-14 - Margin Kotor vs Markup (Gross Margin vs Markup)
 **Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
@@ -65,10 +61,6 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
 **Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
 
-## 2026-03-01 - Customer Lifetime Value (CLV)
-**Analogy:** Pohon Buah (Fruit Tree).
-**Effectiveness:** Sangat efektif untuk menggeser fokus peritel dari akuisisi pelanggan yang mahal ke retensi pelanggan yang menguntungkan. Analogi pohon yang sudah dewasa memudahkan pemahaman tentang nilai jangka panjang tanpa biaya perawatan yang berulang-ulang seperti menanam benih baru.
-**Refinement:** Gunakan ini untuk menjelaskan pembagian anggaran pemasaran antara akuisisi dan retensi.
 ## 2026-03-10 - Customer Lifetime Value (CLV)
 **Analogy:** Pohon Buah (Fruit Tree).
 **Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
@@ -78,3 +70,8 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Karet Gelang (Rubber Band).
 **Effectiveness:** Sangat efektif untuk memvisualisasikan bagaimana permintaan "meregang" atau tetap "kaku" saat harga berubah. Ini membantu peritel memahami sensitivitas pelanggan terhadap perubahan harga tanpa perlu rumus matematika yang rumit.
 **Refinement:** Gunakan contoh barang kebutuhan pokok (karet kaku) vs barang mewah/opsional (karet lentur) untuk memperjelas perbedaan tingkat elastisitas.
+
+## 2026-03-20 - Tingkat Churn (Churn Rate)
+**Analogy:** Perahu yang Bocor (The Leaky Boat).
+**Effectiveness:** Sangat efektif untuk memvisualisasikan usaha yang sia-sia jika retensi pelanggan diabaikan. Analogi ini menyoroti bahwa akuisisi pelanggan baru tidak akan berguna jika tidak ada upaya untuk mempertahankan pelanggan lama.
+**Refinement:** Tekankan bahwa "menambal lubang" (memperbaiki layanan) lebih hemat biaya daripada terus-menerus "menimba air" (akuisisi baru).

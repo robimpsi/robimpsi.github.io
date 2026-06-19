@@ -1,0 +1,18 @@
+---
+title: "Trendline: Tingkat Churn untuk Peritel"
+date: "2026-03-20"
+description: "Mengapa menghentikan pelanggan yang pergi jauh lebih penting daripada mencari pelanggan baru."
+tags: ["Retensi", "Strategi Ritel", "Statistik"]
+---
+
+### Skenario
+Bayangkan Anda sedang mendayung sebuah perahu di tengah danau yang luas. Anda bekerja sangat keras untuk menimba air masuk ke dalam perahu (mendapatkan pelanggan baru), namun ada lubang besar di dasar perahu yang terus membocorkan air keluar (pelanggan yang berhenti belanja). Tidak peduli seberapa cepat Anda menimba, perahu Anda tidak akan pernah penuh jika lubangnya tidak segera ditambal. Banyak peritel terjebak dalam siklus ini: menghabiskan banyak uang untuk iklan, namun kehilangan pelanggan setia karena layanan yang buruk.
+
+### Statistik
+Tingkat Churn (Churn Rate) adalah persentase pelanggan yang berhenti berinteraksi atau berbelanja di toko Anda dalam jangka waktu tertentu. Jika Anda memiliki 100 pelanggan di awal bulan dan 5 di antaranya tidak pernah kembali lagi, maka Tingkat Churn Anda adalah 5%. Angka ini adalah indikator kesehatan bisnis yang paling jujur. Tingkat Churn yang tinggi menandakan bahwa ada sesuatu yang salah dengan produk, harga, atau pengalaman belanja di toko Anda.
+
+### Wawasan
+Biaya untuk mendapatkan satu pelanggan baru bisa lima kali lebih mahal daripada mempertahankan pelanggan yang sudah ada. Menurunkan Tingkat Churn sebesar 5% saja dapat meningkatkan keuntungan perusahaan hingga 25% atau lebih. Fokuslah pada "menambal lubang" dengan memperbaiki layanan purna jual atau program loyalitas. Pelanggan yang tetap tinggal adalah aset yang akan terus memberikan nilai tanpa memerlukan biaya akuisisi tambahan yang mahal.
+
+### Langkah Cepat
+Identifikasi pelanggan yang biasanya belanja setiap bulan namun sudah tidak terlihat dalam 60 hari terakhir. Gunakan sistem POS Anda untuk mengirimkan pesan singkat atau penawaran khusus kepada mereka hari ini. Terkadang, sebuah sapaan sederhana adalah tambalan yang dibutuhkan untuk mencegah mereka pergi ke kompetitor.
