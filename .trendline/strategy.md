@@ -45,10 +45,6 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Arus pengunjung adalah angin, konversi adalah layar (Foot traffic is the wind, conversion is the sail).
 **Effectiveness:** Sangat efektif untuk menghentikan obsesi peritel pada jumlah pengunjung semata dan mengarahkan fokus pada efisiensi operasional di dalam toko.
 **Refinement:** Pastikan untuk menekankan bahwa layar yang buruk (konversi rendah) akan menyia-nyiakan angin yang kuat (traffic tinggi).
-## 2025-05-22 - Tingkat Konversi (Conversion Rate)
-**Analogy:** Ember Bocor (Leaky Bucket).
-**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
-**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
 
 ## 2025-05-14 - Margin Kotor vs Markup (Gross Margin vs Markup)
 **Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
@@ -57,24 +53,25 @@ To translate dry statistical concepts into actionable insights for retail manage
 
 ## 2026-02-11 - Rata-rata Bergerak (Moving Average)
 **Analogy:** Pembersih Kaca Depan (Windshield Wiper).
-**Effectiveness:** Sangat efektif untuk membantu peritel mengabaikan "noise" atau fluktuasi harian yang tidak berarti dan fokus pada tren jangka panjang. Ini mencegah pengambilan keputusan impulsif berdasarkan satu hari penjualan yang luar biasa baik atau buruk.
+**Effectiveness:** Sangat efektif untuk membantu peritel mengabaikan "noise" atau fluktuasi harian yang tidak berarti and fokus pada tren jangka panjang. Ini mencegah pengambilan keputusan impulsif berdasarkan satu hari penjualan yang luar biasa baik atau buruk.
 **Refinement:** Gunakan analogi ini untuk menjelaskan perbedaan antara fluktuasi acak dan tren yang bermakna.
 
 ## 2026-02-20 - Modus (Mode)
 **Analogy:** Modus adalah pemenang suara terbanyak di rak toko Anda (Mode is the winner of the most votes on your store shelves).
 **Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
-**Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
+**Refinement:** Tekankan pada perbedaan antara "nilai tengah" and "kejadian tersering" untuk menghindari kebingungan dengan Median.
 
-## 2026-03-01 - Customer Lifetime Value (CLV)
-**Analogy:** Pohon Buah (Fruit Tree).
-**Effectiveness:** Sangat efektif untuk menggeser fokus peritel dari akuisisi pelanggan yang mahal ke retensi pelanggan yang menguntungkan. Analogi pohon yang sudah dewasa memudahkan pemahaman tentang nilai jangka panjang tanpa biaya perawatan yang berulang-ulang seperti menanam benih baru.
-**Refinement:** Gunakan ini untuk menjelaskan pembagian anggaran pemasaran antara akuisisi dan retensi.
 ## 2026-03-10 - Customer Lifetime Value (CLV)
 **Analogy:** Pohon Buah (Fruit Tree).
-**Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
+**Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru and retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
 **Refinement:** Pastikan untuk menekankan bahwa biaya "penyiraman" (perawatan) pelanggan lama jauh lebih rendah daripada biaya "pembukaan lahan" (akuisisi) pelanggan baru.
 
 ## 2026-03-15 - Elastisitas Harga (Price Elasticity of Demand)
 **Analogy:** Karet Gelang (Rubber Band).
 **Effectiveness:** Sangat efektif untuk memvisualisasikan bagaimana permintaan "meregang" atau tetap "kaku" saat harga berubah. Ini membantu peritel memahami sensitivitas pelanggan terhadap perubahan harga tanpa perlu rumus matematika yang rumit.
 **Refinement:** Gunakan contoh barang kebutuhan pokok (karet kaku) vs barang mewah/opsional (karet lentur) untuk memperjelas perbedaan tingkat elastisitas.
+
+## 2026-06-22 - Tingkat Churn (Churn Rate)
+**Analogy:** Pintu Keluar Diam-diam (The Silent Exit).
+**Effectiveness:** Sangat efektif untuk memvisualisasikan kehilangan pelanggan secara bertahap yang sering tidak disadari oleh pemilik toko yang hanya fokus pada jumlah pelanggan baru. Mengubah konsep abstrak "atrisi" menjadi citra fisik pintu belakang yang terbuka.
+**Refinement:** Gunakan ini untuk menekankan pentingnya strategi retensi dan biaya akuisisi pelanggan (CAC) yang sia-sia jika pintu belakang tidak ditutup.
