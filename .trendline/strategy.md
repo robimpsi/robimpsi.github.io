@@ -31,6 +31,11 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Effectiveness:** Sangat efektif untuk manajer ritel karena mengalihkan fokus dari "produk yang hilang" ke "modal yang hilang." Ini membuat biaya stok mati terasa lebih nyata.
 **Refinement:** Gunakan analogi ini untuk menjelaskan "biaya peluang" di postingan mendatang tentang optimasi SKU.
 
+## 2025-05-14 - Margin Kotor vs Markup (Gross Margin vs Markup)
+**Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
+**Effectiveness:** Membantu peritel memahami mengapa diskon kecil bisa menghabiskan seluruh keuntungan mereka karena perbedaan basis perhitungan.
+**Refinement:** Gunakan contoh diskon untuk menekankan bahaya kebingungan antara kedua istilah ini dalam perencanaan promosi.
+
 ## 2025-05-22 - Tingkat Konversi (Conversion Rate)
 **Analogy:** Ember Bocor (Leaky Bucket).
 **Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
@@ -45,15 +50,6 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Analogy:** Arus pengunjung adalah angin, konversi adalah layar (Foot traffic is the wind, conversion is the sail).
 **Effectiveness:** Sangat efektif untuk menghentikan obsesi peritel pada jumlah pengunjung semata dan mengarahkan fokus pada efisiensi operasional di dalam toko.
 **Refinement:** Pastikan untuk menekankan bahwa layar yang buruk (konversi rendah) akan menyia-nyiakan angin yang kuat (traffic tinggi).
-## 2025-05-22 - Tingkat Konversi (Conversion Rate)
-**Analogy:** Ember Bocor (Leaky Bucket).
-**Effectiveness:** Sangat efektif untuk menyadarkan peritel bahwa mendatangkan lebih banyak trafik (air) ke toko yang layanannya buruk (ember bocor) adalah pemborosan sumber daya. Ini menggeser fokus dari pemasaran ke perbaikan operasional.
-**Refinement:** Gunakan analogi ini saat menjelaskan mengapa biaya akuisisi pelanggan (CAC) seringkali tidak sebanding dengan hasil jika operasional toko belum optimal.
-
-## 2025-05-14 - Margin Kotor vs Markup (Gross Margin vs Markup)
-**Analogy:** Markup adalah apa yang Anda tambahkan ke biaya (melihat ke atas), Margin adalah apa yang Anda simpan dari penjualan (melihat ke bawah).
-**Effectiveness:** Membantu peritel memahami mengapa diskon kecil bisa menghabiskan seluruh keuntungan mereka karena perbedaan basis perhitungan.
-**Refinement:** Gunakan contoh diskon untuk menekankan bahaya kebingungan antara kedua istilah ini dalam perencanaan promosi.
 
 ## 2026-02-11 - Rata-rata Bergerak (Moving Average)
 **Analogy:** Pembersih Kaca Depan (Windshield Wiper).
@@ -65,16 +61,32 @@ To translate dry statistical concepts into actionable insights for retail manage
 **Effectiveness:** Sangat berguna untuk menjelaskan mengapa rata-rata (Mean) seringkali tidak relevan untuk stok barang dengan banyak varian (seperti ukuran atau warna). Analogi pemilihan suara membuatnya mudah dipahami sebagai representasi keinginan mayoritas.
 **Refinement:** Tekankan pada perbedaan antara "nilai tengah" dan "kejadian tersering" untuk menghindari kebingungan dengan Median.
 
-## 2026-03-01 - Customer Lifetime Value (CLV)
-**Analogy:** Pohon Buah (Fruit Tree).
-**Effectiveness:** Sangat efektif untuk menggeser fokus peritel dari akuisisi pelanggan yang mahal ke retensi pelanggan yang menguntungkan. Analogi pohon yang sudah dewasa memudahkan pemahaman tentang nilai jangka panjang tanpa biaya perawatan yang berulang-ulang seperti menanam benih baru.
-**Refinement:** Gunakan ini untuk menjelaskan pembagian anggaran pemasaran antara akuisisi dan retensi.
 ## 2026-03-10 - Customer Lifetime Value (CLV)
 **Analogy:** Pohon Buah (Fruit Tree).
-**Effectiveness:** Sangat efektif untuk menjelaskan perbedaan biaya antara akuisisi pelanggan baru dan retensi pelanggan lama. Analogi ini membuat konsep "nilai jangka panjang" menjadi nyata melalui pertumbuhan pohon yang sudah dewasa vs bibit baru.
+**Effectiveness:** Sangat efektif untuk menggeser fokus peritel dari akuisisi pelanggan yang mahal ke retensi pelanggan yang menguntungkan. Analogi pohon yang sudah dewasa memudahkan pemahaman tentang nilai jangka panjang tanpa biaya perawatan yang berulang-ulang seperti menanam benih baru.
 **Refinement:** Pastikan untuk menekankan bahwa biaya "penyiraman" (perawatan) pelanggan lama jauh lebih rendah daripada biaya "pembukaan lahan" (akuisisi) pelanggan baru.
 
 ## 2026-03-15 - Elastisitas Harga (Price Elasticity of Demand)
 **Analogy:** Karet Gelang (Rubber Band).
 **Effectiveness:** Sangat efektif untuk memvisualisasikan bagaimana permintaan "meregang" atau tetap "kaku" saat harga berubah. Ini membantu peritel memahami sensitivitas pelanggan terhadap perubahan harga tanpa perlu rumus matematika yang rumit.
 **Refinement:** Gunakan contoh barang kebutuhan pokok (karet kaku) vs barang mewah/opsional (karet lentur) untuk memperjelas perbedaan tingkat elastisitas.
+
+## 2026-06-10 - Tingkat Pengembalian (Return Rate)
+**Analogy:** Laba Bayangan (Shadow Profit).
+**Effectiveness:** Menjelaskan bagaimana volume pengembalian yang tinggi menutupi kerugian laba bersih dengan menciptakan ilusi pertumbuhan yang lenyap saat barang dikembalikan.
+**Refinement:** Gunakan untuk menekankan pentingnya kualitas produk dan akurasi deskripsi barang.
+
+## 2026-06-22 - Tingkat Churn (Churn Rate)
+**Analogy:** Pintu Keluar Diam-diam (The Silent Exit).
+**Effectiveness:** Menggambarkan mengapa peritel harus memantau hilangnya pelanggan tetap secara diam-diam saat mereka terlalu fokus pada akuisisi.
+**Refinement:** Tekankan pada deteksi dini perilaku pelanggan yang mulai jarang berkunjung.
+
+## 2026-06-23 - Indeks Musiman (Seasonality Index)
+**Analogy:** Ombak Laut (Sea Waves).
+**Effectiveness:** Membantu peritel memahami bagaimana penjualan naik dan turun secara alami dalam pola yang dapat diprediksi sepanjang tahun.
+**Refinement:** Gunakan untuk perencanaan stok dan tenaga kerja musiman.
+
+## 2026-06-24 - Perubahan Persentase (Percentage Change)
+**Analogy:** Menaiki Tangga (Climbing Stairs).
+**Effectiveness:** Menyoroti bagaimana kenaikan angka yang sama (misal: +1) mewakili tingkat pertumbuhan yang sangat berbeda tergantung pada basis awalnya (rendah vs tinggi).
+**Refinement:** Membantu manajer memahami pertumbuhan relatif vs absolut.
