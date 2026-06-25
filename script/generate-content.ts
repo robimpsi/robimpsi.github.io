@@ -79,7 +79,8 @@ async function generate() {
       console.log(`- Processing post: ${slug}`);
       const post = await getPost(slug);
       if (post) {
-        posts.push(post);
+        const { content, ...metadata } = post;
+        posts.push(metadata);
         await fs.writeFile(path.join(postsApiDir, `${slug}.json`), JSON.stringify(post, null, 2));
       }
     }
@@ -102,7 +103,8 @@ async function generate() {
       console.log(`- Processing project: ${slug}`);
       const project = await getProject(slug);
       if (project) {
-        projects.push(project);
+        const { content, ...metadata } = project;
+        projects.push(metadata);
         await fs.writeFile(path.join(projectsApiDir, `${slug}.json`), JSON.stringify(project, null, 2));
       }
     }
