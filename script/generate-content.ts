@@ -79,8 +79,12 @@ async function generate() {
       console.log(`- Processing post: ${slug}`);
       const post = await getPost(slug);
       if (post) {
-        posts.push(post);
+        // Store individual post with full content
         await fs.writeFile(path.join(postsApiDir, `${slug}.json`), JSON.stringify(post, null, 2));
+
+        // Add to index without content to keep the manifest lean
+        const { content, ...postMetadata } = post;
+        posts.push(postMetadata);
       }
     }
   }
@@ -102,8 +106,12 @@ async function generate() {
       console.log(`- Processing project: ${slug}`);
       const project = await getProject(slug);
       if (project) {
-        projects.push(project);
+        // Store individual project with full content
         await fs.writeFile(path.join(projectsApiDir, `${slug}.json`), JSON.stringify(project, null, 2));
+
+        // Add to index without content
+        const { content, ...projectMetadata } = project;
+        projects.push(projectMetadata);
       }
     }
   }
