@@ -43,7 +43,8 @@ export default function PostDetail() {
   }
 
   // Calculate read time (rough estimate)
-  const wordCount = post.content.split(/\s+/g).length;
+  const content = post.content || "";
+  const wordCount = content.split(/\s+/g).length;
   const readTime = Math.ceil(wordCount / 200);
 
   return (
@@ -82,7 +83,7 @@ export default function PostDetail() {
           
           <div className="prose prose-lg dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-a:text-primary max-w-none">
             <ReactMarkdown>
-              {post.content}
+              {content}
             </ReactMarkdown>
           </div>
           

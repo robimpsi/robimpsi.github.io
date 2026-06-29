@@ -98,7 +98,7 @@ export default function ProjectDetail() {
           
           <div className="prose prose-lg dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-a:text-primary max-w-none">
             <ReactMarkdown>
-              {project.content}
+              {project.content || ""}
             </ReactMarkdown>
           </div>
         </div>

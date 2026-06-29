@@ -85,7 +85,9 @@ async function generate() {
     }
   }
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  await fs.writeFile(path.join(postsApiDir, "index.json"), JSON.stringify(posts, null, 2));
+  // Exclude content from index to keep it lightweight
+  const postsIndex = posts.map(({ content, ...rest }) => rest);
+  await fs.writeFile(path.join(postsApiDir, "index.json"), JSON.stringify(postsIndex, null, 2));
   console.log(`Generated ${posts.length} posts`);
 
   // Projects
@@ -111,7 +113,9 @@ async function generate() {
     if (!a.date || !b.date) return 0;
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
-  await fs.writeFile(path.join(projectsApiDir, "index.json"), JSON.stringify(projects, null, 2));
+  // Exclude content from index to keep it lightweight
+  const projectsIndex = projects.map(({ content, ...rest }) => rest);
+  await fs.writeFile(path.join(projectsApiDir, "index.json"), JSON.stringify(projectsIndex, null, 2));
   console.log(`Generated ${projects.length} projects`);
   console.log("Static content generation complete!");
 }
