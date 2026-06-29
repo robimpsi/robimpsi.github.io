@@ -25,7 +25,7 @@ export const postSchema = z.object({
   date: z.string(),
   description: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  content: z.string(), // HTML or Markdown content
+  content: z.string().optional(), // HTML or Markdown content
 });
 
 export const projectSchema = z.object({
@@ -35,7 +35,7 @@ export const projectSchema = z.object({
   description: z.string().optional(),
   link: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  content: z.string(),
+  content: z.string().optional(),
 });
 
 // === EXPLICIT API CONTRACT TYPES ===
