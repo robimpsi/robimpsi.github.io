@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-06-30-tingkat-churn",
+    "title": "Trendline: Tingkat Churn untuk Ritel",
+    "date": "2026-06-30",
+    "description": "Mengapa kehilangan pelanggan lama jauh lebih berbahaya bagi bisnis Anda daripada gagal mendapatkan pelanggan baru.",
+    "tags": [
+      "Statistik",
+      "Pelanggan",
+      "Retensi"
+    ],
+    "content": "\n### Skenario: Pintu Keluar Diam-diam\n\nBayangkan toko Anda selalu terlihat ramai setiap hari dengan wajah-wajah baru yang bersemangat. Anda merasa bisnis sedang berkembang pesat karena angka penjualan harian tetap stabil. Namun, setelah setahun, Anda menyadari bahwa wajah-wajah yang sering datang di awal bulan kini tidak pernah terlihat lagi. Mereka telah pergi tanpa pamit, melalui \"pintu keluar diam-diam\" yang tidak pernah Anda awasi. Tanpa pelanggan setia yang kembali, bisnis Anda seperti ember bocor yang terus-menerus membutuhkan aliran air baru hanya untuk tetap penuh.\n\n### Statistik: Tingkat Churn\n\nTingkat Churn atau Churn Rate adalah persentase pelanggan yang berhenti berbelanja di toko Anda dalam periode waktu tertentu. Untuk menghitungnya, bagi jumlah pelanggan yang hilang dengan total pelanggan di awal periode, lalu kalikan seratus. Jika Anda memulai bulan dengan 100 pelanggan tetap dan 10 di antaranya tidak kembali lagi, maka Churn Rate Anda adalah 10 persen. Angka ini adalah pengukur \"kesehatan\" hubungan Anda dengan pelanggan yang paling jujur.\n\n### Wawasan: Biaya dari Sebuah Kehilangan\n\nKehilangan pelanggan lama jauh lebih mahal daripada kegagalan mendapatkan pelanggan baru. Pelanggan yang kembali biasanya memiliki \"basket size\" yang lebih besar karena mereka sudah percaya pada kualitas barang Anda. Sebaliknya, biaya untuk meyakinkan orang baru agar masuk ke toko Anda terus meningkat seiring ketatnya persaingan. Churn Rate yang tinggi menunjukkan adanya masalah mendasar, mulai dari kualitas produk yang menurun hingga layanan purna jual yang mengecewakan. Menurunkan angka churn sebesar 5 persen saja dapat meningkatkan profitabilitas Anda secara signifikan karena efisiensi biaya operasional.\n\n### Langkah Cepat\n\nBuka database pelanggan atau program loyalitas Anda hari ini dan identifikasi siapa pelanggan yang biasanya belanja setiap bulan tetapi sudah tidak terlihat selama 90 hari terakhir. Hubungi mereka secara personal atau kirimkan voucher khusus \"kami merindukan Anda\" untuk memicu kunjungan kembali. Tindakan sederhana ini seringkali cukup untuk menutup pintu keluar diam-diam dan mengembalikan mereka menjadi pelanggan aktif. Hal ini jauh lebih murah daripada memasang iklan besar untuk menarik orang asing yang belum tentu akan kembali lagi.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
