@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-07-06-tingkat-churn",
+    "title": "Trendline: Tingkat Churn untuk Peritel",
+    "date": "2026-07-06",
+    "description": "Memahami mengapa pelanggan berhenti datang dan cara mendeteksi pintu keluar diam-diam di toko Anda.",
+    "tags": [
+      "Statistik",
+      "Loyalitas",
+      "Retensi"
+    ],
+    "content": "\n### Skenario: Pintu Keluar Diam-diam\n\nBayangkan toko Anda memiliki pintu belakang yang tidak pernah Anda awasi. Setiap hari, Anda sibuk menyapa pelanggan baru yang datang melalui pintu depan dengan penuh semangat. Namun, tanpa Anda sadari, beberapa pelanggan lama yang biasanya rutin berbelanja justru menyelinap keluar melalui pintu belakang tersebut dan tidak pernah kembali lagi. Anda mungkin merasa aman karena angka pengunjung baru terlihat tinggi, namun bisnis Anda sebenarnya sedang kehilangan fondasi terpentingnya. Fenomena kehilangan pelanggan setia secara bertahap ini seringkali tidak terdeteksi hingga sudah terlambat untuk diperbaiki.\n\n### Statistik: Tingkat Churn\n\nTingkat Churn atau Churn Rate adalah persentase pelanggan yang berhenti berbelanja di toko Anda dalam jangka waktu tertentu. Jika Anda memiliki 100 pelanggan aktif di awal bulan dan 5 di antaranya tidak pernah kembali lagi di bulan berikutnya, maka tingkat churn Anda adalah 5 persen. Statistik ini adalah kebalikan dari retensi pelanggan. Mengukur churn membantu Anda memahami seberapa sehat hubungan jangka panjang yang Anda bangun dengan konsumen. Semakin tinggi angka churn, semakin keras Anda harus bekerja hanya untuk menjaga pendapatan tetap stabil.\n\n### Wawasan: Mengapa Mereka Pergi?\n\nPelanggan jarang sekali memberikan peringatan sebelum mereka memutuskan untuk pindah ke kompetitor. Mereka biasanya pergi dalam diam karena merasa tidak lagi dihargai atau karena ada masalah kecil dalam layanan yang terus berulang. Mengetahui angka churn memungkinkan Anda untuk berhenti berfokus hanya pada akuisisi yang mahal dan mulai memperhatikan kualitas layanan. Mempertahankan pelanggan lama jauh lebih murah dan menguntungkan daripada mencari pelanggan baru dari nol. Dengan menekan angka churn, setiap rupiah yang Anda habiskan untuk pemasaran akan memberikan dampak pertumbuhan yang jauh lebih nyata.\n\n### Langkah Cepat:\n\nGunakan data dari kartu member atau sistem loyalitas Anda untuk mengidentifikasi pelanggan yang biasanya belanja setiap bulan tetapi sudah tidak terlihat dalam 60 hari terakhir. Hitung berapa persen jumlah mereka dibandingkan dengan total basis pelanggan aktif Anda. Jika angkanya meningkat, cobalah kirimkan pesan atau voucer khusus \"kami merindukan Anda\" untuk menarik mereka kembali sebelum mereka benar-benar lupa pada toko Anda. Lakukan pengecekan rutin ini setiap bulan untuk memastikan \"pintu belakang\" toko Anda tetap tertutup rapat.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
