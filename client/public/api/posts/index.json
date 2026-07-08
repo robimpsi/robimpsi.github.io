@@ -1,5 +1,17 @@
 [
   {
+    "slug": "2026-07-08-tingkat-pengembalian",
+    "title": "Trendline: Tingkat Pengembalian untuk Ritel",
+    "date": "2026-07-08",
+    "description": "Mengapa angka penjualan yang tinggi bisa menipu jika Anda mengabaikan barang yang kembali ke gudang.",
+    "tags": [
+      "Statistik",
+      "Ritel",
+      "Operasional"
+    ],
+    "content": "\n### Skenario:\n\nBayangkan Anda merayakan hari dengan penjualan tertinggi tahun ini. Laporan POS menunjukkan grafik yang melonjak tajam dan tim Anda merasa sangat bangga. Namun, seminggu kemudian, kurir mulai datang silih berganti membawa kotak-kotak yang baru saja Anda kirim. Apa yang Anda kira sebagai keuntungan besar perlahan mulai menyusut kembali menjadi tumpukan stok di gudang.\n\n### Statistik:\n\nTingkat Pengembalian adalah persentase barang yang dikembalikan oleh pelanggan dibandingkan dengan total barang yang terjual dalam periode tertentu. Jika Anda menjual 100 pasang sepatu dan 15 pasang dikembalikan, maka tingkat pengembalian Anda adalah 15 persen. Angka ini sering kali diabaikan karena pemilik toko lebih fokus pada \"penjualan kotor\" yang terlihat di kasir. Pengembalian bukan sekadar pembatalan transaksi, melainkan biaya operasional yang tersembunyi.\n\n### Wawasan:\n\nPengembalian menciptakan apa yang kita sebut sebagai \"Laba Bayangan\". Ini adalah ilusi pertumbuhan yang muncul di laporan harian namun menghilang saat barang kembali ke toko. Setiap barang yang kembali membawa beban biaya logistik, tenaga kerja untuk memprosesnya, dan risiko kerusakan produk. Tingkat pengembalian yang tinggi sering kali menjadi sinyal adanya masalah pada deskripsi produk, kualitas barang, atau ekspektasi pelanggan yang tidak selaras.\n\n### Langkah Cepat:\n\nIdentifikasi tiga kategori produk dengan tingkat pengembalian tertinggi di toko Anda bulan ini. Periksa apakah ada pola tertentu, seperti ukuran yang tidak akurat atau foto produk yang menyesatkan. Perbaiki deskripsi atau panduan ukuran untuk produk-produk tersebut di sistem online atau label fisik Anda untuk menekan angka pengembalian. Langkah sederhana ini akan mengubah laba bayangan Anda menjadi keuntungan bersih yang nyata.\n"
+  },
+  {
     "slug": "2026-05-16-optimizing-docker-startup-a-rigorous-bug-hunting",
     "title": "Optimizing Docker Startup: A Rigorous Bug Hunting",
     "date": "2026-05-16T00:00:00.000Z",
