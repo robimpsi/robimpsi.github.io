@@ -1,4 +1,3 @@
-
 ---
 title: "Changing Static QRIS to Dynamic QRIS: Lessons Learned in Attentive to Detail"
 date: 2026-09-06
