@@ -1,0 +1,145 @@
+
+---
+title: "Changing Static QRIS to Dynamic QRIS: Lessons Learned in Attentive to Detail"
+date: 2026-09-06
+description: Here is how I finally getting the answer of the long forgotten question.
+tags: QRIS, app
+---
+
+As a side project, I built an app with free and premium access. Even though it's called premium, it's still super affordable; my target market is people who want to learn test-taking but can't afford expensive courses.
+
+My app's old payment method used static QRIS. As the verifier, I assigned unique three-digit amounts. Each prospective premium buyer received a different amount (e.g., IDR 9,901, IDR 9,902, etc.). After clicking pay, they clicked confirm, then I checked GoPay, matched the incoming amount, and clicked "confirm" in the panel. **Manual, slow, and error-prone.**
+
+I'd wanted to change this for a long time. The solution I thought of was a payment gateway like Xendit or Midtrans. But as of this writing, my Midtrans application hasn't been approved. I can't use Xendit because I haven't taken care of a business license number.
+
+So the dynamic QRIS option became a feature deferred for months.
+
+## QRIS-ify to the rescue
+
+On that dusty morning, my eyes widened when I found an answer that came to me without my searching for it: a GitHub repo that turns static QRIS into dynamic QRIS, called [QRIS-ify](https://qrisify.adihub.my.id).
+
+But what exactly is QRIS-ify?
+
+QRIS-ify automates everything: it converts a merchant's static QRIS into a dynamic QRIS with a locked amount per transaction, then detects payment via real-time webhooks.
+
+No need to check notifications, no need to match amounts, no admin confirmation required. As soon as the user pays, the webhook hits our server and premium activates automatically.
+
+After brewing coffee and playing with my kid for a bit, I sat down and got to work.
+
+
+
+## Getting the work done
+
+To make this happen and make the transaction flow smoother, I needed a few new components:
+
+1. `POST /payments` — calls QRIS-ify, stores `qrisify_transaction_id` in the payment row, and returns `qrImageUrl` to the frontend.
+2. `GET /payments/:id/qr` — proxies the PNG image (reason below).
+3. `POST /webhook/qris` — verifies the signature, atomically confirms the payment, and extends `premium_until` in the database.
+
+Even though I found the repo, there were still obstacles to eliminate.
+
+
+
+### Pitfall #1: Image blocked by browser (CORB)
+
+The QRIS image that normally appears now refused to load.
+
+I directly used `qr_image_url` from the QRIS-ify response in the `src` attribute of an `<img>` element. Result: the image returned 200 OK from the server, but the browser **refused to render it** with the error:
+
+```
+net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
+```
+
+QRIS-ify doesn't send an `Access-Control-Allow-Origin` header on their image responses. Modern browsers (especially Chrome) enforce **Cross-Origin Read Blocking (CORB)** — opaque-origin responses for `<img>` are considered "tainted" and discarded.
+
+**Fix:** proxy the image through our own worker. Fetch server-side from QRIS-ify, then return it as `image/png` from our own endpoint. The browser now loads a same-origin image, no CORS issues.
+
+```ts
+app.get('/payments/:id/qr', async (c) => {
+  const txnId = /* from db */;
+  const upstream = await fetch(
+    `https://qrisify.adihub.my.id/api/v1/transactions/${txnId}/qr`,
+    { headers: { 'x-api-key': c.env.QRISIFY_API_KEY } }
+  );
+  return new Response(upstream.body, {
+    headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=60' },
+  });
+});
+```
+
+### Pitfall #2: URL is relative, not absolute
+
+QRIS-ify returns `qr_image_url` as a relative path:
+
+```json
+{
+  "qr_image_url": "transactions/76f7c5f0-dbd3-4a72-8ac8-6669f6476eda/qr"
+}
+```
+
+NOT `https://qrisify.adihub.my.id/...`. The browser resolves the relative URL against our domain → 404. Their OpenAPI spec says `format: uri` so I expected a full URL, but the response is relative.
+
+**Fix:** normalize it. Or, more cleanly, directly store our own proxy URL in the database, built from our internal payment ID — no need to massage the upstream URL.
+
+### Pitfall #3: Misleading 200 OK
+
+The image appeared, and the QRIS was scanned and detected by my e-wallet. But the dummy account I used wouldn't become premium. What was going on?
+
+After suspecting my database logic, the culprit turned out to be me.
+
+I registered the webhook as `/webhooks/qris` (plural). The QRIS-ify spec requires `/webhook/qris` (singular). **A one-letter difference: the 's'.**
+
+The Cloudflare edge log showed:
+
+```
+POST https://ikuttes.workers.dev/webhook/qris - Ok
+```
+
+I thought it succeeded. In fact, my Hono route didn't match (because I used the plural). The root worker `worker.ts` has a path whitelist to proxy to the API worker, and `/webhook/qris` **was not in that whitelist**, so the request fell through to `env.ASSETS.fetch()` — the **SPA fallback** that returns 200 with `index.html`. The edge log saying "Ok" doesn't mean the handler ran.
+
+QRIS-ify retried the webhook up to 5 times (10s, 30s, 2m, 10m, 30m), all hitting the SPA fallback. No errors in the tail, no `console.log` from the handler. It took 30 minutes to realize the route was wrong.
+
+**Lesson:** Always copy the webhook URL **verbatim** from the documentation. And if the edge log says "Ok" but the handler doesn't run, check route registration first — not the network, not the upstream.
+
+### Pitfall #4: Webhook idempotency
+
+QRIS-ify explicitly warns that they may re-deliver webhooks (automatic retries or manual re-trigger from the dashboard). If our handler is not idempotent, premium could be double-granted.
+
+I implemented idempotency at the database level: `UNIQUE INDEX` on `payments.qrisify_transaction_id` + status check. But there was a subtle bug in the SQL:
+
+```sql
+-- BUG: skip re-deliveries
+where p.id = ${payment.id} and p.status = 'pending'
+```
+
+After the first successful delivery, the row becomes `confirmed`. The second delivery matches zero rows → silent no-op. **Even worse:** if the first delivery succeeds but the response is lost (edge timeout), the second delivery also becomes a no-op → the user never gets premium.
+
+**Fix:** allow re-deliveries, and let the database be the source of truth for idempotency:
+
+```sql
+-- OK: re-deliveries are safe
+where p.id = ${payment.id} and p.status in ('pending', 'confirmed')
+```
+
+Idempotency is preserved: `premium_until` is extended from `max(now(), premium_until)` — if the user is already premium, the extension is correct (doesn't double-count duration). If not, it extends from `now()`.
+
+The only remaining concern is `purchase_count = + 1`. Re-delivery within a short window would double-increment. The solution: add `last_confirmed_at`, skip the increment if `now() - last_confirmed_at < interval '5 minutes'`. Not yet implemented — I'll see whether QRIS-ify actually re-delivers within 5 minutes or not.
+
+## Testing strategy: 1 rupiah
+
+To test the webhook flow without transferring real money, I created an env override:
+
+```ts
+const planBaseAmount = (c, planType) => {
+  const key = planType === '3_day' ? 'QRISIFY_PLAN_3_DAY_AMOUNT' : 'QRISIFY_PLAN_30_DAY_AMOUNT';
+  const override = Number(c.env?.[key]);
+  return Number.isFinite(override) && override > 0 ? override : DEFAULT_PLAN_AMOUNT[planType];
+};
+```
+
+Set `QRISIFY_PLAN_3_DAY_AMOUNT=1` via `wrangler secret put`, call `test-pay` in QRIS-ify (sandbox-only endpoint), the webhook fires, premium auto-activates. Delete the secret after testing to return to normal pricing.
+
+## Closing
+
+After a full day of wrestling with the payment method, I finally managed to add the dynamic QRIS feature to my app. Now users can become premium directly without manual verification from me!
+
