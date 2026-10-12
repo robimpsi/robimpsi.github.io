@@ -200,37 +200,102 @@ models = {
 
 ![Feature importance Random Forest](/images/churn-model-importance.png)
 
+### 3.4 Eksplorasi lanjutan: interaksi fitur, SHAP, dan ekonomi model
+
+Analisis satu-variabel dan model dasar sudah selesai. Lapisan berikutnya: apakah efek fitur saling menumpuk (A), bisa tidaknya model dijelaskan per nasabah (B), dan apakah model benar-benar bernilai uang (C).
+
+**a) Interaksi fitur: siapa segmen paling berisiko?**
+
+```python
+piv = df.pivot_table(index="Geography", columns="age_bin", values="Exited", aggfunc="mean")
+#            <25   25-34   35-44   45-54   55-64    65+
+# France   0.059   0.054   0.144   0.416   0.463   0.099
+# Germany  0.156   0.129   0.284   0.648   0.663   0.300
+# Spain    0.089   0.081   0.135   0.388   0.386   0.113
+```
+
+![Interaksi fitur: negara × usia, dan produk × keaktifan](/images/churn-interaction.png)
+
+Penemuan penting dari heatmap: **efek Jerman muncul di semua kelompok umur** (rasio churn Jerman vs Perancis konsisten ~2x di setiap baris). Artinya negara dan usia adalah risiko yang *menumpuk*, bukan saling menggantikan — nasabah Jerman tetap lebih berisiko bahkan di usia 25-34.
+
+Lalu siapa segmen paling bahaya? Bukan yang 3+ produk (jumlahnya sedikit):
+
+```python
+seg = (df.groupby(["Geography","age_bin","prod_bin","active_lbl"], observed=True)
+         .Exited.agg(["size","mean"]))
+seg[seg["size"]>=30].sort_values("mean", ascending=False).head(3)
+# Jerman  55-64  1 produk  Tidak aktif   n=50   churn 96%
+# Perancis 55-64 1 produk  Tidak aktif   n=66   churn 94%
+# Jerman  45-54  1 produk  Tidak aktif   n=176  churn 84%
+```
+
+Pola yang paling konsisten justru: **1 produk + tidak aktif + usia 45+ = bom waktu** (84-96% churn). Nasabah 2 produk selalu paling aman di semua kombinasi — "two products" adalah pelindung terkuat, dan 3+ produk berisiko tinggi tapi jarang (n kecil).
+
+**b) SHAP: menjelaskan keputusan model per nasabah**
+
+Random Forest adalah kotak hitam. SHAP (TreeExplainer) menghitung kontribusi tiap fitur terhadap prediksi satu nasabah:
+
+```python
+explainer = shap.TreeExplainer(pipe.named_steps["clf"])
+sv = explainer.shap_values(Xtr_t)[1]   # kelas churn
+```
+
+![SHAP summary plot](/images/churn-shap.png)
+
+Ranking SHAP mengkonfirmasi feature importance (umur > jumlah produk > keaktifan > negara Jerman), tapi dengan nilai tambah: model bisa menjawab "mengapa nasabah ini di-flag" — misalnya *"karena usia 58 (kontribusi +0,18), tidak aktif (+0,07), dan tinggal di Jerman (+0,05)"*. Ini yang membuat model bisa dipakai tim retensi dengan percaya diri, bukan sekadar skor.
+
+**c) Ekonomi model: apakah model bernilai uang?**
+
+Uji yang paling jujur: bandingkan net value model vs kontak acak, dengan asumsi nilai nasabah = estimasi gaji tahunan (yang bisa diselamatkan kalau tidak churn) dan biaya kontak per nasabah:
+
+```python
+for t in thrs:
+    flagged = proba >= t
+    value = test.loc[flagged & (test.y==1), "salary"].sum()
+    cost = flagged.sum() * CONTACT_COST
+    net = value - cost
+# baseline acak: kontak n orang acak -> n * (P(churn)*gaji_rata2 - biaya)
+```
+
+![Cost-benefit threshold dan pendapatan berisiko per segmen](/images/churn-economics.png)
+
+Hasilnya mengejutkan dan jujur: **dengan nilai = estimasi gaji, model tidak mengalahkan kontak acak** (gap €-527 ribu di semua biaya kontak). Penyebabnya: EstimatedSalary nyaris tidak berkorelasi dengan churn, jadi "nilai yang diselamatkan" model sama saja dengan acak. Pelajaran penting: model yang akurat secara statistik (AUC 0,865) belum tentu menang secara finansial — ROI bergantung pada asumsi nilai nasabah yang sebenarnya (LTV, margin bank), yang tidak tersedia di dataset ini.
+
+Yang tetap berguna: **dengan kapasitas kontak terbatas** (misal hanya budget untuk 200 nasabah), model mengurutkan risiko jauh lebih baik dari acak — itulah fungsi utamanya sebagai alat prioritisasi. Dan peta pendapatan berisiko (gaji churner per segmen) menunjukkan Jerman 45-54 (€29,7 juta) dan Perancis 35-54 (€57,9 juta gabungan) sebagai area nilai terbesar.
+
 ## 4. Temuan
 
 ### Profil nasabah risiko tinggi
 
-- **Negara**: Jerman 32,5%, jauh di atas Perancis 16,2% dan Spanyol 16,7% — hampir 2x lipat.
+- **Negara**: Jerman 32,5%, jauh di atas Perancis 16,2% dan Spanyol 16,7% — hampir 2x lipat. Efek Jerman konsisten di semua kelompok umur (risiko menumpuk, bukan saling menggantikan).
 - **Usia**: churn naik tajam setelah 35, memuncak di 45-64 (~50%), lalu turun di 65+. Usia 25-34 justru paling aman (7,8%).
-- **Jumlah produk**: kurva U terbalik. Nasabah dengan 2 produk paling setia (7,6%); 3 produk 82,7%; 4 produk 100%. Nasabah yang "over-bundled" justru kabur.
+- **Jumlah produk**: kurva U terbalik. Nasabah dengan 2 produk paling setia (7,6%); 3 produk 82,7%; 4 produk 100%. Nasabah yang "over-bundled" justru kabur. Di semua kombinasi, 2 produk selalu paling aman.
+- **Interaksi (temuan baru)**: segmen paling berbahaya justru *1 produk + tidak aktif + usia 45+* (84-96% churn) — bukan yang 3+ produk (n kecil).
 - **Keaktifan**: nasabah tidak aktif churn hampir 2x nasabah aktif (26,9% vs 14,3%).
 - **Jenis kelamin**: perempuan 25,1% vs laki-laki 16,5%.
 - **Saldo**: saldo 0 paling aman (13,9%); saldo >200k churn 55,9% — tapi ini kelompok kecil (34 orang), jadi tidak dipaksakan jadi kesimpulan.
 - **Skor kredit**: <400 = 100% churn (19 orang, n kecil); di atas 500 relatif rata ~20%.
 - **Tenure**: hampir tidak berpengaruh — flat 17-23% di semua tingkat.
 
-Gambaran besarnya: nasabah paling setia itu muda (<35), pakai 2 produk, dan aktif. Nasabah Jerman usia 45-60 dengan 3+ produk adalah segmen risiko tertinggi.
+Gambaran besarnya: nasabah paling setia itu muda (<35), pakai 2 produk, dan aktif. Nasabah Jerman usia 45-60 dengan 3+ produk adalah segmen risiko tinggi — tapi yang benar-benar "bom waktu" (84-96%) adalah nasabah 1 produk, tidak aktif, usia 45+.
 
 ### Performa model
 
 - Random Forest (balanced): ROC-AUC 0,865, F1 0,63 — dengan threshold 0,56 model menangkap 66% nasabah yang benar-benar churn (recall), dan 61% prediksinya tepat sasaran (precision).
-- Fitur terkuat: umur, jumlah produk, status keaktifan, dan negara.
-- Model ini lebih cocok dipakai sebagai **alat prioritisasi** (urutkan nasabah dari risiko tertinggi) daripada vonis per orang.
+- Fitur terkuat (SHAP mengkonfirmasi): umur, jumlah produk, status keaktifan, dan negara Jerman. SHAP memungkinkan menjelaskan keputusan per nasabah ("kenapa di-flag") — krusial untuk dipakai tim bisnis.
+- **Ekonomi (temuan kunci)**: model akurat secara statistik TAPI tidak mengalahkan kontak acak secara finansial ketika nilai nasabah = estimasi gaji (gap €-527 ribu). EstimatedSalary nyaris tidak berkorelasi dengan churn. Nilai model yang sebenarnya: **prioritisasi** — mengurutkan siapa yang paling berisiko untuk kapasitas kontak terbatas, dan memetakan pendapatan berisiko per segmen (Jerman 45-54 = €29,7 juta; Perancis 35-54 = €57,9 juta gabungan).
 
 ### Satu kalimat untuk bisnis
 
-*Nasabah yang paling mungkin pergi bisa dikenali dari data demografi dan perilaku produk — sebelum mereka benar-benar pergi.* Rekomendasi turunannya: program retensi khusus untuk segmen risiko tinggi (Jerman, usia 45+, 3+ produk, tidak aktif), dan evaluasi ulang bundling produk yang ternyata justru mengusir nasabah.
+*Nasabah yang paling mungkin pergi bisa dikenali dari data demografi dan perilaku produk — sebelum mereka benar-benar pergi.* Rekomendasi turunannya: program retensi khusus untuk segmen risiko tinggi (Jerman, usia 45+, 3+ produk, tidak aktif — dan terutama 1 produk + tidak aktif + usia 45+), dan evaluasi ulang bundling produk yang ternyata justru mengusir nasabah.
 
 ## 5. Keterbatasan
 
 - **Tidak ada data transaksi atau riwayat interaksi** — fitur yang biasanya paling prediktif untuk churn tidak tersedia.
 - **Threshold model di-tune pada set uji**, jadi angka performa sedikit optimistis terhadap data baru.
 - **Satu kolom (HasCrCard) rusak permanen di sumber** dan tidak bisa dipakai — model kehilangan satu fitur yang berpotensi relevan.
+- **Analisis ekonomi masih asumsi sederhana**: nilai nasabah diproksikan dengan estimasi gaji (padahal LTV/margin bank yang sebenarnya tidak diketahui), dan biaya kontak diasumsikan flat. Di data nyata, analisis ROI butuh data biaya retensi & nilai nasabah aktual.
 - Dataset ini **varian publik untuk latihan** — distribusi dan perilaku nasabah bank sungguhan bisa berbeda, jadi hasilnya butuh validasi ulang sebelum dipakai di produksi.
 - Hasil bagus untuk mengurutkan risiko, **bukan** untuk keputusan otomatis per nasabah tanpa validasi lapangan.
 
-Perangkat: Python (pandas, scikit-learn, matplotlib). Seluruh pipeline — dari Excel kotor ke model — dapat dijalankan ulang dari tiga script.
+Perangkat: Python (pandas, scikit-learn, matplotlib, shap). Seluruh pipeline — dari Excel kotor ke model — dapat dijalankan ulang dari tiga script.
