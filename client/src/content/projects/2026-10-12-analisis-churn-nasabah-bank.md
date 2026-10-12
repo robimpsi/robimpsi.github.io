@@ -158,6 +158,8 @@ df.groupby("age_bin", observed=True).Exited.mean()
 # 55-64 0.498 | 45-54 0.481 | 35-44 0.177 | 65+ 0.152 | <25 0.088 | 25-34 0.078
 ```
 
+![Churn rate per fitur utama](/images/churn-eda.png)
+
 Polanya dirangkum di bagian Temuan.
 
 ### 3.3 Model prediksi
@@ -193,6 +195,10 @@ models = {
 ```
 
 `class_weight="balanced"` penting karena kelas churn minoritas (20%). Random Forest menang tipis dan dipilih karena mudah dijelaskan ke bisnis.
+
+![Kurva ROC ketiga model](/images/churn-model-roc.png)
+
+![Feature importance Random Forest](/images/churn-model-importance.png)
 
 ## 4. Temuan
 
