@@ -69,7 +69,7 @@ Exactly 2,175 out of 17,000 rows (12.8%) have `age=118` — which is impossible 
 
 ### Customer demographics (after masking age=118)
 
-![Demographics](cafe-rewards/customer_demographic_distribution.png)
+![Demographics](/images/cafe-rewards/customer_demographic_distribution.png)
 
 | Variable | Summary |
 |---|---|
@@ -156,7 +156,7 @@ piv = ev.pivot_table(
 
 Unique customer counts per funnel stage (offer_received → offer_viewed → offer_completed):
 
-![Funnel](cafe-rewards/funnel_per_offer.png)
+![Funnel](/images/cafe-rewards/funnel_per_offer.png)
 
 | offer_id (prefix) | type | difficulty | reward $ | dur | received | viewed | completed | view % | complete % | net $ |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -170,7 +170,7 @@ Unique customer counts per funnel stage (offer_received → offer_viewed → off
 Aggregate: 16,994 members received ≥1 offer → 75.2% completed ≥1. Total rewards paid = $164,676. Average reward per completion = $4.90.
 
 ### Difficulty sensitivity (sweet spot)
-![Difficulty curve](cafe-rewards/difficulty_sensitivity_curve.png)
+![Difficulty curve](/images/cafe-rewards/difficulty_sensitivity_curve.png)
 
 - Difficulty 20 → 46.7% completion (worst)
 - Difficulty 10 → 45.6–49.8% (varies by offer)
@@ -180,7 +180,7 @@ Aggregate: 16,994 members received ≥1 offer → 75.2% completed ≥1. Total re
 Sweet spot band: difficulty 5-7 for maximum completion rate.
 
 ### Transaction vs completion correlation
-![Txn scatter](cafe-rewards/transaction_amount_vs_completion.png)
+![Txn scatter](/images/cafe-rewards/transaction_amount_vs_completion.png)
 
 - Mean transaction amount: $12.78 | Median: $8.89 | Max: $1,062.28
 - 46.7% of transactions are ≤ avg difficulty ($7.70) — well below completion thresholds
@@ -189,7 +189,7 @@ Sweet spot band: difficulty 5-7 for maximum completion rate.
 - Transaction magnitude does **not** drive offer completion — frequency does
 
 ### Retention cohort analysis
-![Retention curve](cafe-rewards/cohort_retention_curve.png)
+![Retention curve](/images/cafe-rewards/cohort_retention_curve.png)
 
 | Join cohort | Active rate | Completion rate |
 |---|---|---|
@@ -205,7 +205,7 @@ Sweet spot band: difficulty 5-7 for maximum completion rate.
 The 2015-2016 cohort underperforms both preceding and succeeding cohorts — the single biggest retention leak.
 
 ### Demographic segment analysis
-![Income quartile](cafe-rewards/income_quartile_completion.png)
+![Income quartile](/images/cafe-rewards/income_quartile_completion.png)
 
 | Segment | BOGO completion | Discount completion |
 |---|---|---|
