@@ -88,7 +88,7 @@ Exactly 2,175 of 17,000 rows (12.8%) have `age=118`, `gender=NaN`, `income=NaN`.
 
 ### Customer demographics (masked block excluded)
 
-![Demographics](customer_demographic_distribution.png)
+!\[Demographics](/images/cafe-rewards/customer_demographic_distribution.png)
 
 | Variable | Summary |
 |---|---|
@@ -143,7 +143,7 @@ funnel = ev.pivot_table(
 
 ### 6.1 Conversion funnel — all 10 offers
 
-![Funnel](funnel_per_offer.png)
+!\[Funnel](/images/cafe-rewards/funnel_per_offer.png)
 
 | offer_id (prefix) | type | diff | reward $ | dur | received | viewed | completed | view % | complete % |
 |---|---|---|---|---|---|---|---|---|---|
@@ -167,7 +167,7 @@ funnel = ev.pivot_table(
 
 ### 6.2 Difficulty, type, and duration interaction
 
-![Difficulty curve](difficulty_sensitivity_curve.png)
+!\[Difficulty curve](/images/cafe-rewards/difficulty_sensitivity_curve.png)
 
 Difficulty alone is misleading. The interaction with type and duration matters:
 
@@ -179,7 +179,7 @@ The sweet spot is **difficulty 7-10 + discount + 7-10 day duration**.
 
 ### 6.3 Unaware completions: paying for behavior that already happened
 
-![Unaware](unaware_completion_per_offer.png)
+!\[Unaware](/images/cafe-rewards/unaware_completion_per_offer.png)
 
 A completion event means the customer spent enough during the window — but did they actually *see* the offer? 15.6% of completions happened with no prior `offer viewed` event.
 
@@ -193,7 +193,7 @@ Offer `0b1e15` (discount, difficulty 20) is the worst offender: 51% of its compl
 
 ### 6.4 Transaction behavior vs completion
 
-![Transaction](transaction_amount_vs_completion.png)
+!\[Transaction](/images/cafe-rewards/transaction_amount_vs_completion.png)
 
 | Statistic | Value |
 |---|---|
@@ -208,7 +208,7 @@ Offer `0b1e15` (discount, difficulty 20) is the worst offender: 51% of its compl
 
 ### 6.5 Cost efficiency: completion rate vs reward cost
 
-![Cost per completion](cost_per_completion.png)
+!\[Cost per completion](/images/cafe-rewards/cost_per_completion.png)
 
 | Offer type | Difficulty | Reward | Completion rate | Cost per completion |
 |---|---|---|---|---|
@@ -222,7 +222,7 @@ Discount offers at \$2-\$3 reward are 7-15x more cost-efficient per completion t
 
 ### 6.6 Demographic segments (masked 2,175 excluded)
 
-![Income quartile](income_quartile_completion.png)
+!\[Income quartile](/images/cafe-rewards/income_quartile_completion.png)
 
 #### By income quartile
 | Income quartile | BOGO complete | Discount complete |
@@ -250,7 +250,7 @@ The ~5-10pp gender gap is **partly driven by income** (women have higher median 
 
 ### 6.7 Retention cohort (by join year)
 
-![Retention cohort](cohort_retention_curve.png)
+!\[Retention cohort](/images/cafe-rewards/cohort_retention_curve.png)
 
 | Join year | Active rate | Completion rate |
 |---|---|---|
