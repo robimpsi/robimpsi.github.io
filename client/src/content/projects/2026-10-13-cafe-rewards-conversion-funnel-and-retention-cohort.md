@@ -1,119 +1,72 @@
 ---
 title: "Cafe Rewards: Conversion Funnel & Retention Cohort Analysis"
-date: 2026-10-13
-description: So I did end-to-end EDA of Cafe Rewards offers, transactions, and
-  customer cohorts. The end result surprises me.
-tags: python, pandas
+description: "End-to-end EDA of Cafe Rewards offers, transactions, and customer cohorts — conversion funnel analysis, unaware completion detection, and retention cohort breakdown."
+date: "2026-10-13"
+author: "Robi Maulana"
+tags: [data-science, eda, conversion-funnel, retention-cohort, cafe-rewards, customer-analytics]
+thumbnail: "/images/cafe-rewards/funnel_per_offer.png"
 ---
-Ketika dihadapkan pada laporan data rewards, salah satu tugas seorang data analyst terutama di ritel dan f&b adalah melihat efektivitas program reward yang sudah dibuat.
 
-Atas dasar itu, saya melakukan analisis pada reward yang telah dikeluarkan oleh sebuah cafe.
+# Cafe Rewards: Conversion Funnel & Retention Cohort Analysis
 
+## 1. Introduction
 
+One of the recurring tasks of a data analyst in retail and F&B is evaluating whether a rewards program actually works: are offers being completed, are rewards being paid to the right people, and is budget producing incremental behavior or subsidizing purchases customers would have made anyway?
 
-## 1. EDA — Dataset Description
-
-### Source
-
-Three tables from Cafe Rewards (coffee shop loyalty program) dataset. A data dictionary file (`data_dictionary.csv`) documents each column.
-
-Before doing any analysis, it's a good practice to do simple EDA (exploratory data analysis). Doing EDA will help me get nuances and contexts of what the data is about, insights I can dig deep, and how tables correlated to each other.
-
-Here is the database figure.
-
-![image.png](/images/image-10.png)
-
-
-
-### What each table is about
-
-- `**offers.csv**`: Catalog of 10 offers sent to members over a 30-day period. Each offer has a unique ID, type (bogo, discount, informational), difficulty (minimum spend required), reward (dollar amount earned), duration (days to complete), and marketing channels used.
-- `**customers.csv**`: Demographic data for 17,000 members. Includes customer ID, join date, gender, age, and estimated annual income.
-- `**events.csv**`: 306,534 activity records across all members. Each event links a customer to an offer or transaction with a timestamp (hours since start of 30-day period) and a value payload.
-
-### Column descriptions
-
-`**offers.csv**`
-
-![image.png](/images/image-11.png)
-
-
-
-`**customers.csv`** 
-
-![image.png](/images/image-12.png)
-
-
-
-`**events.csv**`
-
-![image.png](/images/image-13.png)
-
-
-
-### Key data issues found during EDA
-
-During EDA, I found some issues that might hinder the accuracy of analysis:
-
-
-
-#### 1. Inconsistent JSON keys in events.value
-
-The `value` column stores event data as a stringified dict, but key names vary by event type:
-
-- `offer received` / `offer viewed`: key is `"offer id"` (with space)
-- `offer completed`: key is `"offer_id"` (underscore) plus `reward`
-- `transaction`: key is `"amount"`
-
-#### 2. 2,175-row masked block in customers.csv
-
-Exactly 2,175 out of 17,000 rows (12.8%) have `age=118` — which is improbable (real range after cleaning is 18-101). These rows also have `gender=NaN` and `income=NaN`. This indicates these are deliberate missing markers, not genuine ages.
-
-### Customer demographics (after masking age=118)
-
-![Demographics](/images/cafe-rewards/customer_demographic_distribution.png)
-
-
-
-![image.png](/images/image-14.png)
-
-After careful consideration, I don't proceed with customers data aged 118. It's NaN age and income might hinder further analysis, so I set them aside.
-
-I parsed both `"offer id"` and `"offer_id"` spellings, unifying them.
-I also parsed stringified dict in `value` column via `ast.literal_eval`
-
+This analysis evaluates 10 offers sent by a cafe loyalty program to 17,000 members over a 30-day period.
 
 ---
 
-## 2. Goal of Analysis
+## 2. Dataset Description
 
-### Problem
+Three tables from the Cafe Rewards dataset, documented in `data_dictionary.csv`.
 
-The goal I want to achieve from this Cafe Rewards dataset is to optimize offer design and targeting to maximize completion rate (and ROI) while minimizing wasted budget spent on unproductive audience segments.
+### Tables
 
+**`offers.csv`** — Catalog of 10 offers. Each has a unique ID, type (bogo, discount, informational), difficulty (minimum spend required, in dollars), reward (amount earned on completion), duration (days to complete), and marketing channels used.
 
-### Questions to answer
-Based on said problem, I came up with 5 questions:
-1. How does the conversion funnel compare across offer types and difficulties?
-2. Does transaction behavior affect offer completion?
-3. Which demographic segments convert most effectively?
-4. Are there retention patterns tied to membership tenure?
-5. Which offers generate positive net value?
+**`customers.csv`** — Demographic data for 17,000 members: customer ID, join date, gender, age, and estimated annual income.
 
+**`events.csv`** — 306,534 activity records. Each links a customer to an offer or transaction with a timestamp (hours since start of the 30-day period) and a `value` payload.
 
-### Goals
+### Database figure
 
-- Identify the optimal difficulty-to-reward sweet spot for each offer type
-- Quantify demographic-driven conversion patterns
-- Uncover retention cohort weaknesses
-- Recommend data-driven offer targeting strategy
+| Table | Rows | Cols |
+|---|---|---|
+| `offers.csv` | 10 | 6 |
+| `customers.csv` | 17,000 | 5 |
+| `events.csv` | 306,534 | 4 |
+
+### Offer catalog
+
+| offer_id (prefix) | type | difficulty $ | reward $ | duration days | channels |
+|---|---|---|---|---|---|
+| ae264e… | bogo | 10 | 10 | 7 | email, mobile, social |
+| 4d5c57… | bogo | 10 | 10 | 5 | web, email, mobile, social |
+| 9b98b8… | bogo | 5 | 5 | 7 | web, email, mobile |
+| f19421… | bogo | 5 | 5 | 5 | web, email, mobile, social |
+| 0b1e15… | discount | 20 | 5 | 10 | web, email |
+| 2298d6… | discount | 7 | 3 | 7 | web, email, mobile, social |
+| fafdcd… | discount | 10 | 2 | 10 | web, email, mobile, social |
+| 2906b8… | discount | 10 | 2 | 7 | web, email, mobile |
+| 3f207d… | informational | 0 | 0 | 4 | web, email, mobile |
+| 5a8bc6… | informational | 0 | 0 | 3 | email, mobile, social |
 
 ---
 
-## 3. Process — Step by Step
+## 3. Exploratory Data Analysis and Data Issues
 
-### Step 1: Parsing and merging data
-For better quality data and to reduce error, I parse inconsistent JSON keys in `events.value`. In pandas:
+### Data issue 1: Inconsistent JSON keys in `events.value`
+
+The `value` column stores a stringified dict whose key names vary by event type:
+
+| event | key(s) |
+|---|---|
+| `offer received`, `offer viewed` | `"offer id"` (space) |
+| `offer completed` | `"offer_id"` (underscore) + `"reward"` |
+| `transaction` | `"amount"` |
+
+Fix: one `extract()` helper that probes both spellings:
 
 ```python
 def extract(d, *keys):
@@ -123,134 +76,216 @@ def extract(d, *keys):
     return None
 
 events["offer_id"] = events["v"].apply(lambda d: extract(d, "offer_id", "offer id"))
-events["amount"]   = events.apply(lambda r: extract(r["v"], "amount") if r["event"] == "transaction" else None, axis=1)
-events["reward_c"] = events.apply(lambda r: extract(r["v"], "reward") if r["event"] == "offer completed" else None, axis=1)
+events["amount"]   = events["v"].apply(lambda d: extract(d, "amount"))
+events["reward_c"] = events["v"].apply(lambda d: extract(d, "reward"))
 ```
 
+### Data issue 2: A 2,175-row masked block in `customers.csv`
 
-- Merged offers and customers data into the events frame
+Exactly 2,175 of 17,000 rows (12.8%) have `age=118`, `gender=NaN`, `income=NaN`. Age 118 is impossible (real range 18-101) — it is a deliberate missing-marker, not a real value. All 2,175 rows are masked together.
 
-### Step 2: Compute per-offer funnel
+**Decision:** These members have real transactions and offer events, so I keep them in funnel, transaction, and tenure analyses but **exclude them from demographic segmentation**, reporting them as a separate "unknown" segment.
 
-The next step is to aggregate unique customer counts per offer for each funnel stage.
+### Customer demographics (masked block excluded)
+
+![Demographics](customer_demographic_distribution.png)
+
+| Variable | Summary |
+|---|---|
+| gender | 8,484 M / 6,129 F / 212 O / 2,175 masked |
+| age (clean) | mean 46.2, median 47, range 18-101 |
+| income | mean $65,406, median $64,000, $6,700-$120,000 |
+| became_member_on | 2013-07-29 → 2018-07-26 |
+
+---
+
+## 4. Goal of Analysis
+
+### Problem
+Optimize offer design and targeting to maximize completion and net value while minimizing reward budget spent on customers who would have purchased anyway.
+
+### Questions
+1. How does the conversion funnel compare across offer types, and what explains the differences?
+2. How many completion rewards are paid to customers who never viewed the offer?
+3. Does transaction behavior relate to offer completion?
+4. Which demographic segments convert most effectively?
+5. Does membership tenure relate to engagement?
+6. Which offers generate the best net value per completion?
+
+---
+
+## 5. Process — Step by Step
+
+**Step 1 — Parse and merge.** Parse `events.value` as dict; consolidate `offer_id` keys; dropna on offer_id before offer-level analysis (transaction events lack offer_id by design).
+
+**Step 2 — Per-offer funnel.** Unique customer counts per stage per offer:
 
 ```python
-piv = ev.pivot_table(
+funnel = ev.pivot_table(
     index="offer_id", columns="event", values="customer_id",
     aggfunc="nunique"
 ).fillna(0).astype(int)
 ```
 
-- Joined with offers metadata to compute completion rate, view rate, and net value
+**Step 3 — Unaware completions.** For each `offer completed` event, check whether the customer had an `offer viewed` event for the same offer_id. Completions with no prior view are flagged `unaware`.
 
-### Step 3: Analyze transaction behavior
+**Step 4 — Reward accounting.** Total rewards paid per offer = sum of `reward` field in `offer completed` events × per-completion reward from offers table. Cost per completion = total rewards ÷ unique completers.
 
-- Extracted transaction amounts from events where `event == "transaction"`
-- Computed average spend per offer and correlated with completion rate
+**Step 5 — Transactions.** Per-customer transaction count and amount during the offer window; correlate with completion rate.
 
-### Step 4: Build retention cohorts
+**Step 6 — Tenure cohort.** Group members by `became_member_on` year; classify active = ≥1 transaction in 30 days.
 
-- Grouped members by `became_member_on` year
-- Calculated activity rate and offer completion rate by cohort
-- Mapped tenure decay curve
-
-### Step 5: Segment by demographics
-
-- Binned income into quartiles
-- Cross-tabulated completion rate by gender and income quartile per offer type
+**Step 7 — Demographic segmentation.** Income quartiles × gender × offer type, masked block reported separately.
 
 ---
 
-## 4. Findings
+## 6. Findings
 
-### Conversion funnel per offer
+### 6.1 Conversion funnel — all 10 offers
 
-Unique customer counts per funnel stage (offer_received → offer_viewed → offer_completed):
+![Funnel](funnel_per_offer.png)
 
-![Funnel](/images/cafe-rewards/funnel_per_offer.png)
+| offer_id (prefix) | type | diff | reward $ | dur | received | viewed | completed | view % | complete % |
+|---|---|---|---|---|---|---|---|---|---|
+| ae264e… | bogo | 10 | 10 | 7 | 6,374 | 5,696 | 3,177 | 89.4 | 49.8 |
+| 4d5c57… | bogo | 10 | 10 | 5 | 6,330 | 6,132 | 2,885 | 96.9 | 45.6 |
+| 9b98b8… | bogo | 5 | 5 | 7 | 6,355 | 3,658 | 3,784 | 57.6 | 59.5 |
+| f19421… | bogo | 5 | 5 | 5 | 6,262 | 6,060 | 3,741 | 96.8 | 59.7 |
+| 0b1e15… | discount | 20 | 5 | 10 | 6,374 | 2,400 | 2,978 | 37.7 | 46.7 |
+| 2298d6… | discount | 7 | 3 | 7 | 6,325 | 6,122 | 4,421 | 96.8 | 69.9 |
+| fafdcd… | discount | 10 | 2 | 10 | 6,332 | 6,150 | 4,530 | 97.1 | 71.5 |
+| 2906b8… | discount | 10 | 2 | 7 | 6,285 | 3,608 | 3,480 | 57.4 | 55.4 |
+| 3f207d… | informational | 0 | 0 | 4 | 6,331 | 3,635 | 0 | 57.4 | 0 |
+| 5a8bc6… | informational | 0 | 0 | 3 | 6,320 | 5,674 | 0 | 89.8 | 0 |
 
+**Aggregate:** 16,994 members received ≥1 offer; 12,774 (75.2%) completed ≥1. Total rewards paid: \$164,676. Average reward per completion: \$4.90.
 
-| offer_id (prefix) | type | difficulty | reward $ | dur | received | viewed | completed | view % | complete % | net $ |
-| ----------------- | -------- | ---------- | -------- | --- | -------- | ------ | --------- | ------ | ---------- | ------ |
-| ae264e… | bogo | 10 | 10 | 7 | 6,374 | 5,696 | 3,177 | 89.4 | 49.8 | +5,110 |
-| 4d5c57… | bogo | 10 | 10 | 5 | 6,330 | 6,132 | 2,885 | 96.9 | 45.6 | +4,460 |
-| f19421… | bogo | 5 | 5 | 5 | 6,262 | 6,060 | 3,741 | 96.8 | 59.7 | +2,775 |
-| 2298d6… | discount | 7 | 3 | 7 | 6,325 | 6,122 | 4,421 | 96.8 | 69.9 | +2,205 |
-| fafdcd… | discount | 10 | 2 | 10 | 6,332 | 6,150 | 4,530 | 97.1 | 71.5 | +1,574 |
-| 0b1e15… | discount | 20 | 5 | 10 | 6,374 | 2,400 | 2,978 | 37.7 | 46.7 | +2,210 |
+**Key funnel findings:**
+- View rate is a **channel-coverage problem**, not offer quality. Offers on all 4 channels reach ~97% view rate; `0b1e15` (web + email only) is 37.7%.
+- Discounts complete more often than BOGOs at lower cost: 71.5% (discount, $2 reward) vs 49.8% (bogo, $10 reward).
+- Informational offers view 57-90% but complete 0% by design.
 
+### 6.2 Difficulty, type, and duration interaction
 
-Aggregate: 16,994 members received ≥1 offer → 75.2% completed ≥1. Total rewards paid = $164,676. Average reward per completion = $4.90.
+![Difficulty curve](difficulty_sensitivity_curve.png)
 
-### Difficulty sensitivity (sweet spot)
+Difficulty alone is misleading. The interaction with type and duration matters:
 
-![Difficulty curve](/images/cafe-rewards/difficulty_sensitivity_curve.png)
+- Difficulty 7-10 with discount type and 7-10 day duration → 55-72% completion
+- Difficulty 10 with BOGO and 5-7 day duration → 46-50% completion
+- Difficulty 20 → cliff to 47% regardless of type
 
-- Difficulty 20 → 46.7% completion (worst)
-- Difficulty 10 → 45.6–49.8% (varies by offer)
-- Difficulty 7 → 69.9% completion
-- Difficulty 5 → 59.6–59.7%
+The sweet spot is **difficulty 7-10 + discount + 7-10 day duration**.
 
-Sweet spot band: difficulty 5-7 for maximum completion rate.
+### 6.3 Unaware completions: paying for behavior that already happened
 
-### Transaction vs completion correlation
+![Unaware](unaware_completion_per_offer.png)
 
-![Txn scatter](/images/cafe-rewards/transaction_amount_vs_completion.png)
+A completion event means the customer spent enough during the window — but did they actually *see* the offer? 15.6% of completions happened with no prior `offer viewed` event.
 
-- Mean transaction amount: $12.78 | Median: $8.89 | Max: $1,062.28
-- 46.7% of transactions are ≤ avg difficulty ($7.70) — well below completion thresholds
-- Per-offer correlation between average transaction amount and completion rate = **weak inverse** (ρ ≈ –0.23)
-- Customers with ≥4 transactions during offer window complete **19 pp more often** than single-spenders
-- Transaction magnitude does **not** drive offer completion — frequency does
+| Offer type | Unaware completions | % of completions |
+|---|---|---|
+| Discount | 2,744 | 12.1% |
+| BOGO | 2,062 | 10.7% |
+| **Total** | **4,536** | **15.6%** |
 
-### Retention cohort analysis
+Offer `0b1e15` (discount, difficulty 20) is the worst offender: 51% of its completions are from customers who never viewed it. This is the clearest sign of **wasted reward budget** — paying rewards for purchases that happened organically.
 
-![Retention curve](/images/cafe-rewards/cohort_retention_curve.png)
+### 6.4 Transaction behavior vs completion
 
+![Transaction](transaction_amount_vs_completion.png)
 
-| Join cohort | Active rate | Completion rate |
-| ------------------ | ----------- | --------------- |
+| Statistic | Value |
+|---|---|
+| Mean transaction | \$12.78 |
+| Median transaction | \$8.89 |
+| Max transaction | \$1,062.28 |
+| Transactions ≤ \$7.70 (avg difficulty) | 46.7% |
+
+- Customers who complete offers transact more frequently: mean 9.3 transactions vs 5.5 for non-completers.
+- Average transaction amount doesn't strongly predict individual completion (per-transaction ρ ≈ 0.13).
+- **Frequency, not magnitude** is the stronger behavioral signal — consistent with offers rewarding repeat visitors.
+
+### 6.5 Cost efficiency: completion rate vs reward cost
+
+![Cost per completion](cost_per_completion.png)
+
+| Offer type | Difficulty | Reward | Completion rate | Cost per completion |
+|---|---|---|---|---|
+| Discount $2 | 10 | 2 | 71.5% | \$0.74 |
+| Discount $3 | 7 | 3 | 69.9% | \$0.88 |
+| Discount $5 | 20 | 5 | 46.7% | \$5.70 |
+| BOGO $5 | 5 | 5 | 59.5% | \$5.79 |
+| BOGO $10 | 10 | 10 | 45.6-49.8% | \$11.50 |
+
+Discount offers at \$2-\$3 reward are 7-15x more cost-efficient per completion than \$10 BOGOs, even when completion rates are similar.
+
+### 6.6 Demographic segments (masked 2,175 excluded)
+
+![Income quartile](income_quartile_completion.png)
+
+#### By income quartile
+| Income quartile | BOGO complete | Discount complete |
+|---|---|---|
+| <25th percentile | 41% | 52% |
+| 25-50th | 56% | 64% |
+| 50-75th | 66% | 71% |
+| ≥75th | 77% | 81% |
+
+Completion rises monotonically with income — the gap is 36pp for BOGO, 29pp for discount.
+
+#### Gender within income (disentangled)
+When we hold income constant, the gender gap shrinks but persists:
+
+| Gender | Income <25th | Income ≥75th |
+|---|---|---|
+| Female | 55% | **78%** |
+| Male | 35% | **67%** |
+| Other | 51% | **75%** |
+
+The ~5-10pp gender gap is **partly driven by income** (women have higher median income in this dataset), but a residual gap (~5pp) remains even within income bands, suggesting a genuine behavioral difference.
+
+#### Unknown demographics segment
+2,175 members (12.8%) have masked age/gender/income. Their completion rate is 12-21% — dramatically lower than any known segment. They consume offers at the same rate but convert poorly.
+
+### 6.7 Retention cohort (by join year)
+
+![Retention cohort](cohort_retention_curve.png)
+
+| Join year | Active rate | Completion rate |
+|---|---|---|
 | 2017-2018 (newest) | 68% | 55% |
-| 2013-2014 (oldest) | 65% | 48% |
 | 2015-2016 (mid) | 45% | 42% ← trough |
+| 2013-2014 (oldest) | 65% | 48% |
 
-
-- Months 1-3: 75% retention (onboarding burst)
-- Months 4-12: linear decline to 40%
-- Year 1-3: stable at 35-45%
-- Year 3+: sharp drop to 12%
-
-The 2015-2016 cohort underperforms both preceding and succeeding cohorts — the single biggest retention leak.
-
-### Demographic segment analysis
-
-![Income quartile](/images/cafe-rewards/income_quartile_completion.png)
-
-
-| Segment | BOGO completion | Discount completion |
-| ------------------ | --------------- | ------------------- |
-| Income <25th pct | 41% | 52% |
-| Income 25-50th pct | 56% | 64% |
-| Income 50-75th pct | 66% | 71% |
-| Income ≥75th pct | 77% | 81% |
-
-
-- Completion rises monotonically with income quartiles — gap of 36 pp for BOGO, 29 pp for discount
-- Female members complete 15-23 pp more than males across both offer types
-- The 2,175 masked-demographic rows lag at 12-21% completion — lowest of any cohort
-
-### Informational offers
-
-Both informational offers (difficulty=0, reward=0) show 0% completion despite 57-90% view rates — consistent with their design as awareness-only campaigns.
+- Newest members are most engaged (onboarding effect).
+- The **2015-2016 cohort underperforms** both adjacent cohorts by ~20pp on activity — a retention leak worth investigating.
+- This is cross-sectional (one 30-day window); it cannot show retention decay over time.
 
 ---
 
-## 5. Limitations
+## 7. Recommendations
 
-1. **No direct attribution**: Offer completion is inferred from transaction amount ≥ difficulty within duration window, not linked to specific offer ID in transaction value. Cannot prove causation between viewing an offer and completing a transaction.
-2. **30-day window only**: All data spans a single 30-day period (time values 0-714). No long-term behavioral patterns or seasonality effects observable.
-3. **Self-selection bias**: Members who view offers may be systematically different from those who ignore them — demographic differences may reflect engagement rather than offer appeal.
-4. **Informational offers excluded from completion**: These offer types cannot be completed by design, so funnel analysis focused on bogo and discount offers only.
-5. **Income proxy**: `income` is described as "estimated" annual income — likely model-based imputation, introducing potential measurement error (especially impactful given the strong income-completion relationship).
-6. **Masked demographic block**: 2,175 members (12.8%) have deliberately concealed age/gender/income. While flagged in the analysis, their true demographic profile remains unknown — limiting segmentation completeness.
+1. **Send every offer on all four channels.** `0b1e15` (discount, difficulty 20) is viewed by only 37.7% — adding missing channels is a free completion boost.
 
+2. **Route by income segment.** Top-quartile income customers complete 77-81%; bottom quartile completes 41-52%. Use low-difficulty discounts for lower-income segments.
+
+3. **Target high-frequency transactors.** Customers with ≥4 transactions during offer window complete 19pp more often. Micro-spenders can be re-targeted with lower-difficulty offers.
+
+4. **Deprioritize \$10 BOGOs.** They cost \$11.50 per completion against \$0.74-\$0.88 for \$2-\$3 discounts. Keep only if basket-size lift justifies the 15x cost premium.
+
+5. **Suppress reward offers for unaware-prone customers.** 15.6% of completions go to customers who never viewed the offer — implement a spend-threshold filter (if customer spent ≥ difficulty organically in past 30 days, skip the offer).
+
+6. **Investigate the 2015-2016 cohort.** It lags both older (survivors) and newer (onboarding) cohorts by ~20pp — likely a data or product issue that warrants root-cause analysis.
+
+---
+
+## 8. Limitations
+
+1. **No causal attribution.** We cannot prove the offer caused the purchase — only that spending occurred during the window. Net effect is a proxy, not true incremental ROI.
+2. **No transaction-offer linkage.** Transaction events do not carry `offer_id`, so we cannot attribute specific transaction amounts to specific offers. Transaction analysis is at the customer level only.
+3. **30-day window.** Cannot observe seasonality, repeat campaign effects, or retention decay over time.
+4. **Self-selection bias.** Customers who view offers may differ systematically from those who don't.
+5. **Income is estimated.** Described as "estimated annual income" — likely model-imputed, introducing measurement error at the strongest predictor variable.
+6. **75% of offers have identical channel sets**, making it hard to isolate channel effects; difficulty, duration, and type are confounded across the 10 offers.
+7. **Small sample for gender "O".** The third gender category (n≈212-303) is too small for robust conclusions.
