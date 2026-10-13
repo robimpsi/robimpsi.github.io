@@ -6,8 +6,6 @@ description: End-to-end EDA of Cafe Rewards offers, transactions, and customer
   retention cohort breakdown.
 tags: python, pandas, numpy
 ---
-# Cafe Rewards: Conversion Funnel & Retention Cohort Analysis
-
 ## 1. Introduction
 
 One of the recurring tasks of a data analyst in retail and F&B is evaluating whether a rewards program actually works: are offers being completed, are rewards being paid to the right people, and is budget producing incremental behavior or subsidizing purchases customers would have made anyway?
