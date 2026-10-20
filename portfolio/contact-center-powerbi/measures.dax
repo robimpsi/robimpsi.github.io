@@ -1,0 +1,17 @@
+// =============================================
+// Contact Center - DAX Measures
+// =============================================
+SLA % = DIVIDE(SUM(fact_calls[is_sla]), COUNTROWS(fact_calls))
+ASA (sec) = DIVIDE(SUM(fact_calls[wait_sec]), SUM(fact_calls[is_answered]))
+Abandon % = DIVIDE(SUM(fact_calls[abandoned]), COUNTROWS(fact_calls))
+AHT (min) = DIVIDE(SUM(fact_calls[aht_sec]), SUM(fact_calls[is_answered])) / 60
+Total Calls = COUNTROWS(fact_calls)
+Answered Calls = SUM(fact_calls[is_answered])
+Calls per Agent = DIVIDE([Total Calls], DISTINCTCOUNT(fact_calls[agent_id]))
+Outage SLA % = IF(SUM(fact_calls[is_outage_call]) > 0,
+    DIVIDE(CALCULATE(SUM(fact_calls[is_sla]), fact_calls[is_outage_call]=1),
+           CALCULATE(COUNTROWS(fact_calls), fact_calls[is_outage_call]=1)))
+Outage Share = DIVIDE(SUM(fact_calls[is_outage_call]), [Total Calls])
+Operator Score =
+VAR _tenure = SELECTEDVALUE(dim_agent[tenure_years])
+RETURN IF(_tenure < 1, "new", IF(_tenure > 5, "senior", "mid"))

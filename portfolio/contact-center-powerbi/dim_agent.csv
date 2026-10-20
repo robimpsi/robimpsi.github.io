@@ -1,0 +1,49 @@
+agent_id,team,tenure_years,hire_date,shift_pattern
+AGT-001,Tech Support,9.5,2014-07-03,morning
+AGT-002,Tech Support,5.9,2018-02-07,evening
+AGT-003,Tech Support,1.7,2022-04-21,evening
+AGT-004,Tech Support,10.5,2013-07-02,mid
+AGT-005,Tech Support,7.3,2016-09-13,evening
+AGT-006,Tech Support,5.1,2018-11-26,mid
+AGT-007,Tech Support,6.9,2017-02-06,evening
+AGT-008,Tech Support,8.8,2015-03-15,morning
+AGT-009,Tech Support,6.5,2017-07-02,morning
+AGT-010,Tech Support,4.4,2019-08-08,morning
+AGT-011,Tech Support,6.1,2017-11-25,morning
+AGT-012,Tech Support,11.9,2012-02-07,evening
+AGT-013,Tech Support,4.6,2019-05-27,evening
+AGT-014,Tech Support,9.7,2014-04-21,morning
+AGT-015,Billing,5.8,2018-03-15,evening
+AGT-016,Billing,9.1,2014-11-26,morning
+AGT-017,Billing,7.8,2016-03-15,evening
+AGT-018,Billing,2.7,2021-04-20,morning
+AGT-019,Billing,10.7,2013-04-20,mid
+AGT-020,Billing,8.8,2015-03-15,morning
+AGT-021,Billing,11.4,2012-08-08,evening
+AGT-022,Billing,10.1,2013-11-25,evening
+AGT-023,Billing,8.9,2015-02-07,evening
+AGT-024,Billing,3.5,2020-07-02,morning
+AGT-025,Billing,10.8,2013-03-15,mid
+AGT-026,Billing,7.4,2016-08-08,evening
+AGT-027,Sales,8.0,2016-01-01,evening
+AGT-028,Sales,2.6,2021-05-27,evening
+AGT-029,Sales,9.7,2014-04-21,morning
+AGT-030,Sales,9.7,2014-04-21,evening
+AGT-031,Sales,10.4,2013-08-08,morning
+AGT-032,Sales,5.9,2018-02-07,morning
+AGT-033,Sales,10.5,2013-07-02,evening
+AGT-034,Sales,11.7,2012-04-20,morning
+AGT-035,Sales,9.0,2015-01-01,mid
+AGT-036,Sales,7.1,2016-11-25,mid
+AGT-037,Customer Care,8.1,2015-11-26,morning
+AGT-038,Customer Care,3.5,2020-07-02,morning
+AGT-039,Customer Care,2.4,2021-08-08,evening
+AGT-040,Customer Care,10.1,2013-11-25,morning
+AGT-041,Customer Care,2.7,2021-04-20,evening
+AGT-042,Customer Care,9.0,2015-01-01,morning
+AGT-043,Customer Care,9.4,2014-08-08,evening
+AGT-044,Customer Care,2.5,2021-07-02,mid
+AGT-045,Customer Care,2.5,2021-07-02,mid
+AGT-046,Customer Care,5.7,2018-04-21,mid
+AGT-047,Customer Care,4.2,2019-10-20,morning
+AGT-048,Customer Care,3.3,2020-09-13,morning
