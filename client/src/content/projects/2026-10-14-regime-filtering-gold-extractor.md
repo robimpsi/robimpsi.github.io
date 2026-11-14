@@ -1,6 +1,6 @@
 ---
-title: "Regime Filtering Is Not a Magic Button: What 7 Strategies and 5 Market States Taught Us"
-description: "A narrative walkthrough of regime-conditional research on XAUUSDc (gold): what a market regime is, how we built a rule-based classifier with five states (GM0-GM4), mapped seven trading strategies to the states where they actually work, and found that the filter removed fewer trades than expected -- but the ones it removed mattered."
+title: "Regime Filtering Is Not a Magic Button: Finding Per-Regime Edge Before the EA Trades"
+description: "A narrative walkthrough of regime-conditional research on XAUUSDc (gold): what a market regime is, how we built a rule-based classifier with five states (GM0-GM4), found which of seven strategy legs have edge in each state, and produced the regime enable map that configures the Gold Extractor Expert Advisor."
 ---
 
 # Regime Filtering Is Not a Magic Button
@@ -61,11 +61,11 @@ Alongside the raw price data, the research engine produced several files:
 
 ### The problem
 
-We had a trading system called the Gold Extractor EA (Expert Advisor). It runs seven strategy legs (A through G) on XAUUSDc. Each leg is a standalone strategy with its own entry signal, stop loss, and session filter.
+We had a trading system called the Gold Extractor EA (Expert Advisor). The EA is the **actual end product** -- it is the automated trading bot that runs on MetaTrader 5 and executes trades on XAUUSDc.
 
-The backtest said the portfolio made money. The live MT5 tester said something else. The gap between "research expectancy" and "live results" became the leak we spent weeks trying to plug.
+But before the EA can trade intelligently, we need to know: **which of its seven strategy legs have positive edge in which market regime?** Running all legs in all regimes is like using every tool in the toolbox for every job -- some tools work, some don't.
 
-We asked a simpler question: **should every leg trade in every market regime?**
+The goal of this analysis is **not** to backtest the EA as a black box. The goal is to find per-regime edge: for each of the seven strategy legs, determine in which market regimes it is profitable, and in which regimes it should be silenced. That per-regime edge map is then fed into the EA as its configuration.
 
 ### Hypotheses
 
@@ -79,7 +79,7 @@ We pre-registered five hypotheses (H1-H5) in a research protocol. Each comes wit
 | H4 | Market states last long enough to detect and trade | Median state life is shorter than 3x detection time |
 | H5 | The regime structure holds up out-of-sample | Out-of-sample gain is zero or negative in 30%+ of test windows |
 
-The deliverable is not a trading strategy. It is an **evidence file**: labels, statistics, per-state tables, a full trial log, and a written verdict against each success criterion.
+The deliverable is not a trading strategy. It is an **evidence file**: labels, statistics, per-state tables, a full trial log, and a written verdict against each success criterion -- plus the regime enable map that configures the EA.
 
 ---
 
@@ -200,7 +200,7 @@ The per-regime table for three representative legs:
 
 ### Step 4 -- Build the regime enable map
 
-Session F converted the Session E table into a hard rule: only trade legs that show positive expectancy in each regime.
+Session F converted the Session E table into a hard rule: only trade legs that show positive expectancy in each regime. This enable map is the configuration input to the Gold Extractor EA.
 
 | Regime | Disabled legs | Reason |
 |--------|--------------|--------|
@@ -216,7 +216,7 @@ The map is asymmetrical by design. GM2 and GM3 are the most restrictive -- those
 
 ### Step 5 -- Baseline vs regime-filtered portfolio
 
-We compared two scenarios on the full M5 data: all legs always on (baseline) vs regime-filtered (enable map applied).
+We compared two scenarios on the full M5 data: all legs always on (baseline) vs regime-filtered (enable map applied, as the EA would be configured).
 
 | Metric | Baseline | Regime-Filtered | Change |
 |--------|----------|-----------------|--------|
@@ -243,7 +243,7 @@ We compared two scenarios on the full M5 data: all legs always on (baseline) vs 
 
 The filter removed 2,433 trades (15.6%), but portfolio expectancy barely moved. Profit Factor improved only slightly (1.209 to 1.222). Max drawdown did not improve. Win rate is unchanged.
 
-However, the filter stopped individual legs from bleeding in bad regimes. Leg C in GM4 goes from -0.05R to zero trades. Leg E in GM3 goes from -0.46R to zero trades. The filter makes the strategy honest about when it should stay silent.
+However, the filter stopped individual legs from bleeding in bad regimes. Leg C in GM4 goes from -0.05R to zero trades. Leg E in GM3 goes from -0.46R to zero trades. The filter makes the EA honest about when each leg should stay silent.
 
 ### Finding 2 -- Classifier structure matters more than exact thresholds
 
@@ -251,7 +251,7 @@ The five-regime split (chop / trend / crisis) maps cleanly to published literatu
 
 ### Finding 3 -- Look-ahead is a design boundary, not a bug
 
-The research engine classifies the entry bar's regime, which requires the bar to close first. The live trading bot can only use the last completed bar's regime. After fixing this mismatch, the bot's regime series tracks the engine closely. The remaining gap is a research-design decision, not a code defect.
+The research engine classifies the entry bar's regime, which requires the bar to close first. The live EA can only use the last completed bar's regime. After fixing this mismatch, the EA's regime series tracks the engine closely. The remaining gap is a research-design decision, not a code defect.
 
 ### Finding 4 -- Entry execution is not the problem
 
@@ -262,7 +262,7 @@ Matched entries show median fill deviation of +17 points (half of the 34-point s
 ## Part 5: Limitations
 
 - **Time window.** All numbers cover 2025-06-11 to 2026-11-04 for intraday data and 2018-01-02 to 2026-11-06 for H1/D1. Out-of-sample behavior beyond this window is unmeasured.
-- **Look-ahead boundary.** The engine uses entry-bar regime (partially look-ahead). The live bot cannot replicate this at entry time. This is a research-design decision to resolve.
+- **Look-ahead boundary.** The engine uses entry-bar regime (partially look-ahead). The EA cannot replicate this at entry time. This is a research-design decision to resolve.
 - **Regime map is not static.** It comes from Session E per-regime results. If the market distribution shifts, the map shifts with it. Thresholds are training-window quantiles, frozen at the train/out-of-sample boundary.
 - **Small-sample crisis buckets.** GM3 (crisis) has the fewest bars and trades. These buckets are reported with intervals but never used for pass/fail claims.
 - **Costs.** Every backtest applies regime-conditional cost curves. Crisis spreads receive a 1.5x floor multiplier. No edge claim is reported gross of costs.
@@ -274,7 +274,9 @@ Matched entries show median fill deviation of +17 points (half of the 34-point s
 
 Regime filtering is not a magic button. It will not double your Profit Factor or halve drawdown by itself. What it does is force each trading strategy to answer one question: *in this market state, do you actually belong here?*
 
-For the Gold Extractor system, the answer is "no" for roughly 15% of trades across specific strategy-regime combinations. Removing those trades does not transform the equity curve -- but it makes the strategy honest about when it should be silent. In systematic trading, knowing when **not** to trade is often more valuable than knowing when to.
+For the Gold Extractor system, the answer is "no" for roughly 15% of trades across specific strategy-regime combinations. Removing those trades does not transform the equity curve -- but it makes the EA honest about when each leg should be silent. In systematic trading, knowing when **not** to trade is often more valuable than knowing when to.
+
+The regime enable map from this research is the configuration input to the Gold Extractor EA. The EA is the end product; this analysis is the evidence that tells it when to trade and when to stay out.
 
 ---
 
