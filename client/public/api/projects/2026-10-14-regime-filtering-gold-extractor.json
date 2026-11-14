@@ -1,7 +1,7 @@
 {
   "slug": "2026-10-14-regime-filtering-gold-extractor",
   "title": "Regime Filtering Is Not a Magic Button: What 7 Legs and 5 GM States Taught Me",
-  "date": "2026-11-14T05:26:35.751Z",
+  "date": "2026-11-14T05:36:58.997Z",
   "description": "A narrative walkthrough of how we built a predefined K=5 regime classifier for XAUUSDc, mapped each of 7 strategy legs to the regimes where it actually works, and found that the filter removed fewer trades than expected -- but the ones it removed mattered.",
   "tags": [],
   "link": "",
