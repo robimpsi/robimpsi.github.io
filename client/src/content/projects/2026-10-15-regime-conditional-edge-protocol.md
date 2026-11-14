@@ -1,70 +1,104 @@
 ---
-title: "From Hypothesis to Regime Map: A Research Protocol for Proving Market States Before Trading Them"
-description: "A narrative walkthrough of regime-conditional edge research: from literature anchors and pre-registered hypotheses to per-state expectancy tables and a falsified-or-survived verdict."
+title: "From Hypothesis to Regime Map: Proving Market States Before Trading Them"
+description: "A narrative walkthrough of regime-conditional edge research: what a market regime is, how we built a rule-based classifier, and what happened when we filtered seven trading strategies by regime."
 ---
 
 # From Hypothesis to Regime Map
 
-The hypothesis is simple and intuitive: **markets are not one thing.** They alternate between persistent states -- low-volatility chop, trending, high-volatility chaos -- and a rule that is profitable on average may be unprofitable in some states and strongly profitable in others.
+Markets are not one thing. Sometimes gold trades in a quiet sideways range. Sometimes it trends strongly in one direction. Sometimes it swings wildly in both directions.
 
-We have heard this story before. The question is whether we can **prove it** before routing a single dollar. That is what this research is about.
+These different conditions are called **market regimes**. A trading strategy that makes money in a trending regime can lose money in a sideways regime. The idea behind this project is simple: **identify the current market regime, then only run the strategies that work in that regime.**
 
-## Part 1: What we are working with
+This article walks through how we built and tested that idea using XAUUSDc (gold vs US dollar) data from MetaTrader 5. It is written for readers without a trading background: no prior knowledge of algorithmic trading is assumed.
 
-The data lives under `D:\Resurgence\backtest_xau\`. It is XAUUSDc (gold vs USD, cent account suffix) pulled from MT5 history, plus EURUSDc for cross-pair checks. Four timeframes:
+---
 
-| File | Rows | Span |
-|------|------|------|
-| XAUUSDc_M1.csv | ~100k | 2025-06-11 -> 2026-11-09 |
-| XAUUSDc_M5.csv | ~100k | 2025-06-11 -> 2026-11-09 |
-| XAUUSDc_M15.csv | ~100k | 2025-06-11 -> 2026-11-09 |
-| XAUUSDc_H1.csv | ~75k | 2018-01-02 -> 2026-11-06 |
-| XAUUSDc_D1.csv | ~2k | 2018-01-02 -> 2026-11-06 |
+## Part 1: Data description (EDA)
 
-MT5 history is capped at ~100k bars per API call, so the intraday window is short (about 4.5 months at M5) but the H1/D1 history goes back to 2018. Every bar has `time, open, high, low, close, tick_volume, spread`.
+### What we worked with
 
-Alongside the raw data is the research engine output:
-- `engine_regime_dump.csv` -- per-bar regime label (GM0-GM4) and H1 EMA200-slope bias
-- `engine_base_gov.csv` -- governed trades after regime/bias filter
-- `engine_raw_trades.csv` -- ungoverned signal trades before filtering
-- `regime_session_e_results.json` -- per-leg average-R by regime (Session E)
-- `regime_session_f_results.json` -- baseline vs regime-filtered portfolio comparison (Session F)
+The data lives under `D:\Resurgence\backtest_xau\`. It comes from MetaTrader 5 (MT5), a trading platform. We pulled historical price bars for XAUUSDc at five timeframes. Each bar represents a period of time and contains the open, high, low, and close prices for that period.
 
-The research protocol itself is documented separately in `Regime-Conditional_Edge_Research_Protocol.md`. It defines the success criteria (SC-1 to SC-6), the pre-registered hypotheses (H1-H5), the six-test evidence battery (T1-T6), and the gate structure (G0-G3). Every number in this article traces back to one of those files.
+| File | Rows | Time span | Timeframe |
+|------|------|-----------|-----------|
+| XAUUSDc_M1.csv | ~100,000 | 2025-06-11 to 2026-11-09 | 1 minute |
+| XAUUSDc_M5.csv | ~100,000 | 2025-06-11 to 2026-11-09 | 5 minutes |
+| XAUUSDc_M15.csv | ~100,000 | 2025-06-11 to 2026-11-09 | 15 minutes |
+| XAUUSDc_H1.csv | ~75,000 | 2018-01-02 to 2026-11-06 | 1 hour |
+| XAUUSDc_D1.csv | ~2,000 | 2018-01-02 to 2026-11-06 | 1 day |
 
-## Part 2: The question we are trying to answer
+MT5 limits history to about 100,000 bars per API call, so the short timeframes (M1, M5, M15) cover about 4.5 months. The longer timeframes (H1, D1) go back to 2018.
 
-The working hypothesis, pre-registered in the protocol:
+### What each column means
 
-> Markets alternate between a small number of persistent states. A rule profitable on average may be unprofitable in some states and strongly profitable in others. Conditioning a fixed set of trading rules on an explicit, literature-anchored market-state definition should produce positive after-cost expectancy that survives out-of-sample and multiple-testing scrutiny.
+Every price bar file has the same columns:
 
-To convert that into something falsifiable, the protocol breaks it into six hypotheses (H1-H5), each with a pre-registered falsifier:
+| Column | Meaning |
+|--------|---------|
+| time | Timestamp when the bar started |
+| open | Price at the start of the bar |
+| high | Highest price reached during the bar |
+| low | Lowest price reached during the bar |
+| close | Price at the end of the bar |
+| tick_volume | Number of price ticks (price updates) during the bar |
+| spread | Difference between buy and sell price, in points |
 
-| ID | Hypothesis | Falsifier |
-|----|-----------|-----------|
-| H1 | M15-H1 returns exhibit K in {2,3} persistent, distributionally distinct states | T1 or T2 fails |
-| H2 | Baseline rule expectancy is regime-conditional (differs across states) | T5 permutation p >= .01, or all states share same expectancy sign |
-| H3 | State-based routing beats a random-skip control trading the same fraction of signals | Routing expectancy inside control's 95% bootstrap interval |
-| H4 | State dwell times are long enough for detection latency to leave exploitable life | Median dwell < 3x median detection latency |
-| H5 | Regime structure generalizes out-of-sample | OOS log-likelihood gain <= 0 in >= 30% of rolling windows |
+### Research engine output
 
-The deliverable is not a strategy. It is an **evidence file**: labels, transition matrices, dwell-time statistics, per-state expectancy tables with bootstrap intervals, the full trial log, and a written verdict against every success criterion.
+Alongside the raw price data, the research engine produced several files:
 
-## Part 3: How we built it
+| File | Content |
+|------|---------|
+| engine_regime_dump.csv | Regime label (GM0-GM4) for every bar, plus H1 trend bias |
+| engine_base_gov.csv | Trades after regime and bias filtering |
+| engine_raw_trades.csv | All signal trades before filtering |
+| regime_session_e_results.json | Average return per strategy leg, broken down by regime |
+| regime_session_f_results.json | Portfolio comparison: all strategies on vs regime-filtered |
 
-The protocol is strict about one thing: **structure comes from the literature; thresholds come from the data.** No element of the regime taxonomy may be invented ad hoc. Each state must satisfy construct validity (grounded in published research) and empirical validity (passing the T1-T6 battery on our own data).
+---
 
-### Step 1 -- Define candidate states from published research
+## Part 2: Goal of the analysis
 
-Three ordered states, by volatility load:
+We wanted to answer one question: **does conditioning trading strategies on an explicit market-state definition produce better results than running all strategies all the time?**
 
-| State | Research basis | Operational proxy (train-calibrated) |
-|-------|---------------|--------------------------------------|
-| S1 Low-volatility chop | Engle (1982); Bollerslev (1986); Ryden et al. (1998) | ATR%(14) < train median AND KER(20) < train q40 |
-| S2 Trending | Moskowitz, Ooi & Pedersen (2012); Baz et al. (2015) | EMA(8/21/55) aligned AND KER(20) between train q60 and q80 |
-| S3 High-volatility chaos | Brunnermeier, Nagel & Pedersen (2009); Mandelbrot (1963) | ATR%(14) >= train q80 OR elevated tail frequency |
+To make this question testable, we pre-registered five hypotheses (H1-H5) in a research protocol. Each hypothesis comes with a pre-defined falsifier -- a condition that would prove the hypothesis wrong:
 
-The features, all trailing windows only (anti-lookahead):
+| ID | Hypothesis | Falsifier (what would kill it) |
+|----|-----------|--------------------------------|
+| H1 | Price returns show K in {2,3} persistent, distinct market states | Statistical test T1 or T2 fails |
+| H2 | Strategy profitability differs across market states | All states show the same profit/loss sign |
+| H3 | Routing by market state beats random skipping | Result falls inside random-skip control's range |
+| H4 | Market states last long enough to detect and trade | Median state life is shorter than 3x detection time |
+| H5 | The regime structure holds up out-of-sample | Out-of-sample gain is zero or negative in 30%+ of test windows |
+
+The deliverable is not a trading strategy. It is an **evidence file**: labels, statistics, per-state tables, a full trial log, and a written verdict against each success criterion.
+
+---
+
+## Part 3: Process
+
+### Step 1 -- Define market states from published research
+
+We did not invent the market states from scratch. Each state is anchored in published quantitative research, then calibrated to our own data using training-window quantiles (never fixed constants copied from a paper).
+
+Three ordered states by volatility:
+
+| State | What it means | Research basis |
+|-------|--------------|----------------|
+| S1 Low-volatility chop | Quiet sideways market | Engle (1982); Bollerslev (1986) |
+| S2 Trending | Price moves consistently in one direction | Moskowitz, Ooi & Pedersen (2012) |
+| S3 High-volatility chaos | Wild swings in both directions | Brunnermeier, Nagel & Pedersen (2009) |
+
+### Step 2 -- Build the classifier (code)
+
+We used four features, all calculated from trailing windows only (no looking into the future):
+
+1. **ATR%(14)** -- volatility relative to price
+2. **KER(20)** -- Kaufman Efficiency Ratio, measures how directional price movement is (0 to 1)
+3. **EMA stack** -- alignment of 8, 21, and 55 period exponential moving averages
+4. **Tail frequency** -- how often extreme price moves happen over a 252-bar window
+
+Here is the actual code used to compute the features:
 
 ```python
 # ATR%(14) on H1 closes
@@ -84,23 +118,22 @@ ema8 = pd.Series(c).ewm(span=8, adjust=False).mean().values
 ema21 = pd.Series(c).ewm(span=21, adjust=False).mean().values
 ema55 = pd.Series(c).ewm(span=55, adjust=False).mean().values
 ema_aligned = (ema8 > ema21) & (ema21 > ema55) | (ema8 < ema21) & (ema21 < ema55)
-
-# Tail frequency: proportion of |r| > 2.5 * rolling sigma over 252-bar buffer
-r = np.diff(c, prepend=c[0]) / np.maximum(c, 1e-12)
 ```
 
-Thresholds are training-window quantiles -- never constants copied from a paper.
+Thresholds come from the training data:
 
-### Step 2 -- Classify every bar into a regime
+| Threshold | Value | Meaning |
+|-----------|-------|---------|
+| ATR% median | 0.0952 | Low volatility boundary |
+| KER q40 | 0.1511 | Weak direction boundary |
+| KER q60 | 0.2406 | Moderate direction boundary |
+| KER q80 | 0.3000 | Strong direction boundary |
+| ATR% q80 | 0.1534 | High volatility boundary |
+| Tail freq q80 | 10.00 | Crisis tail boundary |
+
+Classification rule (applied to every H1 bar):
 
 ```python
-REG_ATR_MEDIAN = 0.0952
-REG_KER_Q40 = 0.1511
-REG_KER_Q60 = 0.2406
-REG_KER_Q80 = 0.3000
-REG_ATR_Q80 = 0.1534
-REG_TAIL_Q80 = 10.0000
-
 def classify_regime(atr_pct_i, ker20_i, ema_stack_i, tail_freq_i):
     if np.isnan(atr_pct_i) or np.isnan(ker20_i):
         return -1
@@ -115,49 +148,45 @@ def classify_regime(atr_pct_i, ker20_i, ema_stack_i, tail_freq_i):
     return 1  # GM1_mod_chaos (default)
 ```
 
-Every H1 bar gets a label. Then H1 regime is mapped down to M5/M15 bars via `searchsorted` with `-2` offset -- the **last completed H1 bar**, never the forming one. This is the anti-lookahead rule: the classifier must only know what was knowable at entry time.
+Every H1 bar receives one of five labels (GM0-GM4). The H1 label is then mapped down to M5/M15 bars using only completed bars (anti-lookahead rule).
 
-### Step 3 -- Test each leg inside each regime
+### Step 3 -- Test each strategy leg in each regime
 
-Session E backtested all seven Gold Extractor legs (A-G) across the five GM regimes. Each leg is a standalone strategy with its own signal generator, stop, and session gate. The engine records entry time, leg, side, sl_dist, R, regime, bias, and governed flag.
+Session E backtested seven strategy legs (A-G) across the five regimes. Each leg is a standalone strategy with its own entry signal, stop loss, and session filter.
 
-The per-regime table (Session E) is the heart of the research. Here is what it looks like for three legs:
+The per-regime table for three representative legs:
 
-| Leg | Regime | n | avgR | sumR | PF |
-|-----|--------|---|------|------|-----|
+| Leg | Regime | Trades | avgR | sumR | Profit Factor |
+|-----|--------|--------|------|------|---------------|
 | C (M5 rsi2) | GM0 mod_trend | 1,844 | +0.102 | +187.5 | 1.19 |
 | C | GM1 mod_chaos | 1,062 | +0.239 | +253.8 | 1.41 |
 | C | GM2 chop | 1,136 | +0.090 | +102.6 | 1.11 |
 | C | GM3 crisis | 163 | -0.030 | -4.93 | 1.19 |
 | C | GM4 strong_trend | 851 | -0.051 | -43.6 | 1.02 |
 | E (H1 rsi2) | GM0 mod_trend | 120 | +0.443 | +53.1 | 1.55 |
-| E | GM1 mod_chaos | 117 | +0.166 | +19.4 | 0.89 |
 | E | GM2 chop | 48 | -0.318 | -15.3 | 0.73 |
 | E | GM3 crisis | 22 | -0.464 | -10.2 | 0.27 |
-| E | GM4 strong_trend | 82 | +0.172 | +14.1 | 1.30 |
 | F (M15 macd_slope) | GM2 chop | 654 | -0.193 | -126.2 | 0.93 |
 | F | GM3 crisis | 74 | +0.415 | +30.7 | 1.49 |
 | F | GM4 strong_trend | 302 | +0.413 | +124.6 | 1.40 |
 
-Reading down the columns, a pattern emerges: **no leg is positive in all five regimes. No regime is profitable for all seven legs.** Leg C (the workhorse, 5,056 trades overall) bleeds in GM3 and GM4. Leg E (strong in trend and chop-normal) dies in GM2 and GM3. Leg F (MACD slope) is terrible in chop but excellent in crisis and strong trend.
+**Key pattern:** No leg is profitable in all five regimes. No regime is profitable for all seven legs. Leg C (the workhorse, 5,056 trades total) loses money in GM3 and GM4. Leg F loses money in chop but wins in crisis and strong trend.
 
-### Step 4 -- Build the enable map
+### Step 4 -- Build the regime enable map
 
-Session F converted the Session E table into a hard rule: only trade legs that are positive in each regime.
+Session F converted the table into a hard rule: only trade legs that show positive expectancy in each regime.
 
-| Regime | Disabled legs | Why |
-|--------|--------------|-----|
+| Regime | Disabled legs | Reason |
+|--------|--------------|--------|
 | GM0 mod_trend | none | All legs positive |
 | GM1 mod_chaos | none | All legs positive |
 | GM2 chop | E, F | E (-0.318R), F (-0.193R) |
 | GM3 crisis | B, E | B (-0.336R), E (-0.464R) |
 | GM4 strong_trend | C, D | C (-0.051R), D (-0.033R) |
 
-The map is asymmetrical by design. GM2 and GM3 are the most restrictive -- those are the dangerous regimes where most legs bleed.
-
 ### Step 5 -- Baseline vs regime-filtered portfolio
 
-Session F ran two scenarios on the full M5 window: all legs always on (baseline) vs regime-filtered (enable map applied).
+We compared two scenarios on the full M5 data: all legs always on (baseline) vs regime-filtered (enable map applied).
 
 | Metric | Baseline | Regime-Filtered | Change |
 |--------|----------|-----------------|--------|
@@ -165,56 +194,58 @@ Session F ran two scenarios on the full M5 window: all legs always on (baseline)
 | Sum R | +1,974.5 | +1,689.4 | -14.4% |
 | avgR | +0.1268 | +0.1286 | ~flat |
 | Profit Factor | 1.209 | 1.222 | +1.0% |
-| Max DD | 406.0R | 410.0R | ~flat |
+| Max drawdown | 406.0R | 410.0R | ~flat |
 | Win rate | 26.3% | 26.3% | unchanged |
 
-![Baseline vs Regime-Filtered](/images/regime-research/baseline_vs_filtered.png)
-
-The numbers are honest, and they are **not** what you might hope. The filter removed 2,433 trades, but portfolio expectancy barely moved. Profit Factor ticked up slightly. Max drawdown did not improve. Win rate is identical.
-
-## Part 4: What we found
-
-### Finding 1 -- The regime filter is diagnostic, not transformative
-
-Regime filtering did not double the Profit Factor or halve drawdown. It made the portfolio *honest*. C in GM4 goes from -0.05R to zero trades. E in GM3 goes from -0.46R to zero trades. The filter stops the bleeding leg-by-leg, even though the aggregate looks flat because surviving legs compensate.
-
-The real value is **diagnostic**: when the EA underperforms live, you can look at the current regime and ask, *"should this leg even be firing right now?"* Without the regime map, you cannot answer that.
-
-### Finding 2 -- The classifier structure matters more than the thresholds
-
-The five-regime split (chop / trend / crisis) maps cleanly to published literature: Hamilton (1989) Markov switching for discrete states, Moskowitz et al. (2012) for time-series momentum, Brunnermeier et al. (2009) for carry-crash chaos. The thresholds themselves (ATR% Q80, KER Q60/Q80/Q40) are training-window quantiles -- they would change on different data, but the state definitions would not.
-
-### Finding 3 -- Look-ahead is the honest boundary, not a bug
-
-The engine governs on the *entry bar's* regime, which requires the bar to close before classification -- partially look-ahead. The EA, trading at entry time, can only use the signal bar's completed regime. After the cadence fix, the EA's regime series (28,846 switches) tracks the engine closely (27,479 switches). The remaining ~7% mismatch is the look-ahead boundary: a research-design decision, not a code defect.
-
-### Finding 4 -- Fills are not the problem
-
-Matched entries show median fill deviation of +17 pts = half-spread (spread = 34 pts). Entry execution is not the driver of divergence. The regime question is structural.
-
-![Per-leg avgR by regime](/images/regime-research/leg_avgR_per_regime.png)
-
-![Regime distribution](/images/regime-research/regime_distribution.png)
-
-![Regime -> Leg enable map](/images/regime-research/regime_map.png)
-
-## Part 5: Limitations
-
-- **Window coverage.** All numbers cover 2025-06-11 to 2026-11-04 (M5) and 2018-01-02 to 2026-11-06 (H1). Out-of-sample behavior is unmeasured. H5 (out-of-sample generalization) remains open.
-- **Look-ahead boundary.** The engine uses entry-bar regime (partially look-ahead). The EA cannot replicate this at entry time. This is a research-design decision to resolve, not a bug to fix.
-- **Regime map is not static.** It comes from Session E per-regime avgR. If the underlying distribution shifts, the map shifts with it. Thresholds are training-window quantiles, frozen at the train/OOS boundary.
-- **Small-sample crisis buckets.** GM3 (crisis) has the fewest bars and trades. Under-powered buckets are reported with intervals but never support pass/fail claims -- per protocol Section 7.
-- **Costs.** Every backtest applies regime-conditional cost curves. Crisis spreads receive a 1.5x floor multiplier. No edge claim is reported gross of costs.
-- **Fill quality is not the driver** (measured median +17 pts = half-spread), but swap was never quantified in this window.
-
-## Conclusion
-
-Regime filtering is not a magic button. It will not double your Profit Factor or halve your drawdown by itself. What it does is force each leg to answer one question: *in this market state, do you actually belong here?*
-
-For the Gold Extractor EA, the answer is "no" for roughly 15% of trades across specific leg-regime combinations. Removing those trades does not transform the equity curve -- but it makes the strategy honest about when it should be silent. And in systematic trading, knowing when *not* to trade is often more valuable than knowing when to.
+![Baseline vs Regime-Filtered Portfolio](/images/regime-research/baseline_vs_filtered.png)
 
 ---
 
-**Repository:** `D:\Resurgence\backtest_xau\` -- `regime_session_e.py` (per-leg regime table), `regime_session_f.py` (baseline vs filtered simulation), `regime_session_f_results.json` (results), `regime_bias_alignment.py` (classifier source of truth), `report.md` (EA port debugging narrative).
+## Part 4: Findings
 
-**Research protocol:** `C:\Users\UseR\Documents\Regime-Conditional_Edge_Research_Protocol.md` -- SC-1 to SC-6 success criteria, H1-H5 hypotheses, T1-T6 evidence battery, G0-G3 gates, Deflated Sharpe and Model Confidence Set standards.
+### Finding 1 -- The regime filter is diagnostic, not transformative
+
+The filter removed 2,433 trades (15.6%), but portfolio expectancy barely moved. Profit Factor improved only slightly (1.209 to 1.222). Max drawdown did not improve. Win rate is unchanged.
+
+However, the filter stopped individual legs from bleeding in bad regimes. Leg C in GM4 goes from -0.05R to zero trades. Leg E in GM3 goes from -0.46R to zero trades. The filter makes the strategy honest about when it should stay silent.
+
+### Finding 2 -- Classifier structure matters more than exact thresholds
+
+The five-regime split (chop / trend / crisis) maps cleanly to published literature. The exact thresholds (ATR% Q80, KER Q60/Q80/Q40) are training-window quantiles -- they would change on different data, but the state definitions would not.
+
+### Finding 3 -- Look-ahead is a design boundary, not a bug
+
+The research engine classifies the entry bar's regime, which requires the bar to close first. The live trading bot can only use the last completed bar's regime. After fixing this mismatch, the bot's regime series tracks the engine closely. The remaining gap is a research-design decision, not a code defect.
+
+### Finding 4 -- Entry execution is not the problem
+
+Matched entries show median fill deviation of +17 points (half of the 34-point spread). Entry execution quality is not driving the divergence between research and live results. The regime question is structural.
+
+![Per-leg avgR by regime](/images/regime-research/leg_avgR_per_regime.png)
+![Regime distribution](/images/regime-research/regime_distribution.png)
+![Regime to leg enable map](/images/regime-research/regime_map.png)
+
+---
+
+## Part 5: Limitations
+
+- **Time window.** All numbers cover 2025-06-11 to 2026-11-04 for intraday data and 2018-01-02 to 2026-11-06 for H1/D1. Out-of-sample behavior beyond this window is unmeasured.
+- **Look-ahead boundary.** The engine uses entry-bar regime (partially look-ahead). The live bot cannot replicate this at entry time. This is a research-design decision to resolve.
+- **Regime map is not static.** It comes from Session E per-regime results. If the market distribution shifts, the map shifts with it. Thresholds are training-window quantiles, frozen at the train/out-of-sample boundary.
+- **Small-sample crisis buckets.** GM3 (crisis) has the fewest bars and trades. These buckets are reported with intervals but never used for pass/fail claims.
+- **Costs.** Every backtest applies regime-conditional cost curves. Crisis spreads receive a 1.5x floor multiplier. No edge claim is reported gross of costs.
+- **Swap was never quantified** in this window.
+
+---
+
+## Conclusion
+
+Regime filtering is not a magic button. It will not double your Profit Factor or halve drawdown by itself. What it does is force each trading strategy to answer one question: *in this market state, do you actually belong here?*
+
+For the Gold Extractor system, the answer is "no" for roughly 15% of trades across specific strategy-regime combinations. Removing those trades does not transform the equity curve -- but it makes the strategy honest about when it should be silent. In systematic trading, knowing when **not** to trade is often more valuable than knowing when to.
+
+---
+
+**Repository:** `D:\Resurgence\backtest_xau\` -- `regime_session_e.py` (per-leg regime table), `regime_session_f.py` (baseline vs filtered simulation), `regime_session_f_results.json` (results), `regime_bias_alignment.py` (classifier source of truth), `report.md` (system port debugging narrative).
+
+**Research protocol:** `C:\Users\UseR\Documents\Regime-Conditional_Edge_Research_Protocol.md` -- success criteria SC-1 to SC-6, hypotheses H1-H5, evidence battery T1-T6, gates G0-G3, Deflated Sharpe and Model Confidence Set standards.
