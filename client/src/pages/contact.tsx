@@ -50,6 +50,27 @@ export default function Contact() {
           </p>
         </div>
 
+        <div className="max-w-5xl mx-auto mb-16 text-left">
+          <h2 className="text-3xl font-bold font-display mb-4">About Me</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            My name is Robi Maulana. I am based in Bengkulu, Indonesia. I work as an Operations Analyst and I am looking for remote work as a Data Operations Specialist or Admin Data Entry.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-2">
+            I clean and process large data using Google Sheets and Excel. I am not a coder. I do not know Python. My strength is being careful, reliable with fixed hours, and cleaning data with more than 99.5 percent accuracy.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-2">
+            I am ready to work for US or Asia Pacific teams with clear schedules and simple written communication.
+          </p>
+          <h3 className="font-bold font-display mb-2 mt-6">What I Can Do</h3>
+          <ul className="list-disc list-inside text-muted-foreground space-y-1">
+            <li>Clean messy data in Google Sheets and Excel (remove extra spaces, fix capitalization, split names and addresses)</li>
+            <li>Combine data from multiple files using XLOOKUP, INDEX/MATCH, and SUMIFS</li>
+            <li>Make pivot tables and simple summaries for daily or weekly reports</li>
+            <li>Clean and standardize customer, order, and inventory data for CRM</li>
+            <li>Check and verify data entry accuracy before submission</li>
+          </ul>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-6">
