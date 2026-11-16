@@ -1,7 +1,7 @@
 {
   "slug": "2026-10-14-regime-filtering-gold-extractor",
   "title": "Regime Filtering Is Not a Magic Button: Finding Per-Regime Edge Before the EA Trades",
-  "date": "2026-11-14T06:37:22.645Z",
+  "date": "2026-11-16T03:29:55.533Z",
   "description": "A narrative walkthrough of regime-conditional research on XAUUSDc (gold): what a market regime is, how we built a rule-based classifier with five states (GM0-GM4), found which of seven strategy legs have edge in each state, and produced the regime enable map that configures the Gold Extractor Expert Advisor.",
   "tags": [],
   "link": "",

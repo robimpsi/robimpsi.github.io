@@ -1,7 +1,7 @@
 {
   "slug": "2026-10-15-regime-conditional-edge-protocol",
   "title": "From Hypothesis to Regime Map: Proving Market States Before Trading Them",
-  "date": "2026-11-14T06:37:22.646Z",
+  "date": "2026-11-16T03:29:55.534Z",
   "description": "A narrative walkthrough of regime-conditional edge research: what a market regime is, how we built a rule-based classifier, and what happened when we filtered seven trading strategies by regime.",
   "tags": [],
   "link": "",
